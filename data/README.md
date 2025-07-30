@@ -1,1 +1,1 @@
-![Uploading 스크린샷 2025-07-31 오전 1.30.36.png…]()
+https://github.com/user-attachments/assets/a45ba868-6bea-41af-b908-d23a53b6da92

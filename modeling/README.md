@@ -2,6 +2,7 @@
 MLP 기반 다변량 회귀 모델 학습 파이프라인  
 - 데이터 정제 및 보간
 - 피처 엔지니어링
+- train/validation -> 80/20 분할
 - PyTorch MLP 학습 + Early Stopping + 모델 저장
 
 ## XGBoost.py

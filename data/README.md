@@ -16,6 +16,6 @@
 | **보건** | - 영아 사망률 (Under-1 Mortality Rate)<br>- 기대 수명 (Life Expectancy)<br>- 신생아 사망률 (Neonatal Mortality Rate) |
 | **교육** | - 초등학교 순취학률 (Net Primary Enrollment Rate)<br>- 초등학교 이수율 (Primary Completion Rate) |
 | **빈곤 및 사회복지** | - 빈곤율 (Poverty Rate)<br>- 1인당 GNI<br>- 의료 접근성 (Access to Healthcare) |
-| **환경** | - 1인당 CO2 배출량 (CO2 Emissions)<br>- 대기오염 지수 (Air Pollution Index)<br>- 재생 에너지 사용률 (Renewable Energy Usage Rate) (2014~2022) |
-| **생산** | - 서비스업 부가가치 (% of GDP)<br>- 제조업 부가가치 (% of GDP)<br>- 농작물 생산지수 (2014~2022)<br>- 가축 생산지수 (2014~2022)   |
+| **환경** | - 1인당 CO2 배출량 (CO2 Emissions)<br>- 대기오염 지수 (Air Pollution Index)<br>- 재생 에너지 사용률 (Renewable Energy Usage Rate)  |
+| **생산** | - 서비스업 부가가치 (% of GDP)<br>- 제조업 부가가치 (% of GDP)<br>- 농작물 생산지수 (2014~2022)<br>- 가축 생산지수  |
 

@@ -81,7 +81,7 @@ streamlit run dashboard/main.py
 ## 핵심 결과 (Key Findings)
 - 중요한 인사이트 요약 및 개발 협력에서의 의의
   - 국가 × 목적 클러스터링: 국가별 목적 패턴을 기반으로 유사 국가 그룹을 도출할 수 있으며, 이는 맞춤형 ODA 전략 수립에 활용 가능.<br>
-    <img src="https://github.com/user-attachments/assets/98c1c60c-abed-4020-8fbe-a4201c2780da" width="300"/>
+    <img src="https://github.com/user-attachments/assets/98c1c60c-abed-4020-8fbe-a4201c2780da" width="400"/>
 
   - ODA의 시차 효과 존재: Lag 1~3년 구간에서 상관계수가 높게 나타나, ODA가 단기적으로 개발 지표에 영향을 줄 수 있음을 시사함. 효과가 5년 이내에 나타나도록 전략 수립 필요.
   - 지원 분야별 예측 가능성: MLP 기반 시계열 예측 모델을 통해 분야별 ODA가 특정 개발 지표에 미치는 영향을 정량화할 수 있음.

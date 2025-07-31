@@ -17,11 +17,12 @@ streamlit run dashboard/main.py
 ## 코드 문서화 (Code documentation)
 전체 프로젝트는 data collection, analysis, modeling, dashboard 네 부분으로 구성되어있습니다.
 - data_collection: 주요 ODA 흐름과 성과지표를 포함한 데이터 수집 및 전처리 스크립트
-- data_analysis: 목적별 ODA 추이 분석, 수혜국 분류, 성과지표 상관분석 등 분석 코드
+- data_analysis: 
+  - crs_data 분석 -> 목적별 ODA 추이 분석, 수혜국 분류 등 분석 코드
+  - world bank data 분석 -> 성과지표 상관분석 등 분석 코드
+- modeling: MLT 등등등 기반 시계열 예측 모델 및 평가 지표 구현
+- dashboard: Streamlit 기반 인터페이스
 
-- modeling: LSTM/GRU 기반 시계열 예측 모델 및 평가 지표 구현
-
-- dashboard: Streamlit 기반 사용자 인터페이스
 ## API 문서 (API Documentation)
 
 ## 분석 방법론 (Analysis Methodology)

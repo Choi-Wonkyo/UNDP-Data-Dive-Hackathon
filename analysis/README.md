@@ -10,7 +10,7 @@
 1. 전체 ODA 규모 (목적별 누적합)
 2. 목적별 연도별 증감 추세 분석 (증가/감소 추세 판단) → LinearRegression
 <img src="https://github.com/user-attachments/assets/f200ec06-37f9-4b91-ab83-de2b630584e5" width="400"/>
-<img src="https://github.com/user-attachments/assets/dc1a4bd8-70e4-430d-92c3-b476b08bfb77" width="400" />
+<img src="https://github.com/user-attachments/assets/dc1a4bd8-70e4-430d-92c3-b476b08bfb77" width="400" /><br>
 4. 특정 국가들은 어떤 목적에 집중적으로 지원 받는지?
 
 

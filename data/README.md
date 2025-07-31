@@ -1,4 +1,6 @@
-## **< crs_data 데이터>**
+## **< crs_data 데이터>** 
+* 용량이 커서 깃허브에 업로드 되지 않음
+
 | csv 파일명 | 추출한 열 | 설명 |
 | --- | --- | --- |
 | **1. 국가별 ODA 규모 시계열 분석용** | `Year`, `RecipientName`, `USD_Disbursement` | 연도별 국가별 전체 ODA 흐름 확인 |

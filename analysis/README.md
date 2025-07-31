@@ -3,7 +3,7 @@
 
 
 
-## world bank 데이터 병합? 분석
+## world bank 데이터 분석
 
 
 [분석 3] 목적별 연도별 ODA 흐름 분석

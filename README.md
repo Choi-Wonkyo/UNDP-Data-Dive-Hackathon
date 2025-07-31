@@ -35,6 +35,7 @@ streamlit run dashboard/main.py
 ## API 문서 (API Documentation)    !!!! <span style="color:red"> Streamlit 완성되면 수정해야 됨 </span>
 내부에서 API 서버는 사용하지 않지만, Streamlit 내에서 사용자 입력에 따른 모델 예측 결과를 반환하는 구조로 되어 있음.
 주요 함수 및 상호작용은 dashboard/utils.py와 modeling/predict.py에 정리되어 있음.
+
 <br>
 <br>
 

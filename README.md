@@ -84,7 +84,7 @@ streamlit run dashboard/main.py
   - 개발 지표는 국가별 시계열 기준으로 보간 (양쪽 NaN 허용)
   - ISO3 코드 기준으로 국가 간 일치
 
-   <br>
+
    ** **자세한 데이터 구성 설명은 [`data/README.md`](data/README.md) 참고**
 
 <br>

@@ -12,9 +12,9 @@
 <br>
 
 ## 설치 및 실행 방법 (Setup Instructions)    !!!! <span style="color:red"> Streamlit 완성되면 수정해야 됨 </span>
-본 프로젝트는 현재 Google Colab 기반 분석 환경에서 수행되었습니다.
+본 프로젝트는 Google Colab 기반 분석 환경에서 수행되었습니다.
 모델 학습 및 시뮬레이션 실행을 재현하려면 아래 과정을 따르세요.
-- Google Drive 연동
+- Google Drive 연동  <- 지워도 될 듯;;
 ```python
 drive.mount('/content/drive')
 ```

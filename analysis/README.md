@@ -6,6 +6,22 @@
 ## world bank 데이터 병합? 분석
 
 
+[분석 3] 목적별 연도별 ODA 흐름 분석
+1. 전체 ODA 규모 (목적별 누적합)
+2. 목적별 연도별 증감 추세 분석 (증가/감소 추세 판단) → LinearRegression
+<img src="https://github.com/user-attachments/assets/f200ec06-37f9-4b91-ab83-de2b630584e5" width="400"/>
+<img src="https://github.com/user-attachments/assets/dc1a4bd8-70e4-430d-92c3-b476b08bfb77" width="400" />
+4. 특정 국가들은 어떤 목적에 집중적으로 지원 받는지?
+
+
+
+[분석 4] 수혜국 그룹 분석
+1. 지역별 수혜국 수
+2. 소득 수준별 수혜국 수
+3. 수혜국 그룹별 주요 목적 분포
+  <img src="https://github.com/user-attachments/assets/24d7577d-7ea5-481f-baa3-34e2ba047c1a" width="500"/>
+    
+
 ## 성과 지표 분석
 <1차 분석>
 - 1단계: 성과지표 후보 수집 → 총 16개

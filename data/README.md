@@ -1,4 +1,4 @@
-**< undp 제공 데이터>**
+## **< undp 제공 데이터>**
 | 분석 목적 | 필요한 열 | 설명 |
 | --- | --- | --- |
 | **1. 국가별 ODA 규모 시계열 분석** | `Year`, `RecipientName`, `USD_Disbursement` | 연도별 국가별 전체 ODA 흐름 확인 |
@@ -8,7 +8,7 @@
 | **5. 시계열 예측용 Input 구성** | `Year`, `RecipientName`, `SectorName`, `USD_Disbursement`, `USD_Disbursement_Defl` | 모델 Input용 |
 | **6. 외부 성과지표 병합용 기준** | `Year`, `RecipientName` | World Bank 지표와 병합 키 |
 
-**< world bank data >** <br>
+## **< world bank data >** <br>
 
 output 해당 데이터  <br>
 | 분야             | 지표 데이터                                                                |

@@ -1,15 +1,14 @@
-# 🌪️ CYClone - ODA Sustatinability Impact Prototype
+# 🌪️ CYClone - 제목 미정
 
-An interactive data-driven prototype to evaluate the sustainability and policy impact of Korea's ODA (Official Development Assistance), developed for the UNDP ODA Data Hackthon 2025.
+설명 수정
 
 -------------------------------
 <br>
 
 ## 프로젝트 개요 (Project Overview)
-본 프로젝트는 UN에서 제공하는 ODA(공적개발원조)가 수혜국에 미친 지속가능한 개발 영향력을 분석하고, UNDP와 정책 입안자들이 보다 효과적인 ODA 전략을 수립할 수 있도록 지원하는 도구입니다.
-수혜국의 사회·경제·환경 지표에 대한 시계열 분석 및 예측을 통해, 특정 목적의 ODA가 시간차를 두고 어떤 성과로 이어지는지를 가시적으로 제시합니다.
-
-이거 넣어야되나?(원교언니 지피티) -> 본 프로젝트는 UNDP(유엔개발계획)의 목적에 부합하는 국제개발협력(ODA) 데이터 분석을 통해 수원국의 개발 성과(보건·교육·경제 등) 를 정량적으로 예측하고, ODA의 지속가능성과 효율성을 평가하기 위한 다중 회귀 기반 MLP 모델을 구축한 것입니다.
+본 프로젝트는 UNDP의 국제개발협력(ODA)의 의사결정을 지원하기 위해, 수원국의 보건·교육·경제·환경 등 핵심 지표를 시계열 분석·예측하는 시뮬레이션 도구입니다.
+다층 퍼셉트론(MLP) 기반 모델을 활용해, 분야별 ODA 투입이 시차를 두고 성과로 이어지는 과정을 정량적으로 예측하고 시나리오별 성과를 비교할 수 있습니다.
+이를 통해 ODA의 지속가능성과 효율성을 평가하고, 근거 기반의 최적 배분 전략을 제안할 수 있습니다.
 <br>
 
 ## 설치 및 실행 방법 (Setup Instructions)
@@ -81,7 +80,7 @@ streamlit run dashboard/main.py
 
   - ODA의 시차 효과 존재: Lag 1~3년 구간에서 상관계수가 높게 나타나, ODA가 단기적으로 개발 지표에 영향을 줄 수 있음을 시사함. 효과가 5년 이내에 나타나도록 전략 수립 필요.
   - 지원 분야별 예측 가능성: MLP 기반 시계열 예측 모델을 통해 분야별 ODA가 특정 개발 지표에 미치는 영향을 정량화할 수 있음.
-    <img src="https://github.com/user-attachments/assets/9d5ce7eb-f9e6-412d-938b-e0b3a1b9e825" width="600"/>
+    <img src="https://github.com/user-attachments/assets/9d5ce7eb-f9e6-412d-938b-e0b3a1b9e825" width="900"/>
   - 중요도 분석 결과: XGBoost 및 SHAP 분석을 통해, 분야별 지원 내역과 개발 지표 간 시차 기반 상관관계가 존재함을 확인함.
   - ODA Impact Simulator 개발: 사용자 입력(국가, 목적별 비중)에 따라 개발 지표 변화를 예측할 수 있는 정책 시뮬레이션 도구를 개발함.
 - UNDP 활용 방안:

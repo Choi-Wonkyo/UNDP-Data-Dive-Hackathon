@@ -10,7 +10,7 @@
 이를 통해 ODA의 지속가능성과 효율성을 평가하고, 근거 기반의 최적 배분 전략을 제안할 수 있습니다.
 <br>
 
-## 설치 및 실행 방법 (Setup Instructions)
+## 설치 및 실행 방법 (Setup Instructions)    !!!! <span style="color:red"> Streamlit 완성되면 수정해야 됨 </span>
 ```python
 git clone https://github.com/your-id/cyclone-oda-impact.git
 cd cyclone-oda-impact
@@ -19,7 +19,7 @@ streamlit run dashboard/main.py
 ```
 <br>
 
-## 코드 문서화 (Code documentation)
+## 코드 문서화 (Code documentation)  
 프로젝트는 다음의 네 모듈로 구성되어 있습니다:
 - **data_collection** : 주요 ODA 흐름과 성과 지표 관련 데이터 수집 및 전처리 스크립트
 - **data_analysis** : 

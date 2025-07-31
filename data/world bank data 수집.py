@@ -1,15 +1,12 @@
 !pip install pandas matplotlib seaborn requests wbdata statsmodels
-
 !pip install pycountry
-
-
-
 
 import wbdata
 import pandas as pd
 import datetime
 from pandas_datareader import wb
 import pycountry
+
 
 # 국가 리스트
 country_names = [
@@ -41,8 +38,12 @@ country_names = [
     'Antigua and Barbuda', 'Samoa', 'Kiribati', 'Nauru'
 ]
 
+
 # 날짜 설정
 data_date = (datetime.datetime(2014, 1, 1), datetime.datetime(2023, 12, 31))
+
+
+## 빈곤 및 사회복지 데이터
 
 # 1. 나라 이름 → ISO3 코드 매핑
 def get_country_code(name):
@@ -84,7 +85,7 @@ print(data1.head())
 data1.to_csv('/content/drive/MyDrive/딥러닝프로젝트/UNDP Data Dive 해커톤/단위별 데이터/외부데이터_빈곤 및 사회복지 지표1.csv', index=False)
 
 
-#  환경/기후 데이터
+##  환경/기후 데이터
 
 # World Bank 지표 전체 불러오기
 all_indicators = wb.get_indicators()
@@ -138,9 +139,7 @@ co2_df = pd.read_csv(
     '/content/drive/MyDrive/딥러닝프로젝트/UNDP Data Dive 해커톤/단위별 데이터/외부 데이터/P_Data_Extract_From_Environment_Social_and_Governance_(ESG)_Data/312d6359-c398-42ec-bb4b-1c7976fe4153_Data.csv'
 )
 
-print(co2_df.columns)  # 먼저 실제 열 이름 확인!
 
-print(co2_df)
 
 # 필요한 열만 추출
 value_vars = [col for col in co2_df.columns if '[YR' in col]
@@ -151,7 +150,7 @@ co2_long = co2_df.melt(
     value_name='co2_per_capita'
 )
 
-# 연도만 숫자 형태로 추출 (예: "2014 [YR2014]" → 2014)
+# 연도만 숫자 형태로 추출 
 co2_long['year'] = co2_long['year'].str.extract(r'(\d{4})').astype(int)
 
 # 컬럼명 정리
@@ -171,33 +170,8 @@ print(merged_data.columns)
 # CSV 저장
 merged_data.to_csv('/content/drive/MyDrive/딥러닝프로젝트/UNDP Data Dive 해커톤/단위별 데이터/외부데이터_환경기후_지표.csv', index=False)
 
-# 기타 개발 지표 코드
-dev_indicators = {
-    'female_employment_rate': 'SL.TLF.CACT.FE.ZS',    # 여성 경제활동 참가율
-    'internet_user_pct': 'IT.NET.USER.ZS',            # 인터넷 사용자 비율
-    'ict_exports_pct': 'BX.GSR.CCIS.ZS'                # ICT 수출 비중
-}
 
-# 데이터 다운로드
-dev_data = wb.download(
-    indicator=list(dev_indicators.values()),
-    country=iso3_list,
-    start=2014,
-    end=2023
-)
-
-# 데이터 정리
-dev_data = dev_data.reset_index()
-dev_data = dev_data.rename(columns={v: k for k, v in dev_indicators.items()})
-dev_data = dev_data[['country', 'year'] + list(dev_indicators.keys())]
-dev_data = dev_data.sort_values(['country', 'year']).reset_index(drop=True)
-
-# CSV 저장
-dev_data.to_csv('/content/drive/MyDrive/딥러닝프로젝트/UNDP Data Dive 해커톤/단위별 데이터/외부데이터_기타 개발 지표_지표.csv', index=False)
-
-
-
-# 생산 데이터
+## 생산 데이터
 
 # 생산 관련 지표 코드 (WBGAPI 기준)
 production_indicators = {
@@ -224,9 +198,8 @@ prod_data = prod_data.sort_values(['country', 'year']).reset_index(drop=True)
 # CSV 저장
 prod_data.to_csv('/content/drive/MyDrive/딥러닝프로젝트/UNDP Data Dive 해커톤/단위별 데이터/외부데이터_생산지표.csv', index=False)
 
-print(prod_data)
 
-prod_data.groupby('year').apply(lambda x: x.isnull().mean())
+## 경제 데이터
 
 
 # 경제 관련 지표
@@ -251,6 +224,9 @@ econ_data = econ_data.sort_values(['country', 'year']).reset_index(drop=True)
 # 저장
 econ_data.to_csv('/content/drive/MyDrive/딥러닝프로젝트/UNDP Data Dive 해커톤/단위별 데이터/외부데이터_경제지표.csv', index=False)
 
+
+## 보건 데이터
+
 # 보건 관련 지표
 health_indicators = {
     'infant_mortality': 'SH.DYN.MORT',           # 영아 사망률 (Under-1)
@@ -274,6 +250,9 @@ health_data = health_data.sort_values(['country', 'year']).reset_index(drop=True
 
 # 저장
 health_data.to_csv('/content/drive/MyDrive/딥러닝프로젝트/UNDP Data Dive 해커톤/단위별 데이터/외부데이터_보건지표.csv', index=False)
+
+
+## 교육 데이터
 
 # 교육 관련 지표
 edu_indicators = {

@@ -9,7 +9,7 @@
 | **6. 외부 성과지표 병합용 기준** | `Year`, `RecipientName` | World Bank 지표와 병합 키 |
 
 < world bank data > <br>
-| 분야             | 성과지표                                                                 |
+| 분야             | 지표 데이터                                                                |
 |------------------|--------------------------------------------------------------------------|
 | **경제** | - 1인당 GDP (GDP per capita) |
 | **보건** | - 영아 사망률 (Under-1 Mortality Rate)<br>- 기대 수명 (Life Expectancy)<br>- 신생아 사망률 (Neonatal Mortality Rate) |

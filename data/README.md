@@ -1,5 +1,5 @@
 ## **< crs_data 데이터>** 
-* 용량이 커서 깃허브에 업로드 되지 않음
+** 용량이 커서 깃허브에 업로드 되지 않음
 
 | csv 파일명 | 추출한 열 | 설명 |
 | --- | --- | --- |
@@ -9,6 +9,8 @@
 | **4. 수혜국 그룹 분석용** | `RecipientName`, `RegionName`, `IncomegroupName` | 지역, 소득 수준별 분포 파악 |
 | **5. 시계열 예측용 Input 구성용** | `Year`, `RecipientName`, `SectorName`, `USD_Disbursement`, `USD_Disbursement_Defl` | 모델 Input용 |
 | **6. 외부 성과지표 병합용 기준표** | `Year`, `RecipientName` | World Bank 지표와 병합 키 |
+
+<br>
 
 ## **< world bank 데이터 >** <br>
 
@@ -56,6 +58,8 @@
 | **환경** | - 1인당 CO2 배출량 (CO2 Emissions)<br>- 대기오염 지수 (Air Pollution Index)<br>- 재생 에너지 사용률 (Renewable Energy Usage Rate)  |
 | **생산** | - 서비스업 부가가치 (% of GDP)<br>- 제조업 부가가치 (% of GDP)<br>- 농작물 생산지수 <br>- 가축 생산지수  |
 
+
+<br>
 
 ## **< 모델용 데이터>** 
 - x: 지표별 ODA 지원 금액 + 외생 충격 변수 + 일반 요인 변수

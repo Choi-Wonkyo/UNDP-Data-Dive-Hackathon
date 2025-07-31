@@ -12,6 +12,13 @@
 <br>
 
 ## 설치 및 실행 방법 (Setup Instructions)    !!!! <span style="color:red"> Streamlit 완성되면 수정해야 됨 </span>
+본 프로젝트는 현재 Google Colab 기반 분석 환경에서 수행되었습니다.
+모델 학습 및 시뮬레이션 실행을 재현하려면 아래 과정을 따르세요.
+- Google Drive 연동
+```python
+drive.mount('/content/drive')
+```
+- 분석 및 시뮬레이션 실행
 ```python
 git clone https://github.com/your-id/cyclone-oda-impact.git
 cd cyclone-oda-impact
@@ -78,15 +85,21 @@ streamlit run dashboard/main.py
   - ISO3 코드 기준으로 국가 간 일치
 <br>
 
-## 핵심 결과 (Key Findings)  -> 자세한 분석 과정 ㄴㄴ
-- 중요한 인사이트 요약 및 개발 협력에서의 의의
-  - 국가 × 목적 클러스터링: 국가별 목적 패턴을 기반으로 유사 국가 그룹을 도출할 수 있으며, 이는 맞춤형 ODA 전략 수립에 활용 가능.<br>
+## 핵심 결과 (Key Findings)  -> 분석 과정이나 인사이트 많이 적고 싶은데 중요한 것만 쓰랬음
+- **crs_data 분석**
+  - 국가별 ODA 시계열 분석: 연도별 총액의 급증 포인트는 외생 충격(재난·분쟁 등)을 반영하며, 정책·모델링 시 중요한 이벤트 신호가 됨
+  - 분야별 ODA 흐름 분석: 연도별 분야 비중 변화는 성과 지표와의 시차(Lag) 관계를 이해하는 핵심 컨텍스트
+  - 국가 × 목적 클러스터링: 국유사한 지원 패턴을 가진 국가 그룹을 도출해 맞춤형 ODA 전략 수립에 활용 가능 <br>
     <img src="https://github.com/user-attachments/assets/98c1c60c-abed-4020-8fbe-a4201c2780da" width="400"/>
+  - 수혜국 그룹 분석: 지역별·소득 수준별로 ODA 목적의 뚜렷한 차이가 존재
+ 
+- **world bank data 분석**
   - ODA의 시차 효과 존재: Lag 1~3년 구간에서 상관계수가 높게 나타나, ODA가 단기적으로 개발 지표에 영향을 줄 수 있음을 시사함. 효과가 5년 이내에 나타나도록 전략 수립 필요.
-  - 지원 분야별 예측 가능성: MLP 기반 시계열 예측 모델을 통해 분야별 ODA가 특정 개발 지표에 미치는 영향을 정량화할 수 있음.
+  - 분야별 예측 가능성 검증: MLP 기반 시계열 예측 모델을 통해 분야별 ODA가 특정 개발 지표에 미치는 영향을 정량화할 수 있음.
     <img src="https://github.com/user-attachments/assets/9d5ce7eb-f9e6-412d-938b-e0b3a1b9e825" width="900"/>
-  - 중요도 분석 결과: XGBoost 및 SHAP 분석을 통해, 분야별 지원 내역과 개발 지표 간 시차 기반 상관관계가 존재함을 확인함.
-  - ODA Impact Simulator 개발: 사용자 입력(국가, 목적별 비중)에 따라 개발 지표 변화를 예측할 수 있는 정책 시뮬레이션 도구를 개발함.
+  - 중요도 분석 결과: XGBoost + SHAP 분석을 통해, 분야별 지원 내역과 개발 지표 간 시차 기반 상관관계 확인
+  - ODA Impact Simulator 개발: 사용자 입력(국가·분야 비중)에 따라 개발 지표 변화를 시뮬레이션할 수 있는 정책 의사결정 지원 도구 -> 이거 없애야되나??
+    
 - UNDP 활용 방안:
   - 사전 정책 효과를 검토할 수 있는 시뮬레이션 도구로 활용 가능
   - 특정 국가 및 분야에 대한 ODA 배분 전략 수립 시 참고 자료로 활용 가능

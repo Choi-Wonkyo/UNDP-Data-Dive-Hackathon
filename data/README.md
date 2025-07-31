@@ -1,4 +1,4 @@
-## **< undp 제공 데이터>**
+## **< crs_data 데이터>**
 | 분석 목적 | 필요한 열 | 설명 |
 | --- | --- | --- |
 | **1. 국가별 ODA 규모 시계열 분석** | `Year`, `RecipientName`, `USD_Disbursement` | 연도별 국가별 전체 ODA 흐름 확인 |

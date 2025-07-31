@@ -1,12 +1,12 @@
 ## **< crs_data 데이터>**
-| 분석 목적 | 추출한 열 | 설명 |
+| csv 파일명 | 추출한 열 | 설명 |
 | --- | --- | --- |
-| **1. 국가별 ODA 규모 시계열 분석** | `Year`, `RecipientName`, `USD_Disbursement` | 연도별 국가별 전체 ODA 흐름 확인 |
-| **2. 분야별 ODA 흐름 분석** | `Year`, `RecipientName`, `SectorName`, `USD_Disbursement` | 교육, 보건, 환경 등 분야별 흐름 |
-| **3. 목적별 세부 ODA 분석** | `Year`, `RecipientName`, `PurposeName`, `USD_Disbursement` | "초등교육", "기초보건" 등 세부항목 분석 |
-| **4. 수혜국 그룹 분석** | `RecipientName`, `RegionName`, `IncomegroupName` | 지역, 소득 수준별 분포 파악 |
-| **5. 시계열 예측용 Input 구성** | `Year`, `RecipientName`, `SectorName`, `USD_Disbursement`, `USD_Disbursement_Defl` | 모델 Input용 |
-| **6. 외부 성과지표 병합용 기준** | `Year`, `RecipientName` | World Bank 지표와 병합 키 |
+| **1. 국가별 ODA 규모 시계열 분석용** | `Year`, `RecipientName`, `USD_Disbursement` | 연도별 국가별 전체 ODA 흐름 확인 |
+| **2. 분야별 ODA 흐름 분석용** | `Year`, `RecipientName`, `SectorName`, `USD_Disbursement` | 교육, 보건, 환경 등 분야별 흐름 |
+| **3. 목적별 세부 ODA 분석용** | `Year`, `RecipientName`, `PurposeName`, `USD_Disbursement` | "초등교육", "기초보건" 등 세부항목 분석 |
+| **4. 수혜국 그룹 분석용** | `RecipientName`, `RegionName`, `IncomegroupName` | 지역, 소득 수준별 분포 파악 |
+| **5. 시계열 예측용 Input 구성용** | `Year`, `RecipientName`, `SectorName`, `USD_Disbursement`, `USD_Disbursement_Defl` | 모델 Input용 |
+| **6. 외부 성과지표 병합용 기준표** | `Year`, `RecipientName` | World Bank 지표와 병합 키 |
 
 ## **< world bank 데이터 >** <br>
 

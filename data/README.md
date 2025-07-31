@@ -8,7 +8,7 @@
 | **5. 시계열 예측용 Input 구성** | `Year`, `RecipientName`, `SectorName`, `USD_Disbursement`, `USD_Disbursement_Defl` | 모델 Input용 |
 | **6. 외부 성과지표 병합용 기준** | `Year`, `RecipientName` | World Bank 지표와 병합 키 |
 
-## **< world bank data >** <br>
+## **< world bank 데이터 >** <br>
 
 output 해당 데이터  <br>
 | 분야             | 지표 데이터                                                                |

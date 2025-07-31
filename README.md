@@ -85,7 +85,7 @@ streamlit run dashboard/main.py
   - ISO3 코드 기준으로 국가 간 일치
 
 
-   ** **자세한 데이터 구성 설명은 [`data/README.md`](data/README.md) 참고**
+  ** **자세한 데이터 구성 설명은 [`data/README.md`](data/README.md) 참고**
 
 <br>
 

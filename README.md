@@ -9,6 +9,7 @@
 다층 퍼셉트론(MLP) 기반 모델을 활용해, 분야별 ODA 투입이 시차를 두고 성과로 이어지는 과정을 정량적으로 예측하고 시나리오별 성과를 비교할 수 있습니다.
 이를 통해 ODA의 지속가능성과 효율성을 평가하고, 근거 기반의 최적 배분 전략을 제안할 수 있습니다.
 <br>
+<br>
 
 ## 설치 및 실행 방법 (Setup Instructions)    !!!! <span style="color:red"> Streamlit 완성되면 수정해야 됨 </span>
 ```python
@@ -17,6 +18,7 @@ cd cyclone-oda-impact
 pip install -r requirements.txt
 streamlit run dashboard/main.py
 ```
+<br>
 <br>
 
 ## 코드 문서화 (Code documentation)  
@@ -27,6 +29,7 @@ streamlit run dashboard/main.py
   - world bank data 분석 : 성과지표 상관분석 등 분석 코드
 - **modeling** : 시계열 예측 모델 구축 (MLT 기반, XGBoost, LightGBM), 평가 지표 및 시차 반영 로직 구현
 - **dashboard** : Streamlit 기반 대시보드 UI 및 사용자 입력 → 예측 결과 반환 인터페이스
+<br>
 <br>
 
 ## API 문서 (API Documentation)    !!!! <span style="color:red"> Streamlit 완성되면 수정해야 됨 </span>
@@ -51,6 +54,7 @@ streamlit run dashboard/main.py
 5. 시차 기반 상관관계 분석 (Lagged Correlation)
 - ODA 투입과 성과 지표 변화 간의 시간 지연 효과를 고려한 시차 기반 상관 분석을 통해 인과 가능성 탐색
    
+<br>
 <br>
 
 ## 데이터셋 선택 근거 (Datasets Choice Justification)
@@ -86,6 +90,7 @@ streamlit run dashboard/main.py
   - 사전 정책 효과를 검토할 수 있는 시뮬레이션 도구로 활용 가능
   - 특정 국가 및 분야에 대한 ODA 배분 전략 수립 시 참고 자료로 활용 가능
 <br>
+<br>
 
 ## 기술적 결정 사항 (Technical Decisions)
 - **모델 선택**
@@ -104,7 +109,7 @@ streamlit run dashboard/main.py
     - 사용자의 입력에 따라 국가·분야별 예측값 실시간 확인 가능
     - 대시보드 형태의 직관적 UI로 시연 및 시뮬레이션이 용이
 
-
+<br>
 <br>
 
 ## 미래 가능성 (Future Possibilities)

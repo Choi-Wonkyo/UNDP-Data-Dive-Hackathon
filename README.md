@@ -208,27 +208,58 @@ This project aims to quantitatively analyze the relationships between country- a
 
 
 <br>
+- **모델 선택**
+  - 트리 기반 모델(XGBoost, LightGBM)은 변수 중요도 해석에 강점
+  - 하지만 시계열적 시차 인과성 및 연속 예측을 반영하기 위해 **MLP(다층 퍼셉트론)** 선택
+
+- **결측치 처리**
+  - 동일 국가 내 시계열 기준으로 보간 (양쪽 결측 허용)
+  - RecipientName에서 국가명이라 보기 어려운 데이터는 제거 처리
+
+- **변수 중요도 해석**
+  - SHAP 기반 변수 중요도 분석으로 영향력 있는 변수 및 시차 확인
+
+- **시각화 및 인터페이스**
+  - **Streamlit 사용 이유**:
+    - 사용자의 입력에 따라 국가·분야별 예측값 실시간 확인 가능
+    - 대시보드 형태의 직관적 UI로 시연 및 시뮬레이션이 용이
+
 <br>
 
 ## Future Possibilities(미래 가능성)
-Limitations:
+**Limitations**:
 - Significant missing data in country-specific features limits analysis and prediction accuracy.
-- The model's performance is not perfect, resulting in constraints on prediction accuracy.
+- The model's performance is suboptimal, resulting in constraints on prediction accuracy.
 - Since the model is trained on historical data, its generalization performance for unseen future points, such as beyond 2025, may be limited.
 
-Improvement Directions:
+**Improvement Directions**:
 - Improve data quality through re-collection and sample adjustment by country.
-- Further research and tuning to enhance model performance.
-- Redesign the model and improve input data format for better future predictions.
+- Advance the MLP model with hyperparameter tuning, SHAP-based feature selection, and alternative models (tree-based, ensemble) for low-performing indicators
+- Advanced uncertainty quantification: complete confidence interval estimation through MC Dropout to support risk-aware policy decision-making
+- Expand into a future-oriented simulation pipeline:
+  - Sequential multi-year performance forecasting
+  - Optimization modules to maximize composite SDG outcomes
 
-<br>
+**Long-term Potential**:
+- With continuous updates of ODA and development indicator data, the system can evolve into a highly reliable policy simulator.
+- By integrating predictive modeling, uncertainty estimation, and optimization, it can be expanded into a core decision-support tool for UNDP and partner organizations.
+
+
 
 한계점: 
 - 국가별 특성 데이터의 결측치가 많아 분석 및 예측에 제한이 있음
 - 모델 성능이 완벽하지 않아 예측 정확도에 한계가 존재함
 - 본 모델은 과거 데이터에 의해 학습되었기 때문에, 2025년 이후와 같은 관측되지 않은 시점에 대해서는 예측의 일반화 성능이 낮을 수 있음
 
-개선 방향:
+
+개선 방향: 
 - 데이터 재수집 및 국가별 표본 조정으로 데이터 품질 개선
-- 모델 성능 고도화를 위한 추가 연구 및 튜닝
-- 미래 예측을 위한 모델 재설계 및 입력 데이터 포맷 개선
+- MLP 모델의 고도화: 하이퍼파라미터 튜닝, SHAP 기반 변수 선택, 저성과 지표에 대한 대체 모델(트리 기반, 앙상블) 통합 검토
+- 불확실성 정량화 고도화: MC Dropout을 통한 신뢰 구간 산출을 완성하여, 리스크를 고려한 정책 의사결정 지원
+- 미래 지향적 시뮬레이션 파이프라인 확장
+  - 연속적 연도별 성과 예측
+  - 복합 SDG 성과 극대화를 위한 최적화 모듈 개발
+
+장기적 잠재력:
+- ODA 및 개발 지표 데이터의 지속적 업데이트를 통해, 신뢰성 높은 정책 시뮬레이터로 발전 가능  
+- 예측 모델링, 불확실성 추정, 최적화 기능을 결합함으로써 **UNDP 및 협력 기관의 의사결정을 지원하는 핵심 도구**로 확장될 수 있음

@@ -30,12 +30,15 @@ streamlit run dashboard/main.py
 
 ## 코드 문서화 (Code documentation)  
 프로젝트는 다음의 네 모듈로 구성되어 있습니다:
-- **data_collection** : 주요 ODA 흐름과 성과 지표 관련 데이터 수집 및 전처리 스크립트
+- **data_collection** :  ODA 흐름 및 성과 지표 관련 원천 데이터를 수집하고 정제하는 스크립트와 원본/전처리된 CSV 파일을 포함
 - **data_analysis** : 
-  - crs_data 분석 : 목적별 ODA 추이 분석, 수혜국 분류 등 분석 코드
-  - world bank data 분석 : 성과지표 상관분석 등 분석 코드
-- **modeling** : 시계열 예측 모델 구축 (MLT 기반, XGBoost, LightGBM), 평가 지표 및 시차 반영 로직 구현
-- **dashboard** : Streamlit 기반 대시보드 UI 및 사용자 입력 → 예측 결과 반환 인터페이스
+  - crs_data 분석 : 목적별·국가별 ODA 추이, 집중도, 클러스터링(국가×목적), 분야별 중요도 등
+  - world bank data 분석 : 성과 지표의 변화율 계산, 결측/정규화 처리
+  - ODA와 성과 간 시차 분석 : ODA 투입과 성과(지표 변화율) 간의 lagged correlation 분석 및 각 타겟별 최적 lag 도출.
+- **modeling** : 
+  - 최종 선택 모델 : MLP 기반 다중 타겟 회귀 모델로 ODA가 개발 성과에 미치는 영향을 예측.
+  - 후보/보조 모델 : XGBoost, LightGBM, CatBoost 등 비교용 모델들
+- **dashboard** : Streamlit 기반 인터페이스로, 사용자가 국가 및 목적별 입력값을 설정하면 예측 결과(개발 지표 변화, 시뮬레이션)를 실시간으로 확인할 수 있는 대시보드 구성 요소
 <br>
 <br>
 

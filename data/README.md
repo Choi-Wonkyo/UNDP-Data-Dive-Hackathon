@@ -29,7 +29,7 @@
 | natural_disaster_count | 해당 연도에 발생한 자연재해 횟수 | EM-DAT  |
 | log_battle_deaths | 전쟁 및 분쟁으로 인한 사망자 수 |  UCDP  |
 
-**일반 요인 변수**   (출처: world bank opeen data)
+**일반 요인 변수**   (출처: world bank open data)
 
 | 분야 | 데이터 |
 | --- | --- |
@@ -51,10 +51,13 @@
 |  | - 산업 부가가치 비중 |
 |  | - 식량 생산 지수 |
 
-<h3> output 데이터  </h3> <br>
-- y.csv : 16가지 지표의 연도별 변화율(t+2 기준)  
+<h3> output 데이터  </h3> 
+- y.csv : 16가지 지표의 연도별 변화율(t+2 기준) <br> 
+<br>
 
-지표 데이터  (출처: world bank opeen data)
+
+
+**지표 데이터**  (출처: world bank open data)
 | 분야             | 지표 데이터                                                                |
 |------------------|--------------------------------------------------------------------------|
 | **경제** | - 1인당 GDP (GDP per capita) |

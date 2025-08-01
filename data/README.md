@@ -12,7 +12,7 @@
 
 <br>
 
-## **world bank 데이터** <br>
+## **외부 데이터** <br>
 
 <h3>input 데이터 </h3> 
 - df_ready_f.csv : 지표별 ODA 지원 금액 + 외생 충격 변수 + 일반 요인 변수
@@ -20,16 +20,16 @@
 <br>
 <br>
 
-외생 충격 데이터
-|데이터          | 설명                      |
-|------------------|-------------------------------|
-| new_cases_per_million | 백만 명당 신규 확진자 수 |
-| new_deaths_per_million | 백만 명당 코로나 신규 사망자  |
-| stringency_index | 코로나 대응 강도 지수 |
-| natural_disaster_count | 해당 연도에 발생한 자연재해 횟수 |
-| log_battle_deaths | 전쟁 및 분쟁으로 인한 사망자 수 |
+**외생 충격 데이터**
+|데이터          | 설명                      | 출처    |
+|------------------|---------------------|----------|
+| new_cases_per_million | 백만 명당 신규 확진자 수 | OWID|
+| new_deaths_per_million | 백만 명당 코로나 신규 사망자  | OWID  |
+| stringency_index | 코로나 대응 강도 지수 | OWID |
+| natural_disaster_count | 해당 연도에 발생한 자연재해 횟수 | EM-DAT  |
+| log_battle_deaths | 전쟁 및 분쟁으로 인한 사망자 수 |  UCDP  |
 
-일반 요인 변수
+**일반 요인 변수**   (출처: world bank opeen data)
 
 | 분야 | 데이터 |
 | --- | --- |
@@ -52,8 +52,9 @@
 |  | - 식량 생산 지수 |
 
 <h3> output 데이터  </h3> <br>
-- y.csv : 16가지 지표의 연도별 변화율(t+2 기준)
+- y.csv : 16가지 지표의 연도별 변화율(t+2 기준)  
 
+지표 데이터  (출처: world bank opeen data)
 | 분야             | 지표 데이터                                                                |
 |------------------|--------------------------------------------------------------------------|
 | **경제** | - 1인당 GDP (GDP per capita) |

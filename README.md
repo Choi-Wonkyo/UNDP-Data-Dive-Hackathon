@@ -33,6 +33,19 @@ streamlit run dashboard/main.py
 <br>
 
 ## Code documentation(코드 문서화)
+The project consists of four main modules:
+- **data_collection**: Contains scripts for collecting and preprocessing raw ODA flow data and development indicators, along with original and cleaned CSV files.
+- **data_analysis**:
+  - crs_data analysis: Trends by purpose and country, concentration, clustering (country × purpose), and sectoral importance.
+  - Integrated Data Analysis: Causal relationship analysis between ODA and performance indicators, calculation of indicator growth rates, and handling of missing values/normalization.
+  - Lagged Correlation Analysis: Examines the time-lagged relationship between ODA inputs and performance (indicator growth), and identifies the optimal lag for each target variable.
+- **modeling**:
+  - Final Model: Multi-target regression using an MLP to predict the impact of ODA on development outcomes.
+  - Candidate Models: XGBoost, LightGBM, and CatBoost for comparison and benchmarking.
+- **dashboard**:
+  - A Streamlit-based interface where users can set country- and sector-level ODA allocations and visualize predicted development indicator changes and simulation results in real time.
+
+
 프로젝트는 다음의 네 모듈로 구성되어 있습니다:
 - **data_collection** :  ODA 흐름 및 성과 지표 관련 원천 데이터를 수집하고 정제하는 스크립트와 원본/전처리된 CSV 파일을 포함
 - **data_analysis** : 
@@ -53,7 +66,24 @@ streamlit run dashboard/main.py
 <br>
 <br>
 
-## 분석 방법론 (Analysis Methodology)
+## Analysis Methodology(분석 방법론 )
+This project aims to quantitatively analyze the relationships between country- and sector-specific ODA flows and key performance indicators, and to establish foundational data for deep learning-based predictive modeling. The following analytical procedures were conducted:
+
+1. Time Series Flow Analysis  
+   - Organized yearly ODA recipient data by country and analyzed time series trends to understand cumulative beneficiary patterns by country.
+
+2. Purpose-wise ODA Flow Analysis  
+   - Visualized annual support trends for major purpose groups using linear regression analysis and compared increase/decrease patterns based on rate of change.
+
+3. Clustering-based Country Grouping  
+   - Applied KMeans clustering to group countries with similar ODA purpose structures and compared beneficiary characteristics and performance indicator patterns by group.
+
+4. Inequality and Dispersion Analysis  
+   - Analyzed the degree of concentration in ODA allocation across purposes and countries using variance and Gini coefficients.
+
+5. Lagged Correlation Analysis  
+   - Explored causal relationships by analyzing lagged correlations between ODA inputs and changes in performance indicators, considering time delay effects.
+
 본 프로젝트는 국가별·분야별 ODA 흐름과 주요 성과 지표 간의 관계를 정량적으로 분석하고, 딥러닝 기반 예측 모델링을 위한 기반 데이터를 구축하는 데 목적을 두었습니다. 이를 위해 다음과 같은 분석 절차를 수행하였습니다: <br>
 1. 시계열 기반 흐름 분석
 - 국가별 ODA 수혜 내역을 연도별로 정리하고 시계열 추세를 분석하여 국가별 누적 수혜 경향을 파악
@@ -73,7 +103,29 @@ streamlit run dashboard/main.py
 <br>
 <br>
 
-## 데이터셋 선택 근거 (Datasets Choice Justification)
+## Datasets Choice Justification(데이터셋 선택 근거)
+
+- **CRS ODA Data (`crs_data.csv`)**
+  - Source: UNDP - Seoul Policy Center
+  - Period: 2014–2023
+  - Variables: Year, RecipientName, SectorName, PurposeName, USD_Disbursement, USD_Disbursement_Defl, RegionName, IncomegroupName
+  - Purpose: To identify ODA funding amounts by country and sector and to select major beneficiary countries
+
+- **Development Indicator Data**
+  - Source: World Bank Open Data
+  - Period: 2014–2023
+  - Variables: 33 development indicators including education, health, environment, and social welfare
+  - Purpose: To quantitatively measure development outcomes in beneficiary countries for lag-based causal analysis
+
+- **Data Processing Methods**
+  - ODA amounts are standardized in USD
+  - Development indicators are interpolated by country time series (allowing NaNs at both ends)
+  - Country matching based on ISO3 codes
+
+  **For detailed data structure and descriptions, refer to [`data/README.md`](data/README.md)**
+
+<br>
+
 - **CRS ODA 데이터 (`crs_data.csv`)**
   - 출처: UNDP - 서울정책센터
   - 기간: 2014–2023
@@ -96,7 +148,27 @@ streamlit run dashboard/main.py
 
 <br>
 
-## 핵심 결과 (Key Findings)  -> 분석 과정이나 인사이트 많이 적고 싶은데 중요한 것만 쓰랬음
+## Key Findings(핵심 결과)  -> 분석 과정이나 인사이트 많이 적고 싶은데 중요한 것만 쓰랬음
+- **CRS Data Analysis**
+  - Time Series Analysis of ODA by Country: Sudden increases in annual totals reflect exogenous shocks (e.g., disasters, conflicts) and serve as important event signals for policy and modeling.
+  - Sector-wise ODA Flow Analysis: Changes in sectoral shares over time provide key context for understanding lagged relationships with development indicators.
+  - Country × Purpose Clustering: Groups of countries with similar ODA support patterns are identified to facilitate tailored ODA strategy formulation. <br>
+    <img src="https://github.com/user-attachments/assets/98c1c60c-abed-4020-8fbe-a4201c2780da" width="400"/>
+  - Beneficiary Group Analysis: Distinct differences in ODA purposes exist based on region and income level.
+
+- **Integrated Data Analysis**
+  - Presence of Lagged Effects of ODA: High correlations observed within lag periods of 1 to 3 years suggest that ODA can have short-term impacts on development indicators, indicating the need for strategies aiming for effects within 5 years.
+  - Predictive Validity by Sector: Using an MLP-based time series prediction model, the quantitative influence of sector-specific ODA on particular development indicators is demonstrated. <br>
+    <img src="https://github.com/user-attachments/assets/9d5ce7eb-f9e6-412d-938b-e0b3a1b9e825" width="900"/>
+  - Feature Importance Analysis: XGBoost combined with SHAP analysis confirms lag-based correlations between sectoral support and development indicators.
+  - ODA Impact Simulator Development: A policy decision-support tool that simulates changes in development indicators based on user inputs for country and sector allocations.
+
+- **Utilization of UNDP Outputs**
+  - Can be used as a simulation tool to assess the effects of preemptive policies.
+  - Serves as a reference for establishing ODA allocation strategies for specific countries and sectors.
+
+<br>
+
 - **crs_data 분석**
   - 국가별 ODA 시계열 분석: 연도별 총액의 급증 포인트는 외생 충격(재난·분쟁 등)을 반영하며, 정책·모델링 시 중요한 이벤트 신호가 됨
   - 분야별 ODA 흐름 분석: 연도별 분야 비중 변화는 성과 지표와의 시차(Lag) 관계를 이해하는 핵심 컨텍스트
@@ -117,27 +189,40 @@ streamlit run dashboard/main.py
 <br>
 <br>
 
-## 기술적 결정 사항 (Technical Decisions)
-- **모델 선택**
-  - 트리 기반 모델(XGBoost, LightGBM)은 변수 중요도 해석에 강점
-  - 하지만 시계열적 시차 인과성 및 연속 예측을 반영하기 위해 **MLP(다층 퍼셉트론)** 선택
+## Technical Decisions(기술적 결정 사항)
+- **Model Selection**
+  - Tree-based models (XGBoost, LightGBM) excel at interpreting feature importance.
+  - However, to capture time-lagged causality and continuous prediction in time series, **MLP (Multi-Layer Perceptron)** was chosen.
 
-- **결측치 처리**
-  - 동일 국가 내 시계열 기준으로 보간 (양쪽 결측 허용)
-  - RecipientName에서 국가명이라 보기 어려운 데이터는 제거 처리
+- **Missing Data Handling**
+  - Interpolation performed based on time series within the same country, allowing missing values at both ends.
+  - Data entries where `RecipientName` could not be reliably identified as a country were removed.
 
-- **변수 중요도 해석**
-  - SHAP 기반 변수 중요도 분석으로 영향력 있는 변수 및 시차 확인
+- **Feature Importance Interpretation**
+  - SHAP-based analysis was used to identify influential variables and their lagged effects.
 
-- **시각화 및 인터페이스**
-  - **Streamlit 사용 이유**:
-    - 사용자의 입력에 따라 국가·분야별 예측값 실시간 확인 가능
-    - 대시보드 형태의 직관적 UI로 시연 및 시뮬레이션이 용이
+- **Visualization and Interface**
+  - **Why Streamlit?**
+    - Enables real-time visualization of predictions by country and sector based on user inputs.
+    - Intuitive dashboard UI facilitates demonstration and simulation.
+
 
 <br>
 <br>
 
-## 미래 가능성 (Future Possibilities)
+## Future Possibilities(미래 가능성)
+Limitations:
+- Significant missing data in country-specific features limits analysis and prediction accuracy.
+- The model's performance is not perfect, resulting in constraints on prediction accuracy.
+- Since the model is trained on historical data, its generalization performance for unseen future points, such as beyond 2025, may be limited.
+
+Improvement Directions:
+- Improve data quality through re-collection and sample adjustment by country.
+- Further research and tuning to enhance model performance.
+- Redesign the model and improve input data format for better future predictions.
+
+<br>
+
 한계점: 
 - 국가별 특성 데이터의 결측치가 많아 분석 및 예측에 제한이 있음
 - 모델 성능이 완벽하지 않아 예측 정확도에 한계가 존재함

@@ -4,14 +4,16 @@
 -------------------------------
 <br>
 
-## 프로젝트 개요 (Project Overview)
+## Project Overview(프로젝트 개요)
+This project develops a simulation tool to support UNDP’s decision-making in Official Development Assistance (ODA).
+
 본 프로젝트는 UNDP의 국제개발협력(ODA)의 의사결정을 지원하기 위해, 수혜국의 보건·교육·경제·환경 등 핵심 지표를 시계열 분석·예측하는 시뮬레이션 도구입니다.
 다층 퍼셉트론(MLP) 기반 모델을 활용해, 분야별 ODA 투입이 시차를 두고 성과로 이어지는 과정을 정량적으로 예측하고 시나리오별 성과를 비교할 수 있습니다.
 이를 통해 ODA의 지속가능성과 효율성을 평가하고, 근거 기반의 최적 배분 전략을 제안할 수 있습니다.
 <br>
 <br>
 
-## 설치 및 실행 방법 (Setup Instructions)    !!!! <span style="color:red"> Streamlit 완성되면 수정해야 됨 </span>
+## Setup Instructions(설치 및 실행 방법)    !!!! <span style="color:red"> Streamlit 완성되면 수정해야 됨 </span>
 본 프로젝트는 Google Colab 기반 분석 환경에서 수행되었습니다.
 모델 학습 및 시뮬레이션 실행을 재현하려면 아래 과정을 따르세요.
 - Google Drive 연동  <- 지워도 될 듯;;
@@ -28,12 +30,12 @@ streamlit run dashboard/main.py
 <br>
 <br>
 
-## 코드 문서화 (Code documentation)  
+## Code documentation(코드 문서화)
 프로젝트는 다음의 네 모듈로 구성되어 있습니다:
 - **data_collection** :  ODA 흐름 및 성과 지표 관련 원천 데이터를 수집하고 정제하는 스크립트와 원본/전처리된 CSV 파일을 포함
 - **data_analysis** : 
   - crs_data 분석 : 목적별·국가별 ODA 추이, 집중도, 클러스터링(국가×목적), 분야별 중요도 등
-  - world bank data 분석 : 성과 지표의 변화율 계산, 결측/정규화 처리
+  - Integrated Data Analysis : ODA와의 인과 관계 분석, 성과 지표의 변화율 계산, 결측/정규화 처리
   - ODA와 성과 간 시차 분석 : ODA 투입과 성과(지표 변화율) 간의 lagged correlation 분석 및 각 타겟별 최적 lag 도출.
 - **modeling** : 
   - 최종 선택 모델 : MLP 기반 다중 타겟 회귀 모델로 ODA가 개발 성과에 미치는 영향을 예측.
@@ -76,8 +78,8 @@ streamlit run dashboard/main.py
   - 변수: Year, RecipientName, SectorName, PurposeName, USD_Disbursement, USD_Disbursement_Defl, RegionName, IncomegroupName
   - 목적: 국가별, 분야별 ODA 지원금액 파악 및 주요 수혜국 선정
 
-- **World Bank 개발 지표 데이터**
-  - 출처: World Bank Open Data
+- **개발 지표 데이터**
+  - 출처: World Bank Open Data, 
   - 기간: 2014–2023
   - 변수: 교육/보건/환경/사회복지 등 33개 개발 지표
   - 목적: 수혜국의 개발 성과를 계량적으로 측정하여 시차 기반 인과분석 수행
@@ -105,7 +107,7 @@ streamlit run dashboard/main.py
   - 분야별 예측 가능성 검증: MLP 기반 시계열 예측 모델을 통해 분야별 ODA가 특정 개발 지표에 미치는 영향을 정량화할 수 있음.
     <img src="https://github.com/user-attachments/assets/9d5ce7eb-f9e6-412d-938b-e0b3a1b9e825" width="900"/>
   - 중요도 분석 결과: XGBoost + SHAP 분석을 통해, 분야별 지원 내역과 개발 지표 간 시차 기반 상관관계 확인
-  - ODA Impact Simulator 개발: 사용자 입력(국가·분야 비중)에 따라 개발 지표 변화를 시뮬레이션할 수 있는 정책 의사결정 지원 도구 -> 이거 없애야되나??
+  - ODA Impact Simulator 개발: 사용자 입력(국가·분야 비중)에 따라 개발 지표 변화를 시뮬레이션할 수 있는 정책 의사결정 지원 도구
     
 - UNDP 활용 방안:
   - 사전 정책 효과를 검토할 수 있는 시뮬레이션 도구로 활용 가능

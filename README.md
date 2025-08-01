@@ -6,6 +6,8 @@
 
 ## Project Overview(프로젝트 개요)
 This project develops a simulation tool to support UNDP’s decision-making in Official Development Assistance (ODA).
+Using a Multi-Layer Perceptron (MLP) model, we quantitatively predict how sectoral ODA investments translate into outcomes with time lags and compare results across different scenarios.
+This enables the assessment of ODA’s sustainability and efficiency, while providing evidence-based recommendations for optimal allocation strategies.
 
 본 프로젝트는 UNDP의 국제개발협력(ODA)의 의사결정을 지원하기 위해, 수혜국의 보건·교육·경제·환경 등 핵심 지표를 시계열 분석·예측하는 시뮬레이션 도구입니다.
 다층 퍼셉트론(MLP) 기반 모델을 활용해, 분야별 ODA 투입이 시차를 두고 성과로 이어지는 과정을 정량적으로 예측하고 시나리오별 성과를 비교할 수 있습니다.

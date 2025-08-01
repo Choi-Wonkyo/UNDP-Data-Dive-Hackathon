@@ -102,7 +102,7 @@ streamlit run dashboard/main.py
     <img src="https://github.com/user-attachments/assets/98c1c60c-abed-4020-8fbe-a4201c2780da" width="400"/>
   - 수혜국 그룹 분석: 지역별·소득 수준별로 ODA 목적의 뚜렷한 차이가 존재
  
-- **world bank data 분석**
+- **Integrated Data 분석**
   - ODA의 시차 효과 존재: Lag 1~3년 구간에서 상관계수가 높게 나타나, ODA가 단기적으로 개발 지표에 영향을 줄 수 있음을 시사함. 효과가 5년 이내에 나타나도록 전략 수립 필요.
   - 분야별 예측 가능성 검증: MLP 기반 시계열 예측 모델을 통해 분야별 ODA가 특정 개발 지표에 미치는 영향을 정량화할 수 있음.
     <img src="https://github.com/user-attachments/assets/9d5ce7eb-f9e6-412d-938b-e0b3a1b9e825" width="900"/>

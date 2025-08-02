@@ -33,6 +33,8 @@ This project is designed to run in Google Colab—no local full setup is require
   - Execute scenario-based simulations
 
 ### 시뮬레이션
+(채워질 것임)
+
 
 
 본 프로젝트는 Google Colab 기반 분석 환경에서 수행되었습니다.

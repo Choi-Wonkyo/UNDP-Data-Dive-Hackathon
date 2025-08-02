@@ -1,5 +1,5 @@
-# 🌪️ CYClone - 제목 미정
-
+# 🌪️ CYClone - Analyzing the Past, Designing the Future: A Multi-target ODA Forecasting System
+과거를 분석하고 미래를 설계하다: 다중 타겟 ODA 예측 시스템
 
 -------------------------------
 <br>
@@ -16,19 +16,39 @@ This enables the assessment of ODA’s sustainability and efficiency, while prov
 <br>
 
 ## Setup Instructions(설치 및 실행 방법)    !!!! <span style="color:red"> Streamlit 완성되면 수정해야 됨 </span>
+
+This project is designed to run in Google Colab—no local full setup is required.
+### Quick start (Colab)
+1. Open the relevant Colab notebook.
+2. Download the main folders from the GitHub repository and upload them to your Colab working directory.
+3. Mount your Google Drive:
+   ```python
+   from google.colab import drive
+   drive.mount('/content/drive')
+   ```
+4. Run the notebook cells in order to:
+  - Load and preprocess CRS, World Bank, and other external datasets
+  - Compute lagged correlations and growth rates
+  - Train the prediction model (e.g., Multi-Layer Perceptron)
+  - Execute scenario-based simulations
+
+### 시뮬레이션
+
+
 본 프로젝트는 Google Colab 기반 분석 환경에서 수행되었습니다.
-모델 학습 및 시뮬레이션 실행을 재현하려면 아래 과정을 따르세요.
-- Google Drive 연동  <- 지워도 될 듯;;
-```python
-drive.mount('/content/drive')
-```
-- 분석 및 시뮬레이션 실행
-```python
-git clone https://github.com/your-id/cyclone-oda-impact.git
-cd cyclone-oda-impact
-pip install -r requirements.txt
-streamlit run dashboard/main.py
-```
+### Quick start (Colab)
+1. 해당 Colab 노트북을 연다.
+2. GitHub 저장소의 메인 폴더들을 다운로드하여 Colab 작업 폴더에 업로드한다.
+3. Google Drive를 마운트한다.
+   ```python
+   from google.colab import drive
+   drive.mount('/content/drive')
+   ```
+4. 노트북 셀을 순서대로 실행하여 다음 작업을 수행한다:
+  - CRS 데이터, World Bank 데이터, 기타 외부 데이터 불러오기 및 전처리
+  - 시차 상관관계 및 변화율 계산
+  - 예측 모델(Multi-Layer Perceptron 등) 학습
+  - 시나리오 기반 시뮬레이션 실행
 <br>
 <br>
 
@@ -59,7 +79,9 @@ The project consists of four main modules:
 <br>
 <br>
 
-## API 문서 (API Documentation)    !!!! <span style="color:red"> Streamlit 완성되면 수정해야 됨 </span>
+## API 문서 (API Documentation)    !!!! Streamlit 내부 함수와 입출력 구조 정도만 간단히 설명
+
+**streamlit
 내부에서 API 서버는 사용하지 않지만, Streamlit 내에서 사용자 입력에 따른 모델 예측 결과를 반환하는 구조로 되어 있음.
 주요 함수 및 상호작용은 dashboard/utils.py와 modeling/predict.py에 정리되어 있음.
 

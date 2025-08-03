@@ -28,8 +28,6 @@ This project is designed to run in Google Colab—no local full setup is require
   - Train the prediction model (e.g., Multi-Layer Perceptron)
   - Execute scenario-based simulations
 
-### 시뮬레이션
-(채워질 것임)
 
 
 

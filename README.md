@@ -53,7 +53,7 @@ The project is organized into four main modules:
 <br>
 <br>
 
-## API 문서
+## API Documentation
 
 This project does not use any external APIs.  
 All processes run locally within Python scripts and the Streamlit dashboard.  

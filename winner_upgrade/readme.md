@@ -6,7 +6,6 @@
 This project quantifies how Ethiopia’s **life expectancy (Life Expectancy, LE)** responds to different **ODA sectors** — Health, Education, Infrastructure, Governance, and Social/Environment — with distinct **lag structures**.  
 Using a **Dynamic Linear Model (DLM)** with robust estimation techniques, we estimate **time-delayed effects** and build a **policy scenario-based prediction dashboard**.
 
----
 <br>
 
 
@@ -83,5 +82,6 @@ Insights:
 - Residuals pass tests for normality, independence, heteroscedasticity (HAC-based)
 - Condition number < 30 → multicollinearity controlled
 
+<br>
 
 ## Scenario-Based Simulation

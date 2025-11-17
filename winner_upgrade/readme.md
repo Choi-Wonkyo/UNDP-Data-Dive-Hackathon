@@ -27,8 +27,9 @@ This project is designed to run in Google Colab—no local full setup is require
 4. Run the notebook cells in order to:
   - Load and preprocess CRS, World Bank, and other external datasets
   - Compute lagged correlations and growth rates
-  - Train the prediction model (e.g., Multi-Layer Perceptron)
-  - Execute scenario-based simulations
+  - Estimate the Dynamic Linear Model (DLM) with HAC correction
+  - Run scenario-based life expectancy simulation
+
 
 
 <br>
@@ -46,12 +47,13 @@ The project is organized into four main modules:
   - Pre-Model Diagnostics: Stationarity check via differencing. Residual normality tests, autocorrelation visualization (ACF/PACF)
  
 - **modeling**:
-  - Dynamic Linear Model (Final)
-  - Scenario Simulator
-  - Model Validation
+  - Dynamic Linear Model (Final): Estimates lag-specific ODA impacts using LASSO → OLS-HAC.
+  - Scenario Simulator: Computes LE changes based on user-defined ODA allocation scenarios.
+  - Model Validation: Residual diagnostics, stability tests, and lag sensitivity analysis.
 
 - **dashboard**:
-   - 
+   - This dashboard simulates how changes in sectoral ODA allocations and institutional quality (RQ) affect Ethiopia’s life expectancy in both the short term and cumulatively.
+Users can adjust ODA scenarios to compare policy impacts, identify the most influential sectors, and automatically generate data-driven policy insights.
 
 <br>
 <br>
@@ -67,6 +69,7 @@ The project is organized into four main modules:
 
 
 <br>
+<br>
 
 ## Methodology
 
@@ -77,6 +80,7 @@ The project is organized into four main modules:
 - Cumulative effects: IRF-based (Impulse Response Function)
 
 <br>
+<br>
 
 ## Key Findings
 | ODA Sector              | Lag | β     | p-value | Interpretation                                                           |
@@ -86,12 +90,13 @@ The project is organized into four main modules:
 | Governance              | 1   | −0.41 | <0.001  | Short-term negative effect, possibly due to administrative restructuring |
 | Regulatory Quality (RQ) | -   | +0.99 | ~0.09   | Amplifies Health & Social/Env effects                                    |
 
-Insights:
+**Insights:**
 - Health ODA: Main driver, effect peaks after 2 years
 - Social/Environment ODA: Immediate positive impact
 - Governance ODA: Short-term negative effect
 - Regulatory quality (RQ): Supports sustainability of ODA effects
 
+<br>
 <br>
 
 ## Model Performance
@@ -100,12 +105,4 @@ Insights:
 - Condition number < 30 → multicollinearity controlled
 
 <br>
-
-## Summary
-- R² = 0.85, Adj. R² = 0.76
-- Residuals pass tests for normality, independence, heteroscedasticity (HAC-based)
-- Condition number < 30 → multicollinearity controlled
-
 <br>
-
-## Scenario-Based Simulation

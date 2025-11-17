@@ -9,23 +9,9 @@ Using a **Dynamic Linear Model (DLM)** with robust estimation techniques, we est
 
 <br>
 
-## Code documentation
-The project is organized into four main modules:
-
-data_collection: Scripts for collecting and preprocessing raw ODA flow data and development indicators. Includes both original and cleaned CSV files.
-
-data_analysis:
-crs_data analysis: Includes trend analysis by purpose and country, concentration, clustering (country × purpose), and assessment of sectoral importance.
-Integrated Data Analysis: Causal inference between ODA and outcome indicators, indicator growth rate calculation, and preprocessing (missing value handling and normalization).
-Lagged Correlation Analysis: Identifies time-lagged relationships between ODA inputs and development outcomes, and determines the optimal lag for each target variable.
-modeling:
-
-Modeling: Multi-target regression using a Multi-Layer Perceptron (MLP) to predict the impact of ODA on development indicators.
-
-A Streamlit-based user interface for setting country- and sector-level ODA allocation values.
-Enables real-time visualizaion of predicted indicator changes and simulation results.
 
 <br>
+
 
 ## Setup Instructions
 
@@ -44,6 +30,28 @@ This project is designed to run in Google Colab—no local full setup is require
   - Train the prediction model (e.g., Multi-Layer Perceptron)
   - Execute scenario-based simulations
 
+
+<br>
+<br>
+
+## Code documentation
+The project is organized into four main modules:
+
+- **data_collection**: Scripts for collecting and preprocessing raw ODA flow data and development indicators. Includes both original and cleaned CSV files.
+  
+- **data_analysis**:
+  - EDA & Trend Analysis: Ethiopia time-series trends for each ODA sector. Sectoral share, growth rate patterns, and volatility checks.
+  - Lagged Correlation Analysis: Compute cross-correlations between ODA sectors and Life Expectancy. Identify sectors with 0/1/2-year lagged peak effects.  
+  - Multicollinearity Check: VIF test & correlation matrix filtering. PCA trial for dimensionality reduction (kept for diagnostics only).
+  - Pre-Model Diagnostics: Stationarity check via differencing. Residual normality tests, autocorrelation visualization (ACF/PACF)
+ 
+- **modeling**:
+  - Dynamic Linear Model (Final)
+  - Scenario Simulator
+  - Model Validation
+
+- **dashboard**:
+   - 
 
 <br>
 <br>

@@ -38,7 +38,7 @@ This project is designed to run in Google Colab—no local full setup is require
 ## Code documentation
 The project is organized into four main modules:
 
-- **data_collection**: Scripts for collecting and preprocessing raw ODA flow data and development indicators. Includes both original and cleaned CSV files.
+- **data**: Scripts for collecting and preprocessing raw ODA flow data and development indicators. Includes both original and cleaned CSV files.
   
 - **data_analysis**:
   - EDA & Trend Analysis: Ethiopia time-series trends for each ODA sector. Sectoral share, growth rate patterns, and volatility checks.

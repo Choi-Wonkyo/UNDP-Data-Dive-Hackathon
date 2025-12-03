@@ -18,8 +18,6 @@ import pickle
 import joblib
 import os
 
-st.write("Design files:", os.listdir("Visualization/Design"))
-
 st.set_page_config(layout="wide")
 
 # ====== 스타일 ======
@@ -731,7 +729,7 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-    cyclogo_path = "Design/cyclone_logo.png"
+    cyclogo_path = "Visualization/Design/cyclone_logo.png"
     cycimage = Image.open(cyclogo_path)
 
     st.markdown(
@@ -753,6 +751,7 @@ elif choose == "Project Overview":
 elif choose == "About us":
     about_us_page()
     
+
 
 
 

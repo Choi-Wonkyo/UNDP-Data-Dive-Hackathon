@@ -448,7 +448,7 @@ with st.sidebar:
     # --- Dashboard 글자 ---
     st.markdown(
         """
-        <h2 style='text-align:center; margin:15px 0; color:#004899; font-weight:2000;'>
+        <h2 style='text-align:center; margin:15px 0; color:#004899; font-weight:3000;'>
         Dashboard
         </h2>
         """,
@@ -476,6 +476,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

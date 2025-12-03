@@ -148,7 +148,7 @@ st.markdown(
 def load_model(path):
     return joblib.load(path)
 
-model = load_model("C:/Users/user/Desktop/UNDP Streamlit_Final/Model/lifeexp_policy_model_HAC.pkl")
+model = load_model("Model/lifeexp_policy_model_HAC.pkl")
 
 # ====== HAC 기반 선형 조합 예측 함수 ======
 beta_all = model.params.drop('const', errors='ignore')
@@ -577,7 +577,7 @@ I am a data science student at Dongduk Women's University and the team leader fo
 I led the project planning and coordination, designed interactive dashboards, and visualized the effects of Official Development Assistance (ODA) on life expectancy in Ethiopia.
 My role involved translating complex econometric and machine-learning results into clear, actionable insights for policy simulation and presentation.
 """,
-        "image": "C:/Users/user/Desktop/UNDP Streamlit_Final/Design/Wonkyo.jpg"
+        "image": "Design/Wonkyo.jpg"
     },
 
     {
@@ -589,7 +589,7 @@ I am a senior student majoring in Data Science at Dongduk Women’s University.
 In this project, I was responsible for analyzing data and conducting simulations using econometric and machine-learning models to study the relationship between Official Development Assistance (ODA) and life expectancy.
 Based on this research, I quantitatively evaluated how development aid contributes to improvements in life expectancy.
 """,
-        "image": "C:/Users/user/Desktop/UNDP Streamlit_Final/Design/Eunjun.jpg"
+        "image": "Design/Eunjun.jpg"
     },
 
     {
@@ -600,7 +600,7 @@ Based on this research, I quantitatively evaluated how development aid contribut
 I am a senior student double majoring in Data Science and Computer Science at Dongduk Women’s University.
 In this project, I was responsible for analyzing the relationship between Official Development Assistance (ODA) and development outcomes through time-lagged correlation and predictive modeling.
 """,
-        "image": "C:/Users/user/Desktop/UNDP Streamlit_Final/Design/Hyewon.jpg"
+        "image": "Design/Hyewon.jpg"
     }
 ]
 
@@ -668,7 +668,7 @@ def crop_center(img, crop_width, crop_height):
 # ====== 사이드바 ======
 with st.sidebar:
 
-    logo_path = "C:/Users/user/Desktop/UNDP Streamlit_Final/Design/undp logo.png"
+    logo_path = "Design/undp logo.png"
     image = Image.open(logo_path)
 
     # ---- 원하는 crop 높이 설정 ----
@@ -728,7 +728,7 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-    cyclogo_path = "C:/Users/user/Desktop/UNDP Streamlit_Final/Design/cyclone_logo.png"
+    cyclogo_path = "Design/cyclone_logo.png"
     cycimage = Image.open(cyclogo_path)
 
     st.markdown(
@@ -750,6 +750,7 @@ elif choose == "Project Overview":
 elif choose == "About us":
     about_us_page()
     
+
 
 
 

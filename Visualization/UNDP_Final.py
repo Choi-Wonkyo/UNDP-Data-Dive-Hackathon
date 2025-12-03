@@ -17,6 +17,11 @@ import base64
 import pickle
 import joblib
 
+st.write("CWD:", os.getcwd())
+st.write("FILES:", os.listdir())
+st.write("Visualization:", os.listdir("Visualization"))
+st.write("Model:", os.listdir("Visualization/Model"))
+
 st.set_page_config(layout="wide")
 
 # ====== 스타일 ======
@@ -750,6 +755,7 @@ elif choose == "Project Overview":
 elif choose == "About us":
     about_us_page()
     
+
 
 
 

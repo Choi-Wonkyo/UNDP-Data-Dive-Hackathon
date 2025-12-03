@@ -439,8 +439,21 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
+    # --- 구분선 ---    
     st.markdown(
         '<hr style="margin-top:30px; margin-bottom:20px; border:1px solid #ccc;">',
+        unsafe_allow_html=True
+    )
+
+    # --- Dashboard 글자 ---
+    st.markdown(
+        "<h3 style='text-align:center; margin:10px 0;'>Dashboard</h3>",
+        unsafe_allow_html=True
+    )
+
+    # --- 구분선 ---
+    st.markdown(
+        '<hr style="margin-top:10px; margin-bottom:20px; border:1px solid #ccc;">',
         unsafe_allow_html=True
     )
 
@@ -459,6 +472,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

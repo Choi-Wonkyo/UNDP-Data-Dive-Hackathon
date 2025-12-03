@@ -18,11 +18,6 @@ import pickle
 import joblib
 import os
 
-st.write("CWD:", os.getcwd())
-st.write("FILES:", os.listdir())
-st.write("Visualization:", os.listdir("Visualization"))
-st.write("Model:", os.listdir("Visualization/Model"))
-
 st.set_page_config(layout="wide")
 
 # ====== 스타일 ======
@@ -674,7 +669,7 @@ def crop_center(img, crop_width, crop_height):
 # ====== 사이드바 ======
 with st.sidebar:
 
-    logo_path = "Design/undp logo.png"
+    logo_path = "Visualization/Design/undp_logo.png"
     image = Image.open(logo_path)
 
     # ---- 원하는 crop 높이 설정 ----
@@ -756,6 +751,7 @@ elif choose == "Project Overview":
 elif choose == "About us":
     about_us_page()
     
+
 
 
 

@@ -148,7 +148,7 @@ st.markdown(
 def load_model(path):
     return joblib.load(path)
 
-model = load_model("Model/lifeexp_policy_model_HAC.pkl")
+model = load_model("./Model/lifeexp_policy_model_HAC.pkl")
 
 # ====== HAC 기반 선형 조합 예측 함수 ======
 beta_all = model.params.drop('const', errors='ignore')
@@ -750,6 +750,7 @@ elif choose == "Project Overview":
 elif choose == "About us":
     about_us_page()
     
+
 
 
 

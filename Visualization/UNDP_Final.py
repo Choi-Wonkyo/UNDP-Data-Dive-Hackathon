@@ -417,7 +417,32 @@ with st.sidebar:
 
     logo_path = "Visualization/Design/undp_logo.png"
     image = Image.open(logo_path)
-    st.image(image, width=150)
+
+    # ---- 원하는 crop 높이 설정 ----
+    desired_height = 1450      # 원하는 세로 길이
+    desired_width = image.size[0]   # 가로는 그대로 유지
+
+    # ---- 세로만 crop ----
+    cropped = crop_center(image, desired_width, desired_height)
+
+    # ---- 가로 중앙 정렬되도록 HTML로 표시 ----
+    img_buffer = io.BytesIO()
+    cropped.save(img_buffer, format="PNG")
+    img_base64 = base64.b64encode(img_buffer.getvalue()).decode()
+
+    st.markdown(
+        f"""
+        <div style="text-align:center;">
+            <img src="data:image/png;base64,{img_base64}" style="width:150px; object-fit:cover;">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        '<hr style="margin-top:30px; margin-bottom:20px; border:1px solid #ccc;">',
+        unsafe_allow_html=True
+    )
 
     cyclogo_path = "Visualization/Design/cyclone_logo.png"
     cycimage = Image.open(cyclogo_path)
@@ -434,6 +459,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

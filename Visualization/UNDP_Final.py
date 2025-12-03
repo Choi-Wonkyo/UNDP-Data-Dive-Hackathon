@@ -40,57 +40,10 @@ st.markdown(
         margin-right: auto !important;
     }
 
-    /* About us 이름 폰트 더 크게 */
-    .member-name {
-        font-size: 30px !important;
-        font-weight: 700 !important;
-        text-align: center !important;
-    }
-
-    /* 역할 */
-    .member-role {
-        font-size: 20px !important;
-        text-align: center !important;
-    }
-
-    /* 소속 */
-    .member-aff {
-        font-size: 15px !important;
-        text-align: center !important;
-        color: #555 !important;
-    }
-
-    /* bio는 왼쪽 정렬 */
-    .member-bio {
-        font-size: 20px !important;
-        text-align: left !important;
-    }
-
-    /* 프로필 사진 1:1 crop */
-    .profile-img {
-        width: 220px;
-        height: 220px;
-        object-fit: cover;
-        border-radius: 50px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* 사이드바 라벨 */
-    section[data-testid="stSidebar"] label {
-        font-size: 18px !important;
-    }
-
-    /* 사이드바 일반 텍스트 */
-    section[data-testid="stSidebar"] .stMarkdown > p {
-        font-size: 16px !important;
-    }
-
-    /* 제목(h1~h3)은 원래 크기 유지 */
-    h1, h2, h3 {
-        font-size: inherit;
-    }
+    # /* 제목(h1~h3)은 원래 크기 유지 */
+    # h1, h2, h3 {
+    #     font-size: inherit;
+    # }
 
     /* 기본 텍스트 전체 크기 증가 */
     p, label, div, .stMarkdown, .stText, .stButton, .stSelectbox, .stSlider {
@@ -112,31 +65,31 @@ st.markdown(
         color: white !important;
     }
 
-    /* 사이드바 이미지 중앙정렬 */
-    .stSidebar .stImage img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    # /* 사이드바 이미지 중앙정렬 */
+    # .stSidebar .stImage img {
+    #     display: block;
+    #     margin-left: auto;
+    #     margin-right: auto;
+    # }
 
-    /* ======================================
-    🔥 2) 메뉴와 아래 구분선 간격 줄이기
-       ====================================== */
-    ul.nav.nav-pills {
-        margin-bottom: -5px !important;
-        margin-top: -5px !important;
-    }
+    # /* ======================================
+    # 🔥 2) 메뉴와 아래 구분선 간격 줄이기
+    #    ====================================== */
+    # ul.nav.nav-pills {
+    #     margin-bottom: -5px !important;
+    #     margin-top: -5px !important;
+    # }
 
 
-    /* ======================================
-    🔥 3) 아래 cyclone 로고 중앙정렬용 클래스
-       ====================================== */
-    .sidebar-logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    }
+    # /* ======================================
+    # 🔥 3) 아래 cyclone 로고 중앙정렬용 클래스
+    #    ====================================== */
+    # .sidebar-logo {
+    #     display: flex;
+    #     justify-content: center;
+    #     align-items: center;
+    #     width: 100%;
+    # }
 
     </style>
     """,
@@ -463,77 +416,21 @@ def dashboard_page():
             st.markdown(overall_summary)
 
 
-def crop_center(img, crop_width, crop_height):
-    img_width, img_height = img.size
-    return img.crop((
-        (img_width - crop_width) // 2,
-        (img_height - crop_height) // 2,
-        (img_width + crop_width) // 2,
-        (img_height + crop_height) // 2
-    ))
+# def crop_center(img, crop_width, crop_height):
+#     img_width, img_height = img.size
+#     return img.crop((
+#         (img_width - crop_width) // 2,
+#         (img_height - crop_height) // 2,
+#         (img_width + crop_width) // 2,
+#         (img_height + crop_height) // 2
+#     ))
 
 # ====== 사이드바 ======
 with st.sidebar:
 
     logo_path = "Visualization/Design/undp_logo.png"
     image = Image.open(logo_path)
-
-    # ---- 원하는 crop 높이 설정 ----
-    desired_height = 1450      # 원하는 세로 길이
-    desired_width = image.size[0]   # 가로는 그대로 유지
-
-    # ---- 세로만 crop ----
-    cropped = crop_center(image, desired_width, desired_height)
-
-    # ---- 가로 중앙 정렬되도록 HTML로 표시 ----
-    img_buffer = io.BytesIO()
-    cropped.save(img_buffer, format="PNG")
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode()
-
-    st.markdown(
-        f"""
-        <div style="text-align:center;">
-            <img src="data:image/png;base64,{img_base64}" style="width:150px; object-fit:cover;">
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<hr style="margin-top:30px; margin-bottom:20px; border:1px solid #ccc;">',
-        unsafe_allow_html=True
-    )
-
-    choose = option_menu(
-        "", 
-        ["Dashboard"],
-        icons=[" "],
-        menu_icon="",
-        styles={
-            "container": {"padding": "0px !important", "background-color": "#eee"},
-            "nav-link": {
-                "font-size": "px",
-                "font-weight": "400",
-                "text-align": "left",
-                "margin": "10px 0",
-                "--hover-color": "#0072ce",
-                "color": "black",
-            },
-            "nav-link:hover": {          # ← hover 커스터마이징 가능
-                "font-weight": "600",
-            },
-            "nav-link-selected": {
-                "background-color": "#004899",
-                "color": "white",
-                "font-weight": "700",
-            },
-        }
-    )
-    
-    st.markdown(
-        '<hr style="margin-top:1px; margin-bottom:20px; border:1px solid #ccc;">',
-        unsafe_allow_html=True
-    )
+    st.image(image, width=150)
 
     cyclogo_path = "Visualization/Design/cyclone_logo.png"
     cycimage = Image.open(cyclogo_path)
@@ -548,6 +445,8 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-    
+# ====== Dashboard 실행 ======
+dashboard_page()    
+
 
 

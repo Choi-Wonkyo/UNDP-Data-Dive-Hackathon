@@ -40,11 +40,6 @@ st.markdown(
         margin-right: auto !important;
     }
 
-    # /* 제목(h1~h3)은 원래 크기 유지 */
-    # h1, h2, h3 {
-    #     font-size: inherit;
-    # }
-
     /* 기본 텍스트 전체 크기 증가 */
     p, label, div, .stMarkdown, .stText, .stButton, .stSelectbox, .stSlider {
         font-size: 20px !important;
@@ -72,24 +67,16 @@ st.markdown(
         margin-right: auto;
     }
 
-    # /* ======================================
-    # 🔥 2) 메뉴와 아래 구분선 간격 줄이기
-    #    ====================================== */
-    # ul.nav.nav-pills {
-    #     margin-bottom: -5px !important;
-    #     margin-top: -5px !important;
-    # }
 
-
-    # /* ======================================
-    # 🔥 3) 아래 cyclone 로고 중앙정렬용 클래스
-    #    ====================================== */
-    # .sidebar-logo {
-    #     display: flex;
-    #     justify-content: center;
-    #     align-items: center;
-    #     width: 100%;
-    # }
+    /* ======================================
+    🔥 아래 cyclone 로고 중앙정렬용 클래스
+       ====================================== */
+    .sidebar-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
 
     </style>
     """,
@@ -416,14 +403,14 @@ def dashboard_page():
             st.markdown(overall_summary)
 
 
-# def crop_center(img, crop_width, crop_height):
-#     img_width, img_height = img.size
-#     return img.crop((
-#         (img_width - crop_width) // 2,
-#         (img_height - crop_height) // 2,
-#         (img_width + crop_width) // 2,
-#         (img_height + crop_height) // 2
-#     ))
+def crop_center(img, crop_width, crop_height):
+    img_width, img_height = img.size
+    return img.crop((
+        (img_width - crop_width) // 2,
+        (img_height - crop_height) // 2,
+        (img_width + crop_width) // 2,
+        (img_height + crop_height) // 2
+    ))
 
 # ====== 사이드바 ======
 with st.sidebar:
@@ -447,6 +434,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

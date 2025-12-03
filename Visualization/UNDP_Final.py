@@ -504,31 +504,6 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-    choose = option_menu(
-        "", 
-        ["Dashboard"],
-        icons=[" "],
-        menu_icon="",
-        styles={
-            "container": {"padding": "0px !important", "background-color": "#eee"},
-            "nav-link": {
-                "font-size": "px",
-                "font-weight": "400",
-                "text-align": "left",
-                "margin": "10px 0",
-                "--hover-color": "#0072ce",
-                "color": "black",
-            },
-            "nav-link:hover": {          # ← hover 커스터마이징 가능
-                "font-weight": "600",
-            },
-            "nav-link-selected": {
-                "background-color": "#004899",
-                "color": "white",
-                "font-weight": "700",
-            },
-        }
-    )
 
     st.markdown(
         '<hr style="margin-top:1px; margin-bottom:20px; border:1px solid #ccc;">',
@@ -549,3 +524,4 @@ with st.sidebar:
     )
 
     
+

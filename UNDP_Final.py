@@ -1,0 +1,756 @@
+import streamlit as st
+from streamlit_option_menu import option_menu
+import streamlit.components.v1 as html
+from  PIL import Image
+import numpy as np
+import pandas as pd
+import plotly.express as px
+import io
+import pydeck as pdk
+import torch
+import torch.nn as nn
+import time
+import joblib
+import plotly.graph_objects as go
+import matplotlib.pyplot as plt
+import base64
+import pickle
+import joblib
+
+st.set_page_config(layout="wide")
+
+# ====== 스타일 ======
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #F9FAFB;
+    }
+
+    section[data-testid="stSidebar"] {
+        background-color: #ffffff;
+        min-width: 270px !important;   /* 🔥 사이드바 가로폭 넓히기 */
+    }
+
+    /* 모든 이미지 중앙 정렬 강제 */
+    img {
+        display: block;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* About us 이름 폰트 더 크게 */
+    .member-name {
+        font-size: 30px !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+    }
+
+    /* 역할 */
+    .member-role {
+        font-size: 20px !important;
+        text-align: center !important;
+    }
+
+    /* 소속 */
+    .member-aff {
+        font-size: 15px !important;
+        text-align: center !important;
+        color: #555 !important;
+    }
+
+    /* bio는 왼쪽 정렬 */
+    .member-bio {
+        font-size: 20px !important;
+        text-align: left !important;
+    }
+
+    /* 프로필 사진 1:1 crop */
+    .profile-img {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* 사이드바 라벨 */
+    section[data-testid="stSidebar"] label {
+        font-size: 18px !important;
+    }
+
+    /* 사이드바 일반 텍스트 */
+    section[data-testid="stSidebar"] .stMarkdown > p {
+        font-size: 16px !important;
+    }
+
+    /* 제목(h1~h3)은 원래 크기 유지 */
+    h1, h2, h3 {
+        font-size: inherit;
+    }
+
+    /* 기본 텍스트 전체 크기 증가 */
+    p, label, div, .stMarkdown, .stText, .stButton, .stSelectbox, .stSlider {
+        font-size: 20px !important;
+    }
+
+    /* 버튼 스타일 */
+    .stButton > button {
+        background-color: #2563eb !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.5em 1em !important;
+        font-size: 16px !important;
+        font-weight: 600;
+    }
+
+    .stButton > button * {
+        color: white !important;
+    }
+
+    /* 사이드바 이미지 중앙정렬 */
+    .stSidebar .stImage img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* ======================================
+    🔥 2) 메뉴와 아래 구분선 간격 줄이기
+       ====================================== */
+    ul.nav.nav-pills {
+        margin-bottom: -5px !important;
+        margin-top: -5px !important;
+    }
+
+
+    /* ======================================
+    🔥 3) 아래 cyclone 로고 중앙정렬용 클래스
+       ====================================== */
+    .sidebar-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# ====== 모델 로딩 ======
+@st.cache_data
+def load_model(path):
+    return joblib.load(path)
+
+model = load_model("C:/Users/user/Desktop/UNDP Streamlit_Final/Model/lifeexp_policy_model_HAC.pkl")
+
+# ====== HAC 기반 선형 조합 예측 함수 ======
+beta_all = model.params.drop('const', errors='ignore')
+V_all    = model.cov_params().loc[beta_all.index, beta_all.index]
+
+HN1 = 'dln_oda_health_lag1'
+HN2 = 'dln_oda_health_lag2'
+ED0 = 'dln_oda_edu_lag0'
+IF0 = 'dln_oda_infra_lag0'
+GV1 = 'dln_oda_gov_lag1'
+SE0 = 'dln_oda_social_env_lag0'
+RQ  = 'rq'
+
+name2pos = {n:i for i,n in enumerate(beta_all.index)}
+
+def L_vec(terms):
+    L = np.zeros(len(beta_all))
+    for n, w in terms:
+        if n in name2pos:
+            L[name2pos[n]] += w
+    return L
+
+def linear_est_se(terms):
+    L   = L_vec(terms)
+    est = float(L @ beta_all.values)
+    var = float(L @ V_all.values @ L)
+    se  = np.sqrt(max(var, 0))
+    return est, se
+
+def policy_scenario_predict(
+    oda_rates=None,
+    rq_delta=0.0,
+    rq_persistent=True,
+    return_cumulative=True,
+    ci=0.95,
+):
+    oda_rates = oda_rates or {}
+    log_inc = {}
+    for k, v in oda_rates.items():
+        v = float(v)
+        if v <= -1:
+            raise ValueError(f"{k} 감소율은 -100% 미만일 수 없습니다.")
+        log_inc[k] = np.log(1 + v)
+    z = {0.90:1.64, 0.95:1.96, 0.99:2.58}.get(ci, 1.96)
+
+    horizons = [0,1,2]
+    inst_est, inst_lo, inst_hi = [], [], []
+
+    for h in horizons:
+        terms = []
+        if h == 0:
+            if 'SOCIAL_ENV' in log_inc: terms.append((SE0, log_inc['SOCIAL_ENV']))
+            if 'INFRA'      in log_inc: terms.append((IF0, log_inc['INFRA']))
+            if 'EDU'        in log_inc: terms.append((ED0, log_inc['EDU']))
+            if rq_delta and (rq_persistent or (not rq_persistent and h==0)):
+                terms.append((RQ, rq_delta))
+        elif h == 1:
+            if 'HEALTH' in log_inc: terms.append((HN1, log_inc['HEALTH']))
+            if 'GOV'    in log_inc: terms.append((GV1, log_inc['GOV']))
+            if rq_delta and rq_persistent: terms.append((RQ, rq_delta))
+        elif h == 2:
+            if 'HEALTH' in log_inc: terms.append((HN2, log_inc['HEALTH']))
+            if rq_delta and rq_persistent: terms.append((RQ, rq_delta))
+        est, se = linear_est_se(terms) if terms else (0.0, 0.0)
+        inst_est.append(est)
+        inst_lo.append(est - z*se)
+        inst_hi.append(est + z*se)
+
+    out = pd.DataFrame({
+        'horizon': horizons,
+        'instantaneous': inst_est,
+        'inst_lo': inst_lo,
+        'inst_hi': inst_hi
+    })
+
+    if return_cumulative:
+        out['cumulative'] = out['instantaneous'].cumsum()
+        cum_lo, cum_hi = [], []
+        for h in horizons:
+            t_all = []
+            for hh in range(h+1):
+                if hh==0:
+                    if 'SOCIAL_ENV' in log_inc: t_all.append((SE0, log_inc['SOCIAL_ENV']))
+                    if 'INFRA'      in log_inc: t_all.append((IF0, log_inc['INFRA']))
+                    if 'EDU'        in log_inc: t_all.append((ED0, log_inc['EDU']))
+                    if rq_delta and (rq_persistent or (not rq_persistent and hh==0)):
+                        t_all.append((RQ, rq_delta))
+                elif hh==1:
+                    if 'HEALTH' in log_inc: t_all.append((HN1, log_inc['HEALTH']))
+                    if 'GOV'    in log_inc: t_all.append((GV1, log_inc['GOV']))
+                    if rq_delta and rq_persistent: t_all.append((RQ, rq_delta))
+                elif hh==2:
+                    if 'HEALTH' in log_inc: t_all.append((HN2, log_inc['HEALTH']))
+                    if rq_delta and rq_persistent: t_all.append((RQ, rq_delta))
+            est_c, se_c = linear_est_se(t_all) if t_all else (0.0, 0.0)
+            cum_lo.append(est_c - z*se_c)
+            cum_hi.append(est_c + z*se_c)
+        out['cum_lo'] = cum_lo
+        out['cum_hi'] = cum_hi
+
+    return out
+
+# --- 시나리오 함수 ---
+def run_scenario_for_dashboard(
+    health_rate=0.0,
+    social_rate=0.0,
+    edu_rate=0.0,
+    infra_rate=0.0,
+    gov_rate=0.0,
+    rq_delta=0.0,
+    rq_persistent=True,
+    ci=0.95,
+):
+    """
+    대시보드/연구용 공통 시나리오 함수
+    """
+    oda_rates = {
+        'HEALTH': health_rate,
+        'SOCIAL_ENV': social_rate,
+        'EDU': edu_rate,
+        'INFRA': infra_rate,
+        'GOV': gov_rate,
+    }
+
+    out = policy_scenario_predict(
+        oda_rates=oda_rates,
+        rq_delta=rq_delta,
+        rq_persistent=rq_persistent,
+        ci=ci,
+    )
+    return out
+
+
+# ====== Dashboard 페이지 ======
+def dashboard_page():
+    st.title("🌍 Ethiopia ODA Impact Simulator: Life Expectancy")
+
+    col1, col2 = st.columns([1.5, 1])
+
+    with col2:
+        st.markdown(
+            '<h3 style="font-size:30px; font-weight:bold;">Adjust ODA Influence Multipliers (×)</h3>',
+            unsafe_allow_html=True
+        )
+
+        # --- ODA 슬라이더 (한 번만 입력) ---
+        slider_health = st.slider("❤️Health ODA % change", -20, 50, 0)
+        slider_social = st.slider("🌱Social & Environmental ODA % change", -20, 50, 0)
+        slider_edu    = st.slider("📚Education ODA % change", -20, 50, 0)
+        slider_infra  = st.slider("🏗️Infrastructure ODA % change", -20, 50, 0)
+        slider_gov    = st.slider("🏛️Governance ODA % change", -20, 50, 0)
+
+        # --- RQ 슬라이더 (절대값) ---
+        slider_rq_delta = st.slider("📊Institutional Quality (absolute change)", -2.5, 2.5, 0.0, 0.01)
+
+
+    with col1:
+        st.markdown(
+        '<h3 style="font-size:30px; font-weight:bold;">Policy Scenario Effects</h3>',
+        unsafe_allow_html=True
+    )
+        
+        result_placeholder = st.empty()
+
+        # --- 슬라이더 값 비율 변환 ---
+        health_rate = slider_health / 100.0
+        social_rate = slider_social / 100.0
+        edu_rate    = slider_edu / 100.0
+        infra_rate  = slider_infra / 100.0
+        gov_rate    = slider_gov / 100.0
+        rq_delta   = slider_rq_delta
+
+        # --- 시나리오 호출 ---
+        out_df = run_scenario_for_dashboard(
+            health_rate=health_rate,
+            social_rate=social_rate,
+            edu_rate=edu_rate,
+            infra_rate=infra_rate,
+            gov_rate=gov_rate,
+            rq_delta=rq_delta,
+            rq_persistent=True,
+            ci=0.95
+        )
+
+        # --- Plotly 그래프 (항상 표시) ---
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(
+            x=out_df['horizon'],
+            y=out_df['instantaneous'],
+            mode='lines+markers',
+            name='Instantaneous Effect',
+            line=dict(color='royalblue', width=3)
+        ))
+        fig.add_trace(go.Scatter(
+            x=out_df['horizon'],
+            y=out_df['inst_hi'],
+            mode='lines',
+            line=dict(color='royalblue', dash='dash'),
+            showlegend=False
+        ))
+        fig.add_trace(go.Scatter(
+            x=out_df['horizon'],
+            y=out_df['inst_lo'],
+            fill='tonexty',
+            mode='lines',
+            line=dict(color='royalblue', dash='dash'),
+            showlegend=False
+        ))
+
+        fig.add_trace(go.Scatter(
+            x=out_df['horizon'],
+            y=out_df['cumulative'],
+            mode='lines+markers',
+            name='Cumulative Effect',
+            line=dict(color='firebrick', width=3)
+        ))
+        fig.add_trace(go.Scatter(
+            x=out_df['horizon'],
+            y=out_df['cum_hi'],
+            mode='lines',
+            line=dict(color='firebrick', dash='dash'),
+            showlegend=False
+        ))
+        fig.add_trace(go.Scatter(
+            x=out_df['horizon'],
+            y=out_df['cum_lo'],
+            fill='tonexty',
+            mode='lines',
+            line=dict(color='firebrick', dash='dash'),
+            showlegend=False
+        ))
+
+        fig.update_layout(
+            xaxis_title="Horizon (Years)",
+            yaxis_title="Δ Life Expectancy",
+            template="plotly_white"
+        )
+        st.plotly_chart(fig, use_container_width=True)
+
+        # --- Policy Insight Summary: 슬라이더 조정 시에만 표시 ---
+        if any([health_rate, social_rate, edu_rate, infra_rate, gov_rate, rq_delta]):
+            delta_dict = {
+                'Health ODA': health_rate,
+                'Social/Env ODA': social_rate,
+                'Education ODA': edu_rate,
+                'Infrastructure ODA': infra_rate,
+                'Governance ODA': gov_rate,
+                'Institutional Quality (RQ)': rq_delta
+            }
+
+            # 단기(H0) 효과 계산
+            horizon0_effects = {}
+            term_map = {
+                'Health ODA': HN1,
+                'Social/Env ODA': SE0,
+                'Education ODA': ED0,
+                'Infrastructure ODA': IF0,
+                'Governance ODA': GV1,
+                'Institutional Quality (RQ)': RQ
+            }
+
+            for var, rate in delta_dict.items():
+                if rate != 0:
+                    est, _ = linear_est_se([(term_map[var], np.log(1+rate))])
+                else:
+                    est = 0.0
+                horizon0_effects[var] = est
+
+            # 상위 3개 변수
+            top3_vars = sorted(horizon0_effects.items(), key=lambda x: abs(x[1]), reverse=True)[:3]
+
+            # 전체 누적 효과
+            cum_effect = out_df['cumulative'].iloc[-1]
+
+            # 상위 3개 변수 + Horizon 표시
+            summary_lines = []
+            for var, val in top3_vars:
+                arrow = "→" if val != 0 else "→ 영향 없음"
+                
+                # Horizon별 효과
+                horizon_effects = []
+                for h in out_df['horizon']:
+                    if var == 'Health ODA' and h in [1,2]:
+                        est = linear_est_se([(HN1 if h==1 else HN2, np.log(1+health_rate))])[0]
+                        horizon_effects.append(f"H{h}: {est:+.3f}")
+                    elif var == 'Social/Env ODA' and h==0:
+                        est = linear_est_se([(SE0, np.log(1+social_rate))])[0]
+                        horizon_effects.append(f"H{h}: {est:+.3f}")
+                    elif var == 'Education ODA' and h==0:
+                        est = linear_est_se([(ED0, np.log(1+edu_rate))])[0]
+                        horizon_effects.append(f"H{h}: {est:+.3f}")
+                    elif var == 'Infrastructure ODA' and h==0:
+                        est = linear_est_se([(IF0, np.log(1+infra_rate))])[0]
+                        horizon_effects.append(f"H{h}: {est:+.3f}")
+                    elif var == 'Governance ODA' and h==1:
+                        est = linear_est_se([(GV1, np.log(1+gov_rate))])[0]
+                        horizon_effects.append(f"H{h}: {est:+.3f}")
+                    elif var == 'Institutional Quality (RQ)':
+                        est = linear_est_se([(RQ, rq_delta)])[0]
+                        horizon_effects.append(f"H{h}: {est:+.3f}")
+
+                summary_lines.append(f"• {var} {delta_dict[var]*100:+.0f}% {arrow} {' | '.join(horizon_effects)} years")
+
+
+            overall_summary = f"Overall Impact Summary:\nCombined changes across all ODA sectors result in a cumulative change of {cum_effect:+.3f} years.\nTop contributors are {', '.join([v[0] for v in top3_vars])}."
+
+            # 화면에 표시
+            st.markdown("💡 Policy Insight Summary:")
+            for line in summary_lines:
+                st.markdown(line)
+            st.markdown(overall_summary)
+
+
+
+def project_overview_page():
+    st.markdown(
+        """
+        # 📊 Ethiopia Life Expectancy Prediction Model - Policy Scenario Dashboard Explanation
+
+        ## 1️⃣ Model Overview
+
+        **Goal:**
+
+        This model predicts the impact of **ODA (Official Development Assistance)** and **institutional quality** on **Ethiopia’s Life Expectancy**, based on changes in **ODA amounts**. It uses **scenario-based predictions** to estimate how changes in ODA influence life expectancy.
+
+        **Target Users:**
+
+        This model helps policymakers and development agencies **predict** the impact of increasing specific **ODA sectors** on life expectancy, and **compare various policy scenarios** based on those predictions.
+
+        ## 2️⃣ Key Model Description
+
+        ### (1) Variables and Data
+
+        - **Key Input Variables**:
+            - **Health ODA** (Health Sector): Changes in health-related aid
+            - **Social/Env ODA** (Social/Environmental Sector): Aid related to sanitation, environment, and basic health services
+            - **Gov ODA** (Governance Sector): Aid aimed at improving administration and institutional quality
+            - **RQ (Regulatory Quality)**: Institutional quality indicator (using WGI)
+        - **Model Type**:
+            - **Dynamic Linear Model (DLM)** was used to analyze the **dynamic relationship** between **ODA changes** and **life expectancy**, distinguishing between **short-term (immediate effects)** and **lag effects** (lag1, lag2).
+            - After conducting **Variance Inflation Factor (VIF)** analysis to resolve **multicollinearity issues**, only the most significant variables were selected to optimize the model.
+            - Ultimately, **OLS-HAC** (robust standard error regression) was applied to build an accurate **predictive model**, considering **heteroskedasticity** and **autocorrelation**.
+
+        ### (2) Model’s Key Points
+
+        - **Immediate Effects** (Horizon 0): Changes in **Social/Env ODA** and **Infrastructure, Education** are **immediately** reflected in life expectancy.
+        - **Lag Effects** (Horizon 1, 2): **Health ODA** shows **2+ years of lag effects** due to infrastructure development and health service improvements.
+        - **Coefficients and Predictions**:
+            - The model uses **LASSO regression** to select important variables and **HAC** covariance estimation to provide predictions that consider **uncertainty**.
+
+        ## 3️⃣ Dashboard Explanation
+
+        ### (1) Dashboard Scenario Adjustment
+
+        Users can set the following **policy scenarios** in the dashboard:
+
+        - **Set change rates for each ODA sector**:
+            - Example: Increase **Health ODA** by **+10%**, and **Social/Env ODA** by **+5%**.
+        - **Set change rate for RQ**: Adjust the rate of change for **institutional quality** (RQ) to reflect improvements in governance.
+
+        ### (2) Scenario Results and Reflections
+
+        - **Immediate Effects (Horizon 0)**:
+            - The **immediate effects** of each set ODA change rate are displayed in graphs and numbers. For example, a **10% increase in Social/Env ODA** will immediately increase life expectancy by **+0.05 years**.
+        - **Lag Effects (Horizon 1 & 2)**:
+            - For **Health ODA**, the **cumulative effects** of **1 year** and **2 years** are shown visually, helping to understand the **long-term impact** of policies.
+
+        ### (3) Example Result Interpretation (Based on 2023 Data)
+
+        - **Health ODA +10%**: +0.03 years increase in **2024**, +0.10 years increase in **2025** → **+0.13 years** after 2 years.
+        - **Social/Env ODA +10%**: Immediate **+0.05 years** increase.
+
+        The **immediate effects** and **cumulative effects** can be intuitively compared over time.
+
+        ## 4️⃣ Policy Scenario Examples
+
+        ### (1) Example 1: Health ODA 10% Increase
+
+        - **Assumption**: Increase in Health ODA by 10%
+            - 2024: ΔLifeExp ≈ **+0.03 years** (short-term response)
+            - 2025: ΔLifeExp ≈ **+0.10 years** (2-year response)
+            - **2-year cumulative effect**: Approx **+0.13 years** (about 1.6 months increase)
+
+        ### (2) Example 2: Health ODA 10% Increase, Social/Env ODA 5% Increase
+
+        - **Assumption**: Increase Health ODA by 10%, Social/Env ODA by 5%
+            - **2024**: ΔLifeExp ≈ **+0.05 years** (immediate effect from Social/Env ODA)
+            - **2025**: ΔLifeExp ≈ **+0.03 years** (Health ODA 1-year lag effect)
+            - **2026**: ΔLifeExp ≈ **+0.10 years** (Health ODA 2-year lag effect)
+            - **2-year cumulative effect**: Approx **+0.18~0.20 years** (about 2-3 months increase)
+
+        ### Conclusion
+
+        “**Health ODA** and **Social/Env ODA** combined result in not only **short-term life expectancy increases**, but also a significant **long-term health improvement effect** driven by **Health ODA**’s **lag effect** after 2 years. The **2-year cumulative effect** shows **+0.13 years** for Health ODA alone, with **+0.18~0.20 years** from the combined scenario.”
+
+        ## 5️⃣ Model Usage and Limitations
+
+        ### (1) Model Usage
+
+        - **Policy Scenario Adjustments** allow users to **real-time predictions** of life expectancy changes based on increases in specific **ODA sectors**.
+        - **"What-If Simulation"**: Users can **analyze** the expected impact over the **next 1-2 years** from various policy scenarios in an intuitive way.
+
+        ### (2) Model Limitations
+
+        - **External Shocks** (e.g., pandemics) or **unforeseen economic changes** are not accounted for in the model.
+        - Additional variables need to be considered or **updated estimates** should be applied.
+        - **Changes in Regulatory Quality (RQ)** may take time to reflect in policy outcomes, making it challenging to predict **short-term changes**.
+
+        ### (3) Future Model Enhancements
+
+        - **Shock and Normal Period Setup**
+        - **External Variables and Indicators Integration**
+        - **Time-Series Model Enhancements**
+        """,
+        unsafe_allow_html=True
+    )
+
+
+team_members = [
+    {
+        "name": "Choi Wonkyo",
+        "role": "Team Leader & Visualization Lead",
+        "affiliation": "Department of Data Science, Dongduk Women's University (Expected Graduation: Feb 2027)",
+    "bio": """
+I am a data science student at Dongduk Women's University and the team leader for this project.
+I led the project planning and coordination, designed interactive dashboards, and visualized the effects of Official Development Assistance (ODA) on life expectancy in Ethiopia.
+My role involved translating complex econometric and machine-learning results into clear, actionable insights for policy simulation and presentation.
+""",
+        "image": "C:/Users/user/Desktop/UNDP Streamlit_Final/Design/Wonkyo.jpg"
+    },
+
+    {
+        "name": "Choi Eunjun",
+        "role": "Data Analysis & Modeling Researcher",
+        "affiliation": "Department of Data Science, Dongduk Women's University (Senior Year)",
+        "bio": """
+I am a senior student majoring in Data Science at Dongduk Women’s University.
+In this project, I was responsible for analyzing data and conducting simulations using econometric and machine-learning models to study the relationship between Official Development Assistance (ODA) and life expectancy.
+Based on this research, I quantitatively evaluated how development aid contributes to improvements in life expectancy.
+""",
+        "image": "C:/Users/user/Desktop/UNDP Streamlit_Final/Design/Eunjun.jpg"
+    },
+
+    {
+        "name": "Yang Hyewon",
+        "role": "Data Analysis & Modeling Researcher",
+        "affiliation": "Department of Data Science & Department of Computer Science, Dongduk Women’s University (Senior Year)",
+        "bio": """
+I am a senior student double majoring in Data Science and Computer Science at Dongduk Women’s University.
+In this project, I was responsible for analyzing the relationship between Official Development Assistance (ODA) and development outcomes through time-lagged correlation and predictive modeling.
+""",
+        "image": "C:/Users/user/Desktop/UNDP Streamlit_Final/Design/Hyewon.jpg"
+    }
+]
+
+def img_to_base64(path):
+    with open(path, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+
+def about_us_page():
+    st.title("About Us")
+    st.write("---")
+
+    cols = st.columns(len(team_members))
+
+    for col, member in zip(cols, team_members):
+        with col:
+
+            img_base64 = img_to_base64(member["image"])
+
+            st.markdown(
+                f"""
+                <div style="text-align:center;">
+                    <img class="profile-img" src="data:image/png;base64,{img_base64}">
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+            # 이름
+            st.markdown(
+                f'<div class="member-name">{member["name"]}</div>',
+                unsafe_allow_html=True
+            )
+
+            # 역할
+            st.markdown(
+                f'<div class="member-role"><b>{member["role"]}</b></div>',
+                unsafe_allow_html=True
+            )
+
+            # 소속
+            st.markdown(
+                f'<div class="member-aff">{member["affiliation"]}</div>',
+                unsafe_allow_html=True
+            )
+
+            st.write("---")
+
+            # bio (왼쪽 정렬)
+            st.markdown(
+                f'<div class="member-bio">{member["bio"]}</div>',
+                unsafe_allow_html=True
+            )
+
+def crop_center(img, crop_width, crop_height):
+    img_width, img_height = img.size
+    return img.crop((
+        (img_width - crop_width) // 2,
+        (img_height - crop_height) // 2,
+        (img_width + crop_width) // 2,
+        (img_height + crop_height) // 2
+    ))
+
+# ====== 사이드바 ======
+with st.sidebar:
+
+    logo_path = "C:/Users/user/Desktop/UNDP Streamlit_Final/Design/undp logo.png"
+    image = Image.open(logo_path)
+
+    # ---- 원하는 crop 높이 설정 ----
+    desired_height = 1450      # 원하는 세로 길이
+    desired_width = image.size[0]   # 가로는 그대로 유지
+
+    # ---- 세로만 crop ----
+    cropped = crop_center(image, desired_width, desired_height)
+
+    # ---- 가로 중앙 정렬되도록 HTML로 표시 ----
+    img_buffer = io.BytesIO()
+    cropped.save(img_buffer, format="PNG")
+    img_base64 = base64.b64encode(img_buffer.getvalue()).decode()
+
+    st.markdown(
+        f"""
+        <div style="text-align:center;">
+            <img src="data:image/png;base64,{img_base64}" style="width:150px; object-fit:cover;">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        '<hr style="margin-top:30px; margin-bottom:20px; border:1px solid #ccc;">',
+        unsafe_allow_html=True
+    )
+
+    choose = option_menu(
+        "", 
+        ["Dashboard", "Project Overview", "About us"],
+        icons=[" ", " ", " "],
+        menu_icon="",
+        styles={
+            "container": {"padding": "0px !important", "background-color": "#eee"},
+            "nav-link": {
+                "font-size": "px",
+                "font-weight": "400",
+                "text-align": "left",
+                "margin": "10px 0",
+                "--hover-color": "#0072ce",
+                "color": "black",
+            },
+            "nav-link:hover": {          # ← hover 커스터마이징 가능
+                "font-weight": "600",
+            },
+            "nav-link-selected": {
+                "background-color": "#004899",
+                "color": "white",
+                "font-weight": "700",
+            },
+        }
+    )
+
+    st.markdown(
+        '<hr style="margin-top:1px; margin-bottom:20px; border:1px solid #ccc;">',
+        unsafe_allow_html=True
+    )
+
+    cyclogo_path = "C:/Users/user/Desktop/UNDP Streamlit_Final/Design/cyclone_logo.png"
+    cycimage = Image.open(cyclogo_path)
+
+    st.markdown(
+        f"""
+        <div class="sidebar-logo">
+            <img src="data:image/png;base64,{base64.b64encode(open(cyclogo_path,'rb').read()).decode()}" 
+                width="150">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+# ====== 화면 전환 ======
+if choose == "Dashboard":
+    dashboard_page()
+elif choose == "Project Overview":
+    project_overview_page()
+elif choose == "About us":
+    about_us_page()
+    
+
+
+
+

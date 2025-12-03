@@ -65,12 +65,12 @@ st.markdown(
         color: white !important;
     }
 
-    # /* 사이드바 이미지 중앙정렬 */
-    # .stSidebar .stImage img {
-    #     display: block;
-    #     margin-left: auto;
-    #     margin-right: auto;
-    # }
+    /* 사이드바 이미지 중앙정렬 */
+    .stSidebar .stImage img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     # /* ======================================
     # 🔥 2) 메뉴와 아래 구분선 간격 줄이기
@@ -447,6 +447,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

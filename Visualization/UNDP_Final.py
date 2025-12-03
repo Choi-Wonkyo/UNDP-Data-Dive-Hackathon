@@ -18,6 +18,8 @@ import pickle
 import joblib
 import os
 
+st.write("Design files:", os.listdir("Visualization/Design"))
+
 st.set_page_config(layout="wide")
 
 # ====== 스타일 ======
@@ -751,6 +753,7 @@ elif choose == "Project Overview":
 elif choose == "About us":
     about_us_page()
     
+
 
 
 

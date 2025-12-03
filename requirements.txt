@@ -6,3 +6,5 @@ plotly
 matplotlib
 torch
 joblib
+statsmodels
+scipy

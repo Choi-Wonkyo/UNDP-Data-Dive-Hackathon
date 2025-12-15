@@ -294,42 +294,48 @@ def dashboard_page():
     with col2:
         st.markdown(
             """
-            <div class="tooltip-text">
-                <div style="font-size:20px; font-weight:700; margin-bottom:8px;">
-                    How to Use the Policy Scenario Sliders
+            <div class="tooltip-container">
+                <h3 style="font-size:30px; font-weight:bold; margin:0;">
+                    ODA Weight
+                </h3>
+                <img class="tooltip-icon" 
+                     src="data:image/png;base64,{}" />
+                <div class="tooltip-text">
+                    <div style="font-size:20px; font-weight:700; margin-bottom:8px;">
+                        How to Use the Policy Scenario Sliders
+                    </div>
+                
+                    <div style="font-size:15px; line-height:1.5;">
+                        The sliders in this section are the core interactive tools that allow users to
+                        directly intervene in the policy simulation and design their own scenarios.
+                        You can easily adjust ODA investment levels and institutional quality changes.
+                        <br><br>
+                
+                        <b>Purpose:</b>
+                        The sliders enable you to set hypothetical investment increase or decrease rates
+                        for each ODA sector (Health, Social/Environmental, Governance). This allows for a
+                        real-time prediction of how that specific policy mix will impact life expectancy
+                        in Ethiopia.
+                        <br><br>
+                
+                        <b>How it Works:</b><br>
+                        <b>• Adjusting ODA Change Rate:</b>
+                        Move each slider left or right to increase ODA investment in that sector, typically
+                        ranging from -20% up to +50%, or to simulate a reduction.
+                        <br><br>
+                
+                        <b>• Adjusting Regulatory Quality (RQ):</b>
+                        You can also adjust the expected change in the Regulatory Quality (RQ) index to test
+                        how improvements in institutional quality might amplify the effectiveness of ODA.
+                        <br><br>
+                
+                        <b>Real-Time Update:</b>
+                        As soon as you move a slider, the simulation graph and the Policy Insight Summary
+                        section dynamically update. This immediate feedback allows policymakers to instantly
+                        assess the sensitivity of the expected outcome (change in life expectancy) relative
+                        to the investment scale.
+                    </div>
                 </div>
-            
-                <div style="font-size:15px; line-height:1.5;">
-                    The sliders in this section are the core interactive tools that allow users to
-                    directly intervene in the policy simulation and design their own scenarios.
-                    You can easily adjust ODA investment levels and institutional quality changes.
-                    <br><br>
-            
-                    <b>Purpose:</b>
-                    The sliders enable you to set hypothetical investment increase or decrease rates
-                    for each ODA sector (Health, Social/Environmental, Governance). This allows for a
-                    real-time prediction of how that specific policy mix will impact life expectancy
-                    in Ethiopia.
-                    <br><br>
-            
-                    <b>How it Works:</b><br>
-                    <b>• Adjusting ODA Change Rate:</b>
-                    Move each slider left or right to increase ODA investment in that sector, typically
-                    ranging from -20% up to +50%, or to simulate a reduction.
-                    <br><br>
-            
-                    <b>• Adjusting Regulatory Quality (RQ):</b>
-                    You can also adjust the expected change in the Regulatory Quality (RQ) index to test
-                    how improvements in institutional quality might amplify the effectiveness of ODA.
-                    <br><br>
-            
-                    <b>Real-Time Update:</b>
-                    As soon as you move a slider, the simulation graph and the Policy Insight Summary
-                    section dynamically update. This immediate feedback allows policymakers to instantly
-                    assess the sensitivity of the expected outcome (change in life expectancy) relative
-                    to the investment scale.
-                </div>
-            </div>
             """.format(
                 base64.b64encode(open("Visualization/Design/question.png","rb").read()).decode()
             ),
@@ -627,6 +633,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

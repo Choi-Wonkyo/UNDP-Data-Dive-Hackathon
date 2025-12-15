@@ -474,6 +474,7 @@ def dashboard_page():
             xaxis_title="Horizon (Years)",
             yaxis_title="Δ Life Expectancy",
             template="plotly_white"
+            height=650
         )
         st.plotly_chart(fig, use_container_width=True)
 
@@ -626,6 +627,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

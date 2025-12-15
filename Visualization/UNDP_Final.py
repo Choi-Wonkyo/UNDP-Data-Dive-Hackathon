@@ -336,6 +336,7 @@ def dashboard_page():
                         to the investment scale.
                     </div>
                 </div>
+            </div>
             """.format(
                 base64.b64encode(open("Visualization/Design/question.png","rb").read()).decode()
             ),
@@ -633,30 +634,6 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

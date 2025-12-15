@@ -28,14 +28,15 @@ st.markdown(
         background: linear-gradient(
             135deg,
             #e6f0fa 0%,
-            #f9fbff 40%,
+            #004899 40%,
             #ffffff 100%
         );
     }
 
     section[data-testid="stSidebar"] {
-        background-color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.85);
         min-width: 270px !important;   /* 🔥 사이드바 가로폭 넓히기 */
+        backdrop-filter: blur(6px);
     }
 
     /* 모든 이미지 중앙 정렬 강제 */
@@ -483,6 +484,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

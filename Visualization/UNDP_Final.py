@@ -48,8 +48,8 @@ st.markdown(
     section[data-testid="stSidebar"],
     section[data-testid="stSidebar"] > div {
         width: 120px !important;
-        min-width: 120px !important;
-        max-width: 120px !important;
+        min-width: 170px !important;
+        max-width: 170px !important;
         background-color: rgba(255,255,255,0.15);
         backdrop-filter: blur(6px);
     }
@@ -626,6 +626,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

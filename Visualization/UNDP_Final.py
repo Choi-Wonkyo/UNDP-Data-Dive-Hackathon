@@ -415,7 +415,7 @@ def crop_center(img, crop_width, crop_height):
 # ====== 사이드바 ======
 with st.sidebar:
 
-    logo_path = "Visualization/Design/undp_logo.png"
+    logo_path = "Visualization/Design/UNDP_Logo_White_Large.png"
     image = Image.open(logo_path)
 
     # ---- 원하는 crop 높이 설정 ----
@@ -478,6 +478,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

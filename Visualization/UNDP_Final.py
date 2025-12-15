@@ -44,10 +44,13 @@ st.markdown(
     .stApp h5 {
         color: #ffffff !important;
     }
-
-    section[data-testid="stSidebar"] {
-        background-color: rgba(255, 255, 255, 0.15);
-        min-width: 100px !important;   /* 🔥 사이드바 가로폭 넓히기 */
+    
+    section[data-testid="stSidebar"],
+    section[data-testid="stSidebar"] > div {
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
+        background-color: rgba(255,255,255,0.15);
         backdrop-filter: blur(6px);
     }
 
@@ -623,6 +626,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

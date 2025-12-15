@@ -25,7 +25,12 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-color: #F9FAFB;
+        background: linear-gradient(
+            135deg,
+            #e6f0fa 0%,
+            #f9fbff 40%,
+            #ffffff 100%
+        );
     }
 
     section[data-testid="stSidebar"] {
@@ -478,6 +483,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

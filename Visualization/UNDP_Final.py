@@ -328,7 +328,7 @@ def dashboard_page():
                 </div>
             </div>
             """.format(
-                base64.b64encode(open("Visualization/Design/question_icon.png","rb").read()).decode()
+                base64.b64encode(open("Visualization/Design/question.png","rb").read()).decode()
             ),
             unsafe_allow_html=True
         )
@@ -623,6 +623,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

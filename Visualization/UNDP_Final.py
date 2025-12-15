@@ -27,10 +27,22 @@ st.markdown(
     .stApp {
         background: linear-gradient(
             135deg,
-            #e6f0fa 0%,
-            #004899 40%,
-            #ffffff 100%
+            #000000 10%,
+            #004899 50%,
+            #000000 100%
         );
+    }
+
+    /* ===== 전역 텍스트: 화이트 ===== */
+    .stApp,
+    .stApp p,
+    .stApp label,
+    .stApp h1,
+    .stApp h2,
+    .stApp h3,
+    .stApp h4,
+    .stApp h5 {
+        color: #ffffff !important;
     }
 
     section[data-testid="stSidebar"] {
@@ -484,6 +496,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

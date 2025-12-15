@@ -47,7 +47,7 @@ st.markdown(
 
     section[data-testid="stSidebar"] {
         background-color: rgba(255, 255, 255, 0.15);
-        min-width: 270px !important;   /* 🔥 사이드바 가로폭 넓히기 */
+        min-width: 200px !important;   /* 🔥 사이드바 가로폭 넓히기 */
         backdrop-filter: blur(6px);
     }
 
@@ -623,6 +623,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

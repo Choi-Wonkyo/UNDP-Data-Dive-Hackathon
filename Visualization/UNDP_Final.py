@@ -312,7 +312,7 @@ def dashboard_page():
     
     with col1:
         # 제목과 아이콘을 같은 줄에 배치
-        title_col, icon_col = st.columns([2,1])  # 비율 조정
+        title_col, icon_col = st.columns([1,1])  # 비율 조정
         with title_col:
             st.subheader("Simulation Visualization")
         with icon_col:
@@ -550,6 +550,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

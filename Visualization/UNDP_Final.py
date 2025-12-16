@@ -288,7 +288,7 @@ def dashboard_page():
         st.markdown(
             """
             <div style="display:flex; align-items:center;">
-                <h3 style="margin:0;">Real-Time Policy Simulation Visualization</h3>
+                <h3 style="margin:0;">ODA Weight</h3>
                 <div style="margin-left:6px;">
             """,
             unsafe_allow_html=True,
@@ -299,36 +299,32 @@ def dashboard_page():
                 """
                 <div style="background-color:#000000; color:#ffffff; padding:22px; border-radius:14px;">
         
-                <h3>Real-Time Policy Simulation Visualization</h3>
+                <h3>How to Use the Policy Scenario Sliders</h3>
         
                 <p>
-                This dashboard is where you can intuitively see the results of your policy scenarios in action.
+                The sliders in this section are the core interactive tools that allow users to directly intervene in the policy simulation and design their own scenarios. 
+                You can easily adjust ODA investment levels and institutional quality changes.
                 </p>
         
-                <p><b>Dynamic Prediction Graph:</b><br>
-                As you adjust the sliders for investment increases across different ODA sectors
-                (Health, Social/Environmental, Governance), the predicted change in Ethiopia's
-                life expectancy updates dynamically on the graph in real time.
+                <p><b>Purpose:</b><br>
+                The sliders enable you to set hypothetical investment increase/decrease rates for each ODA sector (Health, Social/Environmental, Governance).
+                This allows for a real-time prediction of how that specific policy mix will impact life expectancy in Ethiopia.
                 </p>
         
-                <p><b>Immediate Effects (Horizon 0):</b><br>
-                Changes from policies that yield rapid results, such as Social/Environmental ODA,
-                are reflected immediately within the current year.
+                <p><b>How it Works:</b><br>
+                Adjusting ODA Change Rate: Move each slider left or right to increase ODA investment in that sector,
+                typically ranging from -20% up to +50%, or to simulate a reduction.
                 </p>
         
-                <p><b>Lagged Effects (Horizon 1, 2):</b><br>
-                The long-term impact of policies like Health ODA, which accumulate over one or two
-                years, is clearly visualized over time.
+                <p><b>Adjusting Regulatory Quality (RQ):</b><br>
+                You can also adjust the expected change rate of the Regulatory Quality (RQ) index
+                to test how improvements in institutional quality might amplify the effectiveness of ODA.
                 </p>
         
-                <p><b>"What-If" Analysis:</b><br>
-                The tool allows you to easily compare various policy mixes (e.g., combining a +10%
-                increase in Health ODA with a +5% increase in Social/Environmental ODA).
-                </p>
-        
-                <p><b>Incorporating Uncertainty:</b><br>
-                The prediction graph includes a 95% Confidence Interval (CI), helping policymakers
-                understand statistical uncertainty.
+                <p><b>Real-Time Update:</b><br>
+                As soon as you move a slider, the simulation graph and the Policy Insight Summary section dynamically update. 
+                This immediate feedback allows policymakers to instantly assess the sensitivity of the expected outcome (change in life expectancy) 
+                relative to the investment scale.
                 </p>
         
                 </div>
@@ -628,6 +624,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

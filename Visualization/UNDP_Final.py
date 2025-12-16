@@ -542,11 +542,54 @@ def dashboard_page():
 
             overall_summary = f"Overall Impact Summary:\nCombined changes across all ODA sectors result in a cumulative change of {cum_effect:+.3f} years.\nTop contributors are {', '.join([v[0] for v in top3_vars])}."
 
-            # 화면에 표시
-            st.markdown("💡 Policy Insight Summary:")
-            for line in summary_lines:
-                st.markdown(line)
-            st.markdown(overall_summary)
+            # --- Policy Insight Summary Header + Popover ---
+            st.markdown(
+                """
+                <div style="display:flex; align-items:center; margin-top:20px;">
+                    <h4 style="margin:0;">💡 Policy Insight Summary</h4>
+                    <div style="margin-left:6px;">
+                """,
+                unsafe_allow_html=True,
+            )
+            
+            with st.popover("❓"):
+                st.markdown(
+                    """
+                    <div style="background-color:#000000; color:#ffffff; padding:22px; border-radius:14px;">
+            
+                    <h3>How to Interpret the Policy Insight Summary</h3>
+            
+                    <p>
+                    This section provides a concise, policy-oriented interpretation of the simulation results,
+                    highlighting which factors drive changes in life expectancy.
+                    </p>
+            
+                    <p><b>Top Contributors:</b><br>
+                    The summary identifies the top three policy variables that contribute most strongly
+                    (positively or negatively) to changes in life expectancy, based on model estimates.
+                    </p>
+            
+                    <p><b>Horizon-Based Effects:</b><br>
+                    Each contributor is broken down by time horizon (H0, H1, H2),
+                    allowing you to distinguish between immediate and delayed policy impacts.
+                    </p>
+            
+                    <p><b>Directional Interpretation:</b><br>
+                    Positive values indicate expected gains in life expectancy,
+                    while negative values reflect potential adverse effects.
+                    </p>
+            
+                    <p><b>Policy Use:</b><br>
+                    This summary is designed to support rapid comparison of policy scenarios
+                    and to guide evidence-based prioritization of ODA allocation.
+                    </p>
+            
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+            
+            st.markdown("</div></div>", unsafe_allow_html=True)
 
 
 def crop_center(img, crop_width, crop_height):
@@ -624,6 +667,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

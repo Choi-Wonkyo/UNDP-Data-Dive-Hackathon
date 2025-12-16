@@ -33,7 +33,6 @@ st.markdown(
         );
     }
 
-    /* ===== 전역 텍스트: 화이트 ===== */
     .stApp,
     .stApp p,
     .stApp label,
@@ -44,17 +43,16 @@ st.markdown(
     .stApp h5 {
         color: #ffffff !important;
     }
-    
+
     section[data-testid="stSidebar"],
     section[data-testid="stSidebar"] > div {
-        width: 120px !important;
         min-width: 170px !important;
         max-width: 170px !important;
         background-color: rgba(255,255,255,0.15);
         backdrop-filter: blur(6px);
     }
 
-    /* ===== 툴팁 버튼 ===== */
+    /* ===== Tooltip icon ===== */
     .tooltip-icon {
         width: 20px;
         height: 20px;
@@ -62,7 +60,7 @@ st.markdown(
         margin-left: 8px;
     }
 
-    /* ===== 툴팁 배경 ===== */
+    /* ===== Overlay ===== */
     .tooltip-overlay {
         display: none;
         position: fixed;
@@ -71,26 +69,21 @@ st.markdown(
         z-index: 9998;
     }
 
-    /* ===== 툴팁 박스 ===== */
+    /* ===== Tooltip box ===== */
     .tooltip-box {
         display: none;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-
-        width: 520px;
-        max-height: 70vh;
-
+        width: 620px;
+        max-height: 75vh;
         background: rgba(15, 23, 42, 0.98);
         color: white;
-
-        padding: 26px;
-        border-radius: 16px;
-
+        padding: 30px;
+        border-radius: 18px;
         box-shadow: 0 20px 60px rgba(0,0,0,0.6);
         z-index: 9999;
-
         overflow-y: auto;
     }
 
@@ -105,7 +98,6 @@ st.markdown(
         line-height: 1.6;
     }
 
-    /* 닫기 버튼 */
     .tooltip-close {
         position: absolute;
         top: 12px;
@@ -119,67 +111,46 @@ st.markdown(
         color: white;
     }
 
-    <script>
-    function toggleTooltip(id) {
-        const box = document.getElementById(id);
-        const overlay = document.getElementById(id + "-overlay");
-    
-        const visible = box.style.display === "block";
-        box.style.display = visible ? "none" : "block";
-        overlay.style.display = visible ? "none" : "block";
-    }
-    </script>
-
-
-    /* 모든 이미지 중앙 정렬 강제 */
+    /* ===== Global tweaks ===== */
     img {
         display: block;
         margin-left: auto !important;
         margin-right: auto !important;
     }
 
-    /* 기본 텍스트 전체 크기 증가 */
-    p, label, div, .stMarkdown, .stText, .stButton, .stSelectbox, .stSlider {
-        font-size: 20px !important;
+    p, label, div {
+        font-size: 18px;
     }
 
-    /* 버튼 스타일 */
     .stButton > button {
         background-color: #2563eb !important;
         color: white !important;
-        border: none !important;
         border-radius: 8px !important;
-        padding: 0.5em 1em !important;
-        font-size: 16px !important;
         font-weight: 600;
     }
 
-    .stButton > button * {
-        color: white !important;
-    }
-
-    /* 사이드바 이미지 중앙정렬 */
-    .stSidebar .stImage img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-
-    /* ======================================
-    🔥 아래 cyclone 로고 중앙정렬용 클래스
-       ====================================== */
     .sidebar-logo {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
     }
-
     </style>
+
+    <script>
+    function toggleTooltip(id) {
+        const box = document.getElementById(id);
+        const overlay = document.getElementById(id + "-overlay");
+
+        const visible = box.style.display === "block";
+        box.style.display = visible ? "none" : "block";
+        overlay.style.display = visible ? "none" : "block";
+    }
+    </script>
     """,
     unsafe_allow_html=True
 )
+
 
 
 # ====== 모델 로딩 ======
@@ -681,6 +652,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

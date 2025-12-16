@@ -133,10 +133,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ---------------- question 이미지 로드 ----------------
-with open("Visualization/Design/question.png", "rb") as f:
-    icon_base64 = base64.b64encode(f.read()).decode()
-
 # ====== 모델 로딩 ======
 @st.cache_data
 def load_model(path):
@@ -581,6 +577,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

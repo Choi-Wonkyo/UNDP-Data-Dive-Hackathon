@@ -59,7 +59,7 @@ st.markdown(
         padding: 0 !important;
         font-size: 20px !important;    /* 아이콘 크기 */
         cursor: pointer;
-        margin-top: -6px !important;
+        margin-top: -15px !important;
         margin-left: 0px !important;   /* 제목과 간격 */
     }
 
@@ -562,6 +562,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

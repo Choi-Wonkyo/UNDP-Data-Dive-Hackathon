@@ -289,7 +289,7 @@ def dashboard_page():
     col1, col2 = st.columns([1.5, 1])
 
     with col2:
-        title_col, pop_col = st.columns([1,0.1])
+        title_col, pop_col = st.columns([1,0.05])
         
         with title_col:
             st.subheader("ODA Weight")
@@ -554,6 +554,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

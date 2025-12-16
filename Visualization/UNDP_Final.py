@@ -306,8 +306,7 @@ def dashboard_page():
         with title_col:
             st.subheader("Simulation Visualization")
         with icon_col:
-            # popover 버튼을 이미지로 표시
-            with st.popover(st.image("Visualization/Design/question_blue.png", width=24)):
+            with st.popover("❓ ODA 설명"):
                 st.markdown("""
                 ### Visualization
                 This graph shows both instantaneous and cumulative effects
@@ -541,6 +540,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

@@ -282,7 +282,7 @@ def run_scenario_for_dashboard(
 def dashboard_page():
     st.title("🌍 Ethiopia ODA Impact Simulator: Life Expectancy")
 
-    col1, col2 = st.columns([1.5, 1])
+    col1, col2 = st.columns([1.7, 1])
 
     with col2:
         st.markdown(
@@ -354,7 +354,10 @@ def dashboard_page():
             """,
             unsafe_allow_html=True,
         )
-    
+
+
+
+        
         with st.popover("❓"):
             st.markdown(
                 """
@@ -565,27 +568,7 @@ def dashboard_page():
                     This section provides a concise, policy-oriented interpretation of the simulation results,
                     highlighting which factors drive changes in life expectancy.
                     </p>
-            
-                    <p><b>Top Contributors:</b><br>
-                    The summary identifies the top three policy variables that contribute most strongly
-                    (positively or negatively) to changes in life expectancy, based on model estimates.
-                    </p>
-            
-                    <p><b>Horizon-Based Effects:</b><br>
-                    Each contributor is broken down by time horizon (H0, H1, H2),
-                    allowing you to distinguish between immediate and delayed policy impacts.
-                    </p>
-            
-                    <p><b>Directional Interpretation:</b><br>
-                    Positive values indicate expected gains in life expectancy,
-                    while negative values reflect potential adverse effects.
-                    </p>
-            
-                    <p><b>Policy Use:</b><br>
-                    This summary is designed to support rapid comparison of policy scenarios
-                    and to guide evidence-based prioritization of ODA allocation.
-                    </p>
-            
+    
                     </div>
                     """,
                     unsafe_allow_html=True
@@ -641,7 +624,7 @@ with st.sidebar:
         """
         <div style='text-align:center; margin:15px 0;'>
             <span style='font-size:32px; color:#004899; font-weight:500;'>
-                Dashboard
+                UNDP x CYClone
             </span>
         </div>
         """,
@@ -669,15 +652,4 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
-
-
-
-
-
-
-
-
-
-
-
 

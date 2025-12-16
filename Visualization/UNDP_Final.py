@@ -302,13 +302,12 @@ def dashboard_page():
 
     with col1:
         # 글씨와 버튼을 같은 행에 배치
-        title_col, icon_col = st.columns([8,3])
+        title_col, icon_col = st.columns([8,7])
         with title_col:
             st.subheader("Simulation Visualization")
         with icon_col:
-            # 아이콘 이미지를 popover 버튼으로 사용
-            with st.popover(""):
-                st.image("Visualization/Design/question_blue.png", width=28)
+            # popover 버튼을 이미지로 표시
+            with st.popover(st.image("Visualization/Design/question_blue.png", width=24)):
                 st.markdown("""
                 ### Visualization
                 This graph shows both instantaneous and cumulative effects
@@ -542,6 +541,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

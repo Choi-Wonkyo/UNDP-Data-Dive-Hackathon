@@ -54,8 +54,8 @@ st.markdown(
 
     /* ===== Tooltip icon ===== */
     .tooltip-icon {
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
         cursor: pointer;
         margin-left: 8px;
     }
@@ -70,45 +70,36 @@ st.markdown(
     }
 
     /* ===== Tooltip box ===== */
+    .tooltip-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.55);
+        z-index: 9998;
+    }
+
     .tooltip-box {
         display: none;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 620px;
+        width: 600px;
         max-height: 75vh;
-        background: rgba(15, 23, 42, 0.98);
+        background: #0f172a;
         color: white;
-        padding: 30px;
-        border-radius: 18px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        padding: 28px;
+        border-radius: 16px;
         z-index: 9999;
         overflow-y: auto;
     }
 
-    .tooltip-box h4 {
-        margin-top: 0;
-        font-size: 22px;
-        margin-bottom: 14px;
-    }
-
-    .tooltip-box p {
-        font-size: 15px;
-        line-height: 1.6;
-    }
-
     .tooltip-close {
         position: absolute;
-        top: 12px;
+        top: 10px;
         right: 16px;
         font-size: 22px;
         cursor: pointer;
-        color: #cbd5f5;
-    }
-
-    .tooltip-close:hover {
-        color: white;
     }
 
     /* ===== Global tweaks ===== */
@@ -141,7 +132,7 @@ st.markdown(
     function toggleTooltip(id) {
         const box = document.getElementById(id);
         const overlay = document.getElementById(id + "-overlay");
-
+    
         const visible = box.style.display === "block";
         box.style.display = visible ? "none" : "block";
         overlay.style.display = visible ? "none" : "block";
@@ -151,7 +142,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
+# ---------------- question 이미지 로드 ----------------
+with open("Visualization/Design/question.png", "rb") as f:
+    icon_base64 = base64.b64encode(f.read()).decode()
 
 # ====== 모델 로딩 ======
 @st.cache_data
@@ -299,67 +292,27 @@ def dashboard_page():
     col1, col2 = st.columns([1.5, 1])
 
     with col2:
-        st.markdown(
-            """
-            <div style="display:flex; align-items:center;">
-                <h3 style="font-size:30px; font-weight:bold; margin:0;">
-                    ODA Weight
-                </h3>
-
-                <img class="tooltip-icon"
-                         src="data:image/png;base64,{icon}"
-                         onclick="toggleTooltip('tooltip-oda')" />
-            </div>
-
-            <!-- Overlay -->
-            <div id="tooltip-oda-overlay" class="tooltip-overlay"
-                 onclick="toggleTooltip('tooltip-oda')"></div>
-
-            <!-- Tooltip Box -->
-            <div id="tooltip-oda" class="tooltip-box">
-                <div class="tooltip-close"
-                     onclick="toggleTooltip('tooltip-oda')">✕</div>
-        
-                <h4>How to Use the Policy Scenario Sliders</h4>
-        
-                <p>
-                The sliders in this section are the core interactive tools that allow users to
-                directly intervene in the policy simulation and design their own scenarios.
-                You can easily adjust ODA investment levels and institutional quality changes.
-                </p>
-        
-                <p>
-                <b>Purpose</b><br>
-                The sliders enable you to set hypothetical investment increase or decrease rates
-                for each ODA sector (Health, Social/Environmental, Governance). This allows for a
-                real-time prediction of how that specific policy mix will impact life expectancy
-                in Ethiopia.
-                </p>
-        
-                <p>
-                <b>How it Works</b><br>
-                • Adjust ODA Change Rate: Move each slider left or right to increase ODA investment in that sector, 
-                typically ranging from -20% up to +50%, or to simulate a reduction.<br>
-                • Adjust Regulatory Quality (RQ): You can also adjust the expected change 
-                in the Regulatory Quality (RQ) index to test
-                how improvements in institutional quality might amplify the effectiveness of ODA.
-                </p>
-        
-                <p>
-                <b>Real-Time Update</b><br>
-                As soon as you move a slider, the simulation graph and the Policy Insight Summary
-                section dynamically update. This immediate feedback allows policymakers to instantly
-                assess the sensitivity of the expected outcome (change in life expectancy) relative
-                to the investment scale.
-                </p>
-            </div>
-            """.format(
-                icon=base64.b64encode(
-                    open("Visualization/Design/question.png", "rb").read()
-                ).decode()
-            ),
-            unsafe_allow_html=True
-                )
+        st.markdown(f"""
+        <div style="display:flex; align-items:center;">
+            <h3 style="margin:0;">ODA Weight</h3>
+            <img class="tooltip-icon"
+                 src="data:image/png;base64,{icon_base64}"
+                 onclick="toggleTooltip('tip-oda')" />
+        </div>
+    
+        <div id="tip-oda-overlay" class="tooltip-overlay"
+             onclick="toggleTooltip('tip-oda')"></div>
+    
+        <div id="tip-oda" class="tooltip-box">
+            <div class="tooltip-close"
+                 onclick="toggleTooltip('tip-oda')">✕</div>
+            <h4>ODA Sliders</h4>
+            <p>
+            Adjust each slider to simulate percentage changes in ODA investment.
+            The simulation updates in real time.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
 
         # --- ODA 슬라이더 (한 번만 입력) ---
         slider_health = st.slider("❤️Health ODA % change", -20, 50, 0)
@@ -373,67 +326,48 @@ def dashboard_page():
 
 
     with col1:
-        st.markdown(
-            """
+        st.markdown(f"""
             <div style="display:flex; align-items:center;">
-                <h3 style="font-size:30px; font-weight:bold; margin:0;">
-                    Real-Time Policy Simulation Visualization
-                </h3>
-    
+                <h3 style="margin:0;">Simulation Visualization</h3>
+        
+                <!-- 설명 1 -->
                 <img class="tooltip-icon"
-                     src="data:image/png;base64,{icon}"
-                     onclick="toggleTooltip('tooltip-viz')" />
+                     src="data:image/png;base64,{icon_base64}"
+                     onclick="toggleTooltip('tip-viz')" />
+        
+                <!-- 설명 2 (세 번째 포인트) -->
+                <img class="tooltip-icon"
+                     src="data:image/png;base64,{icon_base64}"
+                     onclick="toggleTooltip('tip-summary')" />
             </div>
-    
-            <!-- Overlay -->
-            <div id="tooltip-viz-overlay" class="tooltip-overlay"
-                 onclick="toggleTooltip('tooltip-viz')"></div>
-    
-            <!-- Tooltip Box -->
-            <div id="tooltip-viz" class="tooltip-box">
+        
+            <div id="tip-viz-overlay" class="tooltip-overlay"
+                 onclick="toggleTooltip('tip-viz')"></div>
+        
+            <div id="tip-viz" class="tooltip-box">
                 <div class="tooltip-close"
-                     onclick="toggleTooltip('tooltip-viz')">✕</div>
-    
-                <h4>Real-Time Policy Simulation Visualization</h4>
-    
+                     onclick="toggleTooltip('tip-viz')">✕</div>
+                <h4>Visualization</h4>
                 <p>
-                This dashboard is where you can intuitively see the results of your policy scenarios in action.
-                <br><br>
-    
-                <b>Dynamic Prediction Graph:</b>
-                As you adjust the sliders for investment increases across different ODA sectors
-                (Health, Social/Environmental, Governance), the predicted change in Ethiopia's
-                life expectancy updates dynamically on the graph in real time.
-                <br><br>
-    
-                <b>Immediate Effects (Horizon 0):</b>
-                Changes from policies that yield rapid results, such as Social/Environmental ODA,
-                are reflected immediately within the current year.
-                <br><br>
-    
-                <b>Lagged Effects (Horizon 1, 2):</b>
-                The long-term impact of policies like Health ODA, which accumulate over one or two
-                years, is clearly visualized over time.
-                <br><br>
-    
-                <b>"What-If" Analysis:</b>
-                The tool allows you to easily compare various policy mixes (e.g., combining a +10%
-                increase in Health ODA with a +5% increase in Social/Environmental ODA).
-                <br><br>
-    
-                <b>Incorporating Uncertainty:</b>
-                The prediction graph includes a 95% Confidence Interval (CI).
+                This graph shows both instantaneous and cumulative effects
+                across multiple time horizons.
                 </p>
             </div>
-            """.format(
-                icon=base64.b64encode(
-                    open("Visualization/Design/question.png","rb").read()
-                ).decode()
-            ),
-            unsafe_allow_html=True
-        )
-
         
+            <div id="tip-summary-overlay" class="tooltip-overlay"
+                 onclick="toggleTooltip('tip-summary')"></div>
+        
+            <div id="tip-summary" class="tooltip-box">
+                <div class="tooltip-close"
+                     onclick="toggleTooltip('tip-summary')">✕</div>
+                <h4>Policy Insight Summary</h4>
+                <p>
+                This section explains which policy variables contribute most
+                to the predicted outcome and when their effects materialize.
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+
         result_placeholder = st.empty()
 
         # --- 슬라이더 값 비율 변환 ---
@@ -661,6 +595,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

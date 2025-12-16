@@ -44,11 +44,16 @@ st.markdown(
         color: #ffffff !important;
     }
 
-    section[data-testid="stSidebar"],
-    section[data-testid="stSidebar"] > div {
-        min-width: 200px !important;
+    /* sidebar 컨테이너만 최소 폭 설정 */
+    section[data-testid="stSidebar"] {
+        min-width: 200px;
         background-color: rgba(255,255,255,0.15);
         backdrop-filter: blur(6px);
+    }
+    
+    /* ❗ 내부 div는 width 제어하지 말 것 */
+    section[data-testid="stSidebar"] > div {
+        background-color: transparent;
     }
     
     button[data-testid="stPopoverButton"] {
@@ -705,6 +710,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

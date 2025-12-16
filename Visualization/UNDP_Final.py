@@ -289,14 +289,14 @@ def dashboard_page():
     col1, col2 = st.columns([1.5, 1])
 
     with col2:
-        title_col, pop_col = st.columns([1,0.05])
+        title_col, pop_col = st.columns([1,1])
         
         with title_col:
             st.subheader("ODA Weight")
 
         with pop_col:
             # popover 아이콘 버튼
-            with st.popover("❓ ODA 설명"):
+            with st.popover("❓"):
                 st.markdown("""
                 ### ODA Sliders
                 - Adjust each slider to simulate percentage changes in ODA investment.
@@ -554,6 +554,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

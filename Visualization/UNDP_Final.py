@@ -54,46 +54,82 @@ st.markdown(
         backdrop-filter: blur(6px);
     }
 
-    /* ===== 툴팁 컨테이너 ===== */
-    .tooltip-container {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
+    /* ===== 툴팁 버튼 ===== */
+    .tooltip-icon {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        margin-left: 8px;
     }
 
-    /* ? 아이콘 */
-    .tooltip-icon {
-        width: 18px;
-        height: 18px;
-        cursor: pointer;
+    /* ===== 툴팁 배경 ===== */
+    .tooltip-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.55);
+        z-index: 9998;
     }
-    
-    /* 툴팁 박스 */
-    .tooltip-text {
-        visibility: hidden;
-        opacity: 0;
-        width: 300px;
-        background-color: rgba(15, 23, 42, 0.95);
-        color: #ffffff;
-        text-align: left;
-        border-radius: 8px;
-        padding: 12px;
+
+    /* ===== 툴팁 박스 ===== */
+    .tooltip-box {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 520px;
+        max-height: 70vh;
+
+        background: rgba(15, 23, 42, 0.98);
+        color: white;
+
+        padding: 26px;
+        border-radius: 16px;
+
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        z-index: 9999;
+
+        overflow-y: auto;
+    }
+
+    .tooltip-box h4 {
+        margin-top: 0;
+        font-size: 22px;
+        margin-bottom: 14px;
+    }
+
+    .tooltip-box p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    /* 닫기 버튼 */
+    .tooltip-close {
         position: absolute;
-        z-index: 999;
-        top: 130%;
-        left: 0;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        transition: opacity 0.25s ease;
-        font-size: 16px;
-        line-height: 1.4;
+        top: 12px;
+        right: 16px;
+        font-size: 22px;
+        cursor: pointer;
+        color: #cbd5f5;
     }
-    
-    /* hover 시 표시 */
-    .tooltip-container:hover .tooltip-text {
-        visibility: visible;
-        opacity: 1;
+
+    .tooltip-close:hover {
+        color: white;
     }
+    </style>
+
+    <script>
+    function toggleTooltip(id) {
+        const box = document.getElementById(id);
+        const overlay = document.getElementById(id + "-overlay");
+
+        const visible = box.style.display === "block";
+        box.style.display = visible ? "none" : "block";
+        overlay.style.display = visible ? "none" : "block";
+    }
+
 
     /* 모든 이미지 중앙 정렬 강제 */
     img {
@@ -294,54 +330,65 @@ def dashboard_page():
     with col2:
         st.markdown(
             """
-            <div class="tooltip-container">
+            <div style="display:flex; align-items:center;">
                 <h3 style="font-size:30px; font-weight:bold; margin:0;">
                     ODA Weight
                 </h3>
-                <img class="tooltip-icon" 
-                     src="data:image/png;base64,{}" />
-                <div class="tooltip-text">
-                    <div style="font-size:20px; font-weight:700; margin-bottom:8px;">
-                        How to Use the Policy Scenario Sliders
-                    </div>
-                
-                    <div style="font-size:15px; line-height:1.5;">
-                        The sliders in this section are the core interactive tools that allow users to
-                        directly intervene in the policy simulation and design their own scenarios.
-                        You can easily adjust ODA investment levels and institutional quality changes.
-                        <br><br>
-                
-                        <b>Purpose:</b>
-                        The sliders enable you to set hypothetical investment increase or decrease rates
-                        for each ODA sector (Health, Social/Environmental, Governance). This allows for a
-                        real-time prediction of how that specific policy mix will impact life expectancy
-                        in Ethiopia.
-                        <br><br>
-                
-                        <b>How it Works:</b><br>
-                        <b>• Adjusting ODA Change Rate:</b>
-                        Move each slider left or right to increase ODA investment in that sector, typically
-                        ranging from -20% up to +50%, or to simulate a reduction.
-                        <br><br>
-                
-                        <b>• Adjusting Regulatory Quality (RQ):</b>
-                        You can also adjust the expected change in the Regulatory Quality (RQ) index to test
-                        how improvements in institutional quality might amplify the effectiveness of ODA.
-                        <br><br>
-                
-                        <b>Real-Time Update:</b>
-                        As soon as you move a slider, the simulation graph and the Policy Insight Summary
-                        section dynamically update. This immediate feedback allows policymakers to instantly
-                        assess the sensitivity of the expected outcome (change in life expectancy) relative
-                        to the investment scale.
-                    </div>
-                </div>
+
+                <img class="tooltip-icon"
+                         src="data:image/png;base64,{icon}"
+                         onclick="toggleTooltip('tooltip-oda')" />
+            </div>
+
+            <!-- Overlay -->
+            <div id="tooltip-oda-overlay" class="tooltip-overlay"
+                 onclick="toggleTooltip('tooltip-oda')"></div>
+
+            <!-- Tooltip Box -->
+            <div id="tooltip-oda" class="tooltip-box">
+                <div class="tooltip-close"
+                     onclick="toggleTooltip('tooltip-oda')">✕</div>
+        
+                <h4>How to Use the Policy Scenario Sliders</h4>
+        
+                <p>
+                The sliders in this section are the core interactive tools that allow users to
+                directly intervene in the policy simulation and design their own scenarios.
+                You can easily adjust ODA investment levels and institutional quality changes.
+                </p>
+        
+                <p>
+                <b>Purpose</b><br>
+                The sliders enable you to set hypothetical investment increase or decrease rates
+                for each ODA sector (Health, Social/Environmental, Governance). This allows for a
+                real-time prediction of how that specific policy mix will impact life expectancy
+                in Ethiopia.
+                </p>
+        
+                <p>
+                <b>How it Works</b><br>
+                • Adjust ODA Change Rate: Move each slider left or right to increase ODA investment in that sector, 
+                typically ranging from -20% up to +50%, or to simulate a reduction.<br>
+                • Adjust Regulatory Quality (RQ): You can also adjust the expected change 
+                in the Regulatory Quality (RQ) index to test
+                how improvements in institutional quality might amplify the effectiveness of ODA.
+                </p>
+        
+                <p>
+                <b>Real-Time Update</b><br>
+                As soon as you move a slider, the simulation graph and the Policy Insight Summary
+                section dynamically update. This immediate feedback allows policymakers to instantly
+                assess the sensitivity of the expected outcome (change in life expectancy) relative
+                to the investment scale.
+                </p>
             </div>
             """.format(
-                base64.b64encode(open("Visualization/Design/question.png","rb").read()).decode()
+                icon=base64.b64encode(
+                    open("Visualization/Design/question.png", "rb").read()
+                ).decode()
             ),
             unsafe_allow_html=True
-        )
+                )
 
         # --- ODA 슬라이더 (한 번만 입력) ---
         slider_health = st.slider("❤️Health ODA % change", -20, 50, 0)
@@ -634,6 +681,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

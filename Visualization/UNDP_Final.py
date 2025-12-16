@@ -306,32 +306,39 @@ def dashboard_page():
                 You can easily adjust ODA investment levels and institutional quality changes.
                 </p>
         
-                <p><b>Purpose:</b><br>
-                The sliders enable you to set hypothetical investment increase/decrease rates for each ODA sector (Health, Social/Environmental, Governance).
-                This allows for a real-time prediction of how that specific policy mix will impact life expectancy in Ethiopia.
-                </p>
-        
-                <p><b>How it Works:</b><br>
-                Adjusting ODA Change Rate: Move each slider left or right to increase ODA investment in that sector,
-                typically ranging from -20% up to +50%, or to simulate a reduction.
-                </p>
-        
-                <p><b>Adjusting Regulatory Quality (RQ):</b><br>
-                You can also adjust the expected change rate of the Regulatory Quality (RQ) index
-                to test how improvements in institutional quality might amplify the effectiveness of ODA.
-                </p>
-        
-                <p><b>Real-Time Update:</b><br>
-                As soon as you move a slider, the simulation graph and the Policy Insight Summary section dynamically update. 
-                This immediate feedback allows policymakers to instantly assess the sensitivity of the expected outcome (change in life expectancy) 
-                relative to the investment scale.
-                </p>
+                <ul>
+                    <li>
+                        <b>Purpose:</b><br>
+                        The sliders enable you to set hypothetical investment increase/decrease rates for each ODA sector
+                        (Health, Social/Environmental, Governance).
+                        This allows for a real-time prediction of how that specific policy mix will impact life expectancy in Ethiopia.
+                    </li>
+                    <br>
+                    <li>
+                        <b>How it Works:</b><br>
+                        Adjusting ODA Change Rate: Move each slider left or right to increase ODA investment in that sector,
+                        typically ranging from -20% up to +50%, or to simulate a reduction.
+                    </li>
+                    <br>
+                    <li>
+                        <b>Adjusting Regulatory Quality (RQ):</b><br>
+                        You can also adjust the expected change rate of the Regulatory Quality (RQ) index
+                        to test how improvements in institutional quality might amplify the effectiveness of ODA.
+                    </li>
+                    <br>
+                    <li>
+                        <b>Real-Time Update:</b><br>
+                        As soon as you move a slider, the simulation graph and the Policy Insight Summary section dynamically update.
+                        This immediate feedback allows policymakers to instantly assess the sensitivity of the expected outcome
+                        (change in life expectancy) relative to the investment scale.
+                    </li>
+                </ul>
         
                 </div>
                 """,
                 unsafe_allow_html=True
             )
-    
+        
         result_placeholder = st.empty()
 
         # --- ODA 슬라이더 (한 번만 입력) ---
@@ -700,6 +707,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

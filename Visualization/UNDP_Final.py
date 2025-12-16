@@ -52,12 +52,11 @@ st.markdown(
         backdrop-filter: blur(6px);
     }
 
-    button[aria-controls][data-testid="baseButton-secondary"] {
+    div[data-testid="stPopoverButton"] > button {
         color: black !important;   /* 글씨 색 검정 */
-        background: transparent !important; /* 배경 투명 */
+        background: transparent !important;
         border: none !important;
         padding: 0 !important;
-        margin-left: 6px !important; /* 제목과 간격 */
         font-size: 16px !important;
         cursor: pointer;
     }
@@ -311,17 +310,20 @@ def dashboard_page():
 
 
     with col1:
-        # 글씨와 버튼을 같은 행에 배치
-        title_col, icon_col = st.columns([5,1])
-        with title_col:
-            st.subheader("Simulation Visualization")
-        with icon_col:
-            with st.popover("❓ ODA 설명"):
-                st.markdown("""
-                ### Visualization
-                This graph shows both instantaneous and cumulative effects
-                across multiple time horizons.
-                """)
+        st.markdown("""
+        <div style="display:flex; align-items:center;">
+            <h3 style="margin:0;">Simulation Visualization</h3>
+            <span style="margin-left:8px;">
+        """, unsafe_allow_html=True)
+    
+        with st.popover("❓ ODA 설명"):
+            st.markdown("""
+            ### Visualization
+            This graph shows both instantaneous and cumulative effects
+            across multiple time horizons.
+            """)
+    
+        st.markdown("</span></div>", unsafe_allow_html=True)
     
         result_placeholder = st.empty()
 

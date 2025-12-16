@@ -330,35 +330,44 @@ def dashboard_page():
         with st.popover("❓"):
             st.markdown(
                 """
-                <div style="
-                    background-color:#000000;
-                    color:#ffffff;
-                    padding:22px;
-                    border-radius:14px;
-                ">
-                
-        ### Real-Time Policy Simulation Visualization
+                <div style="background-color:#000000; color:#ffffff; padding:22px; border-radius:14px;">
         
-        This dashboard is where you can intuitively see the results of your policy scenarios in action.
+                <h3>Real-Time Policy Simulation Visualization</h3>
         
-        **Dynamic Prediction Graph:**  
-        As you adjust the sliders for investment increases across different ODA sectors (Health, Social/Environmental, Governance), the predicted change in Ethiopia's life expectancy updates dynamically on the graph in real time.
+                <p>
+                This dashboard is where you can intuitively see the results of your policy scenarios in action.
+                </p>
         
-        **Immediate Effects (Horizon 0):**  
-        Changes from policies that yield rapid results, such as Social/Environmental ODA, are reflected immediately within the current year.
+                <p><b>Dynamic Prediction Graph:</b><br>
+                As you adjust the sliders for investment increases across different ODA sectors
+                (Health, Social/Environmental, Governance), the predicted change in Ethiopia's
+                life expectancy updates dynamically on the graph in real time.
+                </p>
         
-        **Lagged Effects (Horizon 1, 2):**  
-        The long-term impact of policies like Health ODA, which accumulate over one or two years, is clearly visualized over time.
+                <p><b>Immediate Effects (Horizon 0):</b><br>
+                Changes from policies that yield rapid results, such as Social/Environmental ODA,
+                are reflected immediately within the current year.
+                </p>
         
-        **"What-If" Analysis:**  
-        The tool allows you to easily compare various policy mixes (e.g., combining a +10% increase in Health ODA with a +5% increase in Social/Environmental ODA) to visually determine which pathway leads to the most efficient and sustainable development outcomes.
+                <p><b>Lagged Effects (Horizon 1, 2):</b><br>
+                The long-term impact of policies like Health ODA, which accumulate over one or two
+                years, is clearly visualized over time.
+                </p>
         
-        **Incorporating Uncertainty:**  
-        The prediction graph includes a 95% Confidence Interval (CI). This helps policymakers evaluate the robustness of a decision by understanding the range of statistical uncertainty associated with the model's prediction.
-                """
+                <p><b>"What-If" Analysis:</b><br>
+                The tool allows you to easily compare various policy mixes (e.g., combining a +10%
+                increase in Health ODA with a +5% increase in Social/Environmental ODA).
+                </p>
+        
+                <p><b>Incorporating Uncertainty:</b><br>
+                The prediction graph includes a 95% Confidence Interval (CI), helping policymakers
+                understand statistical uncertainty.
+                </p>
+        
+                </div>
+                """,
+                unsafe_allow_html=True
             )
-    
-        st.markdown("</div></div>", unsafe_allow_html=True)
     
         result_placeholder = st.empty()
 
@@ -587,6 +596,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

@@ -124,11 +124,12 @@ st.markdown(
     function toggleTooltip(id) {
         const box = document.getElementById(id);
         const overlay = document.getElementById(id + "-overlay");
-
+    
         const visible = box.style.display === "block";
         box.style.display = visible ? "none" : "block";
         overlay.style.display = visible ? "none" : "block";
     }
+    </script>
 
 
     /* 모든 이미지 중앙 정렬 강제 */
@@ -681,6 +682,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

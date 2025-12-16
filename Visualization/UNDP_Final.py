@@ -53,12 +53,13 @@ st.markdown(
     }
 
     button[data-testid="stPopoverButton"] {
-        color: black !important;   /* 글씨 색 검정 */
+        color: black !important;       /* 아이콘 색 검정 */
         background: transparent !important;
         border: none !important;
         padding: 0 !important;
-        font-size: 16px !important;
+        font-size: 20px !important;    /* 아이콘 크기 */
         cursor: pointer;
+        margin-left: 6px !important;   /* 제목과 간격 */
     }
 
     /* ===== Tooltip icon ===== */
@@ -313,10 +314,10 @@ def dashboard_page():
         st.markdown("""
         <div style="display:flex; align-items:center;">
             <h3 style="margin:0;">Simulation Visualization</h3>
-            <span style="margin-left:8px;">
+            <span style="margin-left:6px;">
         """, unsafe_allow_html=True)
     
-        with st.popover("❓ ODA 설명"):
+        with st.popover("❓"):
             st.markdown("""
             ### Visualization
             This graph shows both instantaneous and cumulative effects
@@ -552,6 +553,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

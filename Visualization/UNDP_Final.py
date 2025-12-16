@@ -52,7 +52,7 @@ st.markdown(
         backdrop-filter: blur(6px);
     }
 
-    div[data-testid="stPopoverButton"] > button {
+    button[data-testid="stPopoverButton"] {
         color: black !important;   /* 글씨 색 검정 */
         background: transparent !important;
         border: none !important;
@@ -308,7 +308,7 @@ def dashboard_page():
         # --- RQ 슬라이더 (절대값) ---
         slider_rq_delta = st.slider("📊Institutional Quality (absolute change)", -2.5, 2.5, 0.0, 0.01)
 
-
+    
     with col1:
         st.markdown("""
         <div style="display:flex; align-items:center;">
@@ -552,6 +552,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

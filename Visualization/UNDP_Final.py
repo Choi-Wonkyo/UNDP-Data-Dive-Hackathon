@@ -279,27 +279,15 @@ def dashboard_page():
     col1, col2 = st.columns([1.5, 1])
 
     with col2:
-        st.markdown(f"""
-        <div style="display:flex; align-items:center;">
-            <h3 style="margin:0;">ODA Weight</h3>
-            <img class="tooltip-icon"
-                 src="Visualization/Design/question.png"
-                 onclick="toggleTooltip('tip-oda')" />
-        </div>
+        st.subheader("ODA Weight")
     
-        <div id="tip-oda-overlay" class="tooltip-overlay"
-             onclick="toggleTooltip('tip-oda')"></div>
-    
-        <div id="tip-oda" class="tooltip-box">
-            <div class="tooltip-close"
-                 onclick="toggleTooltip('tip-oda')">✕</div>
-            <h4>ODA Sliders</h4>
-            <p>
-            Adjust each slider to simulate percentage changes in ODA investment.
-            The simulation updates in real time.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+        # popover 아이콘 버튼
+        with st.popover("❓ ODA 설명"):
+            st.markdown("""
+            ### ODA Sliders
+            - Adjust each slider to simulate percentage changes in ODA investment.
+            - The simulation updates in real time.
+            """)
 
         # --- ODA 슬라이더 (한 번만 입력) ---
         slider_health = st.slider("❤️Health ODA % change", -20, 50, 0)
@@ -313,43 +301,23 @@ def dashboard_page():
 
 
     with col1:
-        st.markdown(f"""
-            <div style="display:flex; align-items:center;">
-                <h3 style="margin:0;">Simulation Visualization</h3>
-        
-                <!-- 설명 1 -->
-                <img class="tooltip-icon"
-                     src="Visualization/Design/question2.png"
-                     onclick="toggleTooltip('tip-viz')" />
-            </div>
-        
-            <div id="tip-viz-overlay" class="tooltip-overlay"
-                 onclick="toggleTooltip('tip-viz')"></div>
-        
-            <div id="tip-viz" class="tooltip-box">
-                <div class="tooltip-close"
-                     onclick="toggleTooltip('tip-viz')">✕</div>
-                <h4>Visualization</h4>
-                <p>
-                This graph shows both instantaneous and cumulative effects
-                across multiple time horizons.
-                </p>
-            </div>
-        
-            <div id="tip-summary-overlay" class="tooltip-overlay"
-                 onclick="toggleTooltip('tip-summary')"></div>
-        
-            <div id="tip-summary" class="tooltip-box">
-                <div class="tooltip-close"
-                     onclick="toggleTooltip('tip-summary')">✕</div>
-                <h4>Policy Insight Summary</h4>
-                <p>
-                This section explains which policy variables contribute most
-                to the predicted outcome and when their effects materialize.
-                </p>
-            </div>
-            """, unsafe_allow_html=True)
-
+        st.subheader("Simulation Visualization")
+    
+        # popover 아이콘 버튼
+        with st.popover("❓ Visualization 설명"):
+            st.markdown("""
+            ### Visualization
+            This graph shows both instantaneous and cumulative effects
+            across multiple time horizons.
+            """)
+    
+        with st.popover("❓ Policy Insight Summary"):
+            st.markdown("""
+            ### Policy Insight Summary
+            This section explains which policy variables contribute most
+            to the predicted outcome and when their effects materialize.
+            """)
+    
         result_placeholder = st.empty()
 
         # --- 슬라이더 값 비율 변환 ---
@@ -577,6 +545,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

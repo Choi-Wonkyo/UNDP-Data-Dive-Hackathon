@@ -301,22 +301,19 @@ def dashboard_page():
 
 
     with col1:
-        st.subheader("Simulation Visualization")
-    
-        # popover 아이콘 버튼
-        with st.popover("❓ Visualization 설명"):
-            st.markdown("""
-            ### Visualization
-            This graph shows both instantaneous and cumulative effects
-            across multiple time horizons.
-            """)
-    
-        with st.popover("❓ Policy Insight Summary"):
-            st.markdown("""
-            ### Policy Insight Summary
-            This section explains which policy variables contribute most
-            to the predicted outcome and when their effects materialize.
-            """)
+        # 글씨와 버튼을 같은 행에 배치
+        title_col, icon_col = st.columns([8,1])
+        with title_col:
+            st.subheader("Simulation Visualization")
+        with icon_col:
+            # 아이콘 이미지를 popover 버튼으로 사용
+            with st.popover(""):
+                st.image("Visualization/Design/question2.png", width=28)
+                st.markdown("""
+                ### Visualization
+                This graph shows both instantaneous and cumulative effects
+                across multiple time horizons.
+                """)
     
         result_placeholder = st.empty()
 
@@ -545,6 +542,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

@@ -321,7 +321,7 @@ def dashboard_page():
         st.markdown(
             """
             <div style="display:flex; align-items:center;">
-                <h3 style="margin:0;">Simulation Visualization</h3>
+                <h3 style="margin:0;">Real-Time Policy Simulation Visualization</h3>
                 <div style="margin-left:6px;">
             """,
             unsafe_allow_html=True,
@@ -330,9 +330,24 @@ def dashboard_page():
         with st.popover("❓"):
             st.markdown(
                 """
-                ### Visualization
-                This graph shows both instantaneous and cumulative effects
-                across multiple time horizons.
+        ### Real-Time Policy Simulation Visualization
+        
+        This dashboard is where you can intuitively see the results of your policy scenarios in action.
+        
+        **Dynamic Prediction Graph:**  
+        As you adjust the sliders for investment increases across different ODA sectors (Health, Social/Environmental, Governance), the predicted change in Ethiopia's life expectancy updates dynamically on the graph in real time.
+        
+        **Immediate Effects (Horizon 0):**  
+        Changes from policies that yield rapid results, such as Social/Environmental ODA, are reflected immediately within the current year.
+        
+        **Lagged Effects (Horizon 1, 2):**  
+        The long-term impact of policies like Health ODA, which accumulate over one or two years, is clearly visualized over time.
+        
+        **"What-If" Analysis:**  
+        The tool allows you to easily compare various policy mixes (e.g., combining a +10% increase in Health ODA with a +5% increase in Social/Environmental ODA) to visually determine which pathway leads to the most efficient and sustainable development outcomes.
+        
+        **Incorporating Uncertainty:**  
+        The prediction graph includes a 95% Confidence Interval (CI). This helps policymakers evaluate the robustness of a decision by understanding the range of statistical uncertainty associated with the model's prediction.
                 """
             )
     
@@ -565,5 +580,6 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 

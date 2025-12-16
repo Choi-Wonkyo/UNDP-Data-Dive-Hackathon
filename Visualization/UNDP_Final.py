@@ -68,16 +68,7 @@ st.markdown(
         background: rgba(0,0,0,0.55);
         z-index: 9998;
     }
-
-    /* ===== Tooltip box ===== */
-    .tooltip-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.55);
-        z-index: 9998;
-    }
-
+    
     .tooltip-box {
         display: none;
         position: fixed;
@@ -103,11 +94,11 @@ st.markdown(
     }
 
     /* ===== Global tweaks ===== */
-    img {
-        display: block;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
+    # img {
+    #     display: block;
+    #     margin-left: auto !important;
+    #     margin-right: auto !important;
+    # }
 
     p, label, div {
         font-size: 18px;
@@ -595,15 +586,5 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
-
-
-
-
-
-
-
-
-
-
 
 

@@ -51,16 +51,11 @@ st.markdown(
         background-color: rgba(255,255,255,0.15);
         backdrop-filter: blur(6px);
     }
-
+    
     button[data-testid="stPopoverButton"] {
-        color: black !important;       /* 아이콘 색 검정 */
-        background: transparent !important;
-        border: none !important;
-        padding: 0 !important;
-        font-size: 20px !important;    /* 아이콘 크기 */
-        cursor: pointer;
-        margin-top: -15px !important;
-        margin-left: 0px !important;   /* 제목과 간격 */
+        font-size: 18px !important;
+        margin-top: -6px !important;
+        margin-left: 4px !important;
     }
 
     /* ===== Tooltip icon ===== */
@@ -562,6 +557,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

@@ -576,11 +576,11 @@ def dashboard_page():
             
             st.markdown("</div></div>", unsafe_allow_html=True)
             
-# --- Policy Insight Summary 내용 출력 ---
-for line in summary_lines:
-    st.markdown(line)
-
-st.markdown(f"**{overall_summary}**")
+            # --- Policy Insight Summary 내용 출력 ---
+            for line in summary_lines:
+                st.markdown(line)
+            
+            st.markdown(f"**{overall_summary}**")
 
 
 def crop_center(img, crop_width, crop_height):
@@ -658,6 +658,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

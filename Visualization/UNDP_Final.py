@@ -47,7 +47,6 @@ st.markdown(
     section[data-testid="stSidebar"],
     section[data-testid="stSidebar"] > div {
         min-width: 200px !important;
-        max-width: 200px !important;
         background-color: rgba(255,255,255,0.15);
         backdrop-filter: blur(6px);
     }
@@ -674,34 +673,12 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-    # --- Dashboard 글자 ---
     st.markdown(
         """
-        <div style="
-            text-align:center;
-            line-height:1.15;
-            margin:16px 0 20px 0;
-        ">
-          <div style="
-              font-size:13px;
-              font-weight:700;
-              letter-spacing:1.2px;
-              background: linear-gradient(90deg, #7f7f7f, #b0b0b0);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-          ">
-            UNDP ×
-          </div>
-          <div style="
-              font-size:16px;
-              font-weight:800;
-              letter-spacing:0.4px;
-              background: linear-gradient(90deg, #004899, #00a3e0);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-          ">
-            CYClone
-          </div>
+        <div style='text-align:center; margin:15px 0;'>
+            <span style='font-size:32px; color:#004899; font-weight:500;'>
+                UNDP x CYClone
+            </span>
         </div>
         """,
         unsafe_allow_html=True
@@ -728,6 +705,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

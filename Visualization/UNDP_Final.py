@@ -311,20 +311,17 @@ def dashboard_page():
 
     
     with col1:
-        st.markdown("""
-        <div style="display:flex; align-items:center;">
-            <h3 style="margin:0;">Simulation Visualization</h3>
-            <span style="margin-left:6px;">
-        """, unsafe_allow_html=True)
-    
-        with st.popover("❓"):
-            st.markdown("""
-            ### Visualization
-            This graph shows both instantaneous and cumulative effects
-            across multiple time horizons.
-            """)
-    
-        st.markdown("</span></div>", unsafe_allow_html=True)
+        # 제목과 아이콘을 같은 줄에 배치
+        title_col, icon_col = st.columns([12,1])  # 비율 조정
+        with title_col:
+            st.subheader("Simulation Visualization")
+        with icon_col:
+            with st.popover("❓"):
+                st.markdown("""
+                ### Visualization
+                This graph shows both instantaneous and cumulative effects
+                across multiple time horizons.
+                """)
     
         result_placeholder = st.empty()
 
@@ -553,6 +550,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

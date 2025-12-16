@@ -287,7 +287,7 @@ def dashboard_page():
         <div style="display:flex; align-items:center;">
             <h3 style="margin:0;">ODA Weight</h3>
             <img class="tooltip-icon"
-                 src="data:image/png;base64,{icon_base64}"
+                 src="Visualization/Design/question.png"
                  onclick="toggleTooltip('tip-oda')" />
         </div>
     
@@ -323,13 +323,8 @@ def dashboard_page():
         
                 <!-- 설명 1 -->
                 <img class="tooltip-icon"
-                     src="data:image/png;base64,{icon_base64}"
+                     src="Visualization/Design/question2.png"
                      onclick="toggleTooltip('tip-viz')" />
-        
-                <!-- 설명 2 (세 번째 포인트) -->
-                <img class="tooltip-icon"
-                     src="data:image/png;base64,{icon_base64}"
-                     onclick="toggleTooltip('tip-summary')" />
             </div>
         
             <div id="tip-viz-overlay" class="tooltip-overlay"
@@ -586,5 +581,6 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 

@@ -58,6 +58,22 @@ st.markdown(
         margin-left: 4px !important;
     }
 
+    div[data-testid="stPopoverContent"] {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border-radius: 14px;
+        padding: 20px;
+    }
+
+    /* 제목/텍스트 색 보장 */
+    div[data-testid="stPopoverContent"] h1,
+    div[data-testid="stPopoverContent"] h2,
+    div[data-testid="stPopoverContent"] h3,
+    div[data-testid="stPopoverContent"] p,
+    div[data-testid="stPopoverContent"] li {
+        color: #ffffff !important;
+    }
+
     /* ===== Tooltip icon ===== */
     .tooltip-icon {
         width: 22px;
@@ -580,6 +596,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

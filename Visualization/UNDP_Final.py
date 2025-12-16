@@ -289,15 +289,19 @@ def dashboard_page():
     col1, col2 = st.columns([1.5, 1])
 
     with col2:
-        st.subheader("ODA Weight")
-    
-        # popover 아이콘 버튼
-        with st.popover("❓ ODA 설명"):
-            st.markdown("""
-            ### ODA Sliders
-            - Adjust each slider to simulate percentage changes in ODA investment.
-            - The simulation updates in real time.
-            """)
+        col1, col2 = st.columns([1,0.1])
+        
+        with col1:
+            st.subheader("ODA Weight")
+
+        with col2:
+            # popover 아이콘 버튼
+            with st.popover("❓ ODA 설명"):
+                st.markdown("""
+                ### ODA Sliders
+                - Adjust each slider to simulate percentage changes in ODA investment.
+                - The simulation updates in real time.
+                """)
 
         # --- ODA 슬라이더 (한 번만 입력) ---
         slider_health = st.slider("❤️Health ODA % change", -20, 50, 0)
@@ -550,6 +554,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

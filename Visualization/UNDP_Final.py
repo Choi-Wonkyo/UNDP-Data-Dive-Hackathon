@@ -118,7 +118,6 @@ st.markdown(
     .tooltip-close:hover {
         color: white;
     }
-    </style>
 
     <script>
     function toggleTooltip(id) {
@@ -682,6 +681,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

@@ -52,6 +52,16 @@ st.markdown(
         backdrop-filter: blur(6px);
     }
 
+    button[aria-controls][data-testid="baseButton-secondary"] {
+        color: black !important;   /* 글씨 색 검정 */
+        background: transparent !important; /* 배경 투명 */
+        border: none !important;
+        padding: 0 !important;
+        margin-left: 6px !important; /* 제목과 간격 */
+        font-size: 16px !important;
+        cursor: pointer;
+    }
+
     /* ===== Tooltip icon ===== */
     .tooltip-icon {
         width: 22px;
@@ -302,7 +312,7 @@ def dashboard_page():
 
     with col1:
         # 글씨와 버튼을 같은 행에 배치
-        title_col, icon_col = st.columns([8,7])
+        title_col, icon_col = st.columns([5,1])
         with title_col:
             st.subheader("Simulation Visualization")
         with icon_col:
@@ -540,6 +550,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

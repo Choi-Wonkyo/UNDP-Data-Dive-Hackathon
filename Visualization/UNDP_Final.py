@@ -396,6 +396,10 @@ def dashboard_page():
                 """,
                 unsafe_allow_html=True
             )
+
+        for line in summary_lines:
+            st.markdown(line)
+            st.markdown(overall_summary)
     
         result_placeholder = st.empty()
 
@@ -667,6 +671,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

@@ -562,13 +562,50 @@ def dashboard_page():
                     """
                     <div style="background-color:#000000; color:#ffffff; padding:22px; border-radius:14px;">
             
-                    <h3>How to Interpret the Policy Insight Summary</h3>
+                    <h3>Policy Insight Summary</h3>
             
                     <p>
-                    This section provides a concise, policy-oriented interpretation of the simulation results,
-                    highlighting which factors drive changes in life expectancy.
+                    This section serves as your policy decision support area, providing a concise, 
+                    real-time interpretation of your simulation results. 
+                    You can instantly grasp the most critical policy insights without needing 
+                    to analyze complex model outputs or graphs.
                     </p>
-    
+
+                    <ul>
+                        <li>
+                            <b>Real-Time Interpretation:</b><br>
+                            As you adjust policy variables using the sliders, this summary
+                            <b>automatically interprets and presents</b> the impact of those changes
+                            on life expectancy.
+                        </li>
+                        <br>
+                        <li>
+                            <b>Sectoral Impact Analysis:</b><br>
+                            It provides <b>specific explanations</b> of how changes in individual ODA sectors
+                            (Health, Social/Environmental, Governance, etc.) affect life expectancy
+                            in the short- and medium-term.
+                            <br>
+                            <i>
+                            (e.g., “A +10% increase in Health ODA is projected to result in a cumulative
+                            life expectancy gain of 0.13 years after 2 years.”)
+                            </i>
+                        </li>
+                        <br>
+                        <li>
+                            <b>Top 3 Influencers:</b><br>
+                            The summary identifies the <b>Top 3 most influential factors</b>
+                            driving life expectancy changes under the current policy scenario,
+                            helping policymakers prioritize resource allocation.
+                        </li>
+                        <br>
+                        <li>
+                            <b>Cumulative Effect Summary:</b><br>
+                            It clearly reports the <b>final cumulative gain</b> in life expectancy
+                            over time, together with immediate effects, allowing for a quick
+                            assessment of long-term policy effectiveness.
+                        </li>
+                    </ul>
+                    
                     </div>
                     """,
                     unsafe_allow_html=True
@@ -658,6 +695,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

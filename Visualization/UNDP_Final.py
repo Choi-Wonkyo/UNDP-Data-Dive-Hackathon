@@ -681,7 +681,7 @@ with st.sidebar:
     st.markdown(
         """
         <div style='text-align:center; margin:15px 0;'>
-            <span style='font-size:32px; color:#004899; font-weight:500;'>
+            <span style='font-size:32px; color:#ffffff; font-weight:500;'>
                 UNDP x CYClone
             </span>
         </div>
@@ -710,6 +710,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

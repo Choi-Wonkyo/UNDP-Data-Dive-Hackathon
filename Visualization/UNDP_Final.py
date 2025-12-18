@@ -55,17 +55,15 @@ st.markdown(
     section[data-testid="stSidebar"] > div {
         background-color: transparent;
     }
-    
-    button[data-testid="stPopoverButton"] {
-        font-size: 18px !important;
-        margin-top: -6px !important;
-        margin-left: 4px !important;
-    }
 
-    /* Popover trigger button text */
     button[data-testid="stPopoverButton"] {
-        color: #000000 !important;   /* 원하는 색 */
+        background-color: #ffffff !important;
         font-weight: 600;
+    }
+    
+    /* 버튼 안 텍스트 */
+    button[data-testid="stPopoverButton"] span {
+        color: #000000 !important;
     }
 
     /* 아이콘 색상도 같이 */
@@ -680,6 +678,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

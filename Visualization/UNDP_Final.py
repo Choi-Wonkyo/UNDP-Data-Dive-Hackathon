@@ -59,10 +59,16 @@ st.markdown(
     button[data-testid="stPopoverButton"] {
         background-color: #ffffff !important;
         font-weight: 600;
+        border-radius: 12px;
     }
     
-    /* 버튼 안 텍스트 */
+    /* 기본 텍스트 */
     button[data-testid="stPopoverButton"] span {
+        color: #000000 !important;
+    }
+    
+    /* ⭐ hover 시에도 강제 고정 */
+    button[data-testid="stPopoverButton"]:hover span {
         color: #000000 !important;
     }
 
@@ -673,6 +679,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

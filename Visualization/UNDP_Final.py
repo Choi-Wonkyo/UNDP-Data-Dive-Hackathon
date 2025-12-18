@@ -149,7 +149,7 @@ def policy_scenario_predict(
     for k, v in oda_rates.items():
         v = float(v)
         if v <= -1:
-            raise ValueError(f"{k} 감소율은 -100% 미만일 수 없습니다.")
+            raise ValueError(f"The decrease rate for {k} cannot be less than -100%.")
         log_inc[k] = np.log(1 + v)
     z = {0.90:1.64, 0.95:1.96, 0.99:2.58}.get(ci, 1.96)
 
@@ -669,4 +669,5 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 

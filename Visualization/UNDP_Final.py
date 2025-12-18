@@ -103,6 +103,11 @@ st.markdown(
         cursor: pointer;
     }
 
+    [popover]:popover-open {
+      color: #ff0000; /* 원하는 글씨색 (예: 빨간색) */
+      background-color: #f0f0f0; /* 배경색도 함께 설정 가능 */
+    }
+
     /* ===== Global tweaks ===== */
     # img {
     #     display: block;
@@ -710,6 +715,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

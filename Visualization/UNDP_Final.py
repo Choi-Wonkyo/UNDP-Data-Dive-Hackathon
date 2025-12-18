@@ -66,11 +66,6 @@ st.markdown(
         color: #000000 !important;
     }
 
-    /* 아이콘 색상도 같이 */
-    button[data-testid="stPopoverButton"] span {
-        color: #ffffff !important;
-    }
-
     /* ===== Global tweaks ===== */
     # img {
     #     display: block;
@@ -678,6 +673,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

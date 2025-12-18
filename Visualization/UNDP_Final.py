@@ -62,46 +62,46 @@ st.markdown(
         margin-left: 4px !important;
     }
 
-    /* ===== Tooltip icon ===== */
-    .tooltip-icon {
-        width: 22px;
-        height: 22px;
-        cursor: pointer;
-        margin-left: 8px;
-    }
+    # /* ===== Tooltip icon ===== */
+    # .tooltip-icon {
+    #     width: 22px;
+    #     height: 22px;
+    #     cursor: pointer;
+    #     margin-left: 8px;
+    # }
 
-    /* ===== Overlay ===== */
-    .tooltip-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.55);
-        z-index: 9998;
-    }
+    # /* ===== Overlay ===== */
+    # .tooltip-overlay {
+    #     display: none;
+    #     position: fixed;
+    #     inset: 0;
+    #     background: rgba(0,0,0,0.55);
+    #     z-index: 9998;
+    # }
     
-    .tooltip-box {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 600px;
-        max-height: 75vh;
-        background: #0f172a;
-        color: white;
-        padding: 28px;
-        border-radius: 16px;
-        z-index: 9999;
-        overflow-y: auto;
-    }
+    # .tooltip-box {
+    #     display: none;
+    #     position: fixed;
+    #     top: 50%;
+    #     left: 50%;
+    #     transform: translate(-50%, -50%);
+    #     width: 600px;
+    #     max-height: 75vh;
+    #     background: #0f172a;
+    #     color: white;
+    #     padding: 28px;
+    #     border-radius: 16px;
+    #     z-index: 9999;
+    #     overflow-y: auto;
+    # }
 
-    .tooltip-close {
-        position: absolute;
-        top: 10px;
-        right: 16px;
-        font-size: 22px;
-        cursor: pointer;
-    }
+    # .tooltip-close {
+    #     position: absolute;
+    #     top: 10px;
+    #     right: 16px;
+    #     font-size: 22px;
+    #     cursor: pointer;
+    # }
 
     /* Popover trigger button text */
     button[data-testid="stPopoverButton"] {
@@ -721,6 +721,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

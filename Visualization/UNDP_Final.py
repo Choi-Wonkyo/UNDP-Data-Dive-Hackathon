@@ -39,8 +39,7 @@ st.markdown(
     # .stApp h1,
     # .stApp h2,
     # .stApp h3,
-    # .stApp h4,
-    .stApp h5 {
+    .stApp h4{
         color: #ffffff;
     }
 
@@ -675,6 +674,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

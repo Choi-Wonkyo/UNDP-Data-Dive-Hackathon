@@ -33,7 +33,8 @@ st.markdown(
         );
     }
 
-    .stApp{
+    .stApp,
+    .stApp label{
         color: #ffffff;
     }
 
@@ -668,6 +669,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

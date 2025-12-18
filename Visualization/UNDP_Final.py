@@ -105,7 +105,7 @@ st.markdown(
 
     /* Popover trigger button text */
     button[data-testid="stPopoverButton"] {
-        color: #ffffff !important;   /* 원하는 색 */
+        color: #000000 !important;   /* 원하는 색 */
         font-weight: 600;
     }
 
@@ -721,6 +721,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

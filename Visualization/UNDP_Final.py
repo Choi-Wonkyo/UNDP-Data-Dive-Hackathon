@@ -669,18 +669,3 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

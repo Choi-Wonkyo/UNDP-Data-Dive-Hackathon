@@ -56,12 +56,6 @@ st.markdown(
         background-color: transparent;
     }
     
-    button[data-testid="stPopoverButton"] {
-        font-size: 18px !important;
-        margin-top: -6px !important;
-        margin-left: 4px !important;
-    }
-
     /* ===== Global tweaks ===== */
     # img {
     #     display: block;
@@ -86,6 +80,19 @@ st.markdown(
         align-items: center;
         width: 100%;
     }
+
+    button[data-testid="stPopoverButton"] {
+        color: #000000;  /* 글씨색 검정 */
+        font-size: 18px !important;
+        margin-top: -6px !important;
+        margin-left: 4px !important;
+    }
+
+    /* Hover 시 기본 Streamlit 스타일 유지 */
+    button[data-testid="stPopoverButton"]:hover {
+        /* 아무것도 지정하지 않음 → Streamlit 기본 hover 유지 */
+    }
+    
     </style>
 
     <script>
@@ -669,6 +676,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

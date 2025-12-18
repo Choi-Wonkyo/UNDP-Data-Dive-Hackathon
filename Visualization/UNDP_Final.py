@@ -40,9 +40,9 @@ st.markdown(
     # .stApp h2,
     # .stApp h3,
     # .stApp h4,
-    # .stApp h5 {
-    #     color: #ffffff;
-    # }
+    .stApp h5 {
+        color: #ffffff;
+    }
 
     /* sidebar 컨테이너만 최소 폭 설정 */
     section[data-testid="stSidebar"] {
@@ -675,6 +675,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

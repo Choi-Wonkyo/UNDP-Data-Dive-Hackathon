@@ -41,7 +41,7 @@ st.markdown(
     .stApp h3,
     .stApp h4,
     .stApp h5 {
-        color: #ffffff !important;
+        color: #ffffff;
     }
 
     /* sidebar 컨테이너만 최소 폭 설정 */
@@ -101,11 +101,6 @@ st.markdown(
         right: 16px;
         font-size: 22px;
         cursor: pointer;
-    }
-
-    [popover]:popover-open {
-      color: #ff0000; /* 원하는 글씨색 (예: 빨간색) */
-      background-color: #f0f0f0; /* 배경색도 함께 설정 가능 */
     }
 
     /* ===== Global tweaks ===== */
@@ -715,6 +710,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

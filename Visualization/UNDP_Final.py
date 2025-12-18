@@ -534,7 +534,7 @@ def dashboard_page():
             # 상위 3개 변수 + Horizon 표시
             summary_lines = []
             for var, val in top3_vars:
-                arrow = "→" if val != 0 else "→ 영향 없음"
+                arrow = "→" if val != 0 else "→ No effect"
                 
                 # Horizon별 효과
                 horizon_effects = []
@@ -710,6 +710,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

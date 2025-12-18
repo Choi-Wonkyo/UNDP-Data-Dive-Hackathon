@@ -103,6 +103,17 @@ st.markdown(
         cursor: pointer;
     }
 
+    /* Popover trigger button text */
+    button[data-testid="stPopoverButton"] {
+        color: #ffffff !important;   /* 원하는 색 */
+        font-weight: 600;
+    }
+
+    /* 아이콘 색상도 같이 */
+    button[data-testid="stPopoverButton"] span {
+        color: #ffffff !important;
+    }
+
     /* ===== Global tweaks ===== */
     # img {
     #     display: block;
@@ -710,6 +721,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

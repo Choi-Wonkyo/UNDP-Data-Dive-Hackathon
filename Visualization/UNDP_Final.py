@@ -85,7 +85,6 @@ st.markdown(
         color: #000000;  /* 글씨색 검정 */
         font-size: 18px !important;
         margin-top: -6px !important;
-        margin-left: 4px !important;
     }
 
     /* Hover 시 기본 Streamlit 스타일 유지 */
@@ -676,6 +675,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

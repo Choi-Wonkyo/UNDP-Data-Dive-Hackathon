@@ -298,7 +298,7 @@ def dashboard_page():
             unsafe_allow_html=True,
         )
             
-        with st.popover("❓"):
+        with st.popover("❓How to adjust policy sliders"):
             st.markdown(
                 """
                 <div style="background-color:#000000; color:#ffffff; padding:22px; border-radius:14px;">
@@ -366,7 +366,7 @@ def dashboard_page():
             unsafe_allow_html=True,
         )
 
-        with st.popover("❓"):
+        with st.popover("❓Preview policy outcomes"):
             st.markdown(
                 """
                 <div style="background-color:#000000; color:#ffffff; padding:22px; border-radius:14px;">
@@ -573,7 +573,7 @@ def dashboard_page():
                 unsafe_allow_html=True,
             )
             
-            with st.popover("❓"):
+            with st.popover("❓Policy insights at a glance"):
                 st.markdown(
                     """
                     <div style="background-color:#000000; color:#ffffff; padding:22px; border-radius:14px;">
@@ -710,6 +710,7 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+
 
 
 

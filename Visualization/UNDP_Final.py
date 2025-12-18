@@ -83,7 +83,7 @@ st.markdown(
 
     /* Hover 시 기본 Streamlit 스타일 유지 */
     button[data-testid="stPopoverButton"]:hover {
-        /* 아무것도 지정하지 않음 → Streamlit 기본 hover 유지 */
+        color: #ffffff;
     }
     
     </style>
@@ -669,3 +669,4 @@ with st.sidebar:
 
 # ====== Dashboard 실행 ======
 dashboard_page()    
+

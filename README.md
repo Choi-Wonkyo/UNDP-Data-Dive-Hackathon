@@ -35,23 +35,39 @@ undp-odaproj/
 <br>
 <br>
 
-## 🚀 Setup Instructions
-This project can be accessed through the web-based visualization interface, which serves as the primary entry point for exploring results and policy scenarios.
-Local execution and Google Colab are provided for users who wish to run simulations or analyses directly.
+## 🚀 Getting Started
+**Prerequisites**
+- Python 3.9+
+- pip (Python package manager)
 
-Local execution is recommended for full functionality and reproducibility, while Google Colab is provided as a convenient alternative for analysis and experimentation.
+### Local Setup (Recommended)
+Follow these steps to run the simulation dashboard on your local machine:
 
-### Quick Start (Local – Recommended)
-1. Clone the GitHub repository.
-2. Create and activate a virtual environment (optional but recommended).
-3. Install dependencies from `requirements.txt`.
-4. Run the Streamlit dashboard:
+1. Clone the Repository
+   ```bash
+   git clone https://github.com/your-username/undp-odaproj.git
+   cd undp-odaproj
+   ```
+2. Create a Virtual Environment
+   ```bash
+   python -m venv venv
+   # Activate on Windows:
+   venv\Scripts\activate
+   # Activate on macOS/Linux:
+   source venv/bin/activate
+   ```
+3. Install Dependencies
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Run the Streamlit dashboard
    ```bash
    streamlit run Visualization/model_simulation/UNDP_Final.py
    ```
 The Streamlit dashboard can also be accessed via a button within the web-based visualization interface.
 
-### Quick start (Colab)
+### Google Colab (Alternative)
+For a quick analysis without local setup:
 1. Open the relevant Colab notebook.
 2. Download the main folders from the GitHub repository and upload them to your Colab working directory.
 3. Mount your Google Drive:
@@ -64,7 +80,6 @@ The Streamlit dashboard can also be accessed via a button within the web-based v
   - Compute lagged correlations and growth rates
   - Train the prediction model (e.g., Multi-Layer Perceptron)
   - Execute scenario-based simulations
-
 
 <br>
 <br>

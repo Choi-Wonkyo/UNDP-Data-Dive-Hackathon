@@ -1,4 +1,4 @@
-실시간 정책 시나리오 시뮬레이션 웹 링크: https://undp-odaproj.vercel.app/
+Live Simulation Web Link: https://undp-odaproj.vercel.app/
 
 # 🌪️ CYClone - Analyzing the Past, Designing the Future: A Multi-target ODA Forecasting System
 
@@ -9,6 +9,17 @@
 This project develops a simulation-based forecasting tool to support UNDP's decision-making in Official Development Assistance (ODA). 
 Using a Multi-Layer Perceptron (MLP) model, the system quantitatively estimates how sector-specific ODA investments lead to measurable development outcomes over time. 
 It enables scenario-based comparisons, facilitates the assessment of sustainability and effectiveness, and provides evidence-based recommendations for optimal aid allocation.
+
+<br>
+<br>
+
+undp-odaproj/
+├── data_collection/    # Scripts for collecting ODA flow data and WB indicators
+├── data_analysis/      # Trend analysis, clustering, and lagged correlation
+├── modeling/           # MLP (Final model) and benchmarking models
+├── dashboard/          # Streamlit-based UI source code
+├── data/               # Processed datasets and data-specific README
+└── README.md           # Main documentation
 
 <br>
 <br>

@@ -16,12 +16,16 @@ It enables scenario-based comparisons, facilitates the assessment of sustainabil
 ## 📁 Repository Structure
 ```text
 undp-odaproj/
-├── data_collection/    # Scripts for collecting ODA flow data and WB indicators
-├── data_analysis/      # Trend analysis, clustering, and lagged correlation
-├── modeling/           # MLP (Final model) and benchmarking models
-├── dashboard/          # Streamlit-based UI source code
-├── data/               # Processed datasets and data-specific README
-└── README.md           # Main documentation
+├── Visualization/
+│   ├── web_visualizations/      # Web-based visual interface (Vercel deployment)
+│   └── model_simulation/        # Streamlit-based policy simulation dashboard
+│       └── UNDP_Final.py        # Streamlit entry point
+├── analysis/                    # Data analysis and experimental notebooks
+├── modeling/                    # MLP model and benchmarking models
+├── data/                        # Processed datasets and data documentation
+├── winner_upgrade/              # Post-Award Enhancements
+├── requirements.txt
+└── README.md
    ```
 
 <br>

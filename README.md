@@ -28,10 +28,10 @@ undp-odaproj/
 <br>
 
 ## 🚀 Setup Instructions
+This project can be accessed through the web-based visualization interface, which serves as the primary entry point for exploring results and policy scenarios.
+Local execution and Google Colab are provided for users who wish to run simulations or analyses directly.
 
-This project can be run either locally or in Google Colab.
-Local execution is recommended for full functionality and reproducibility,
-while Google Colab is provided as a convenient alternative for quick exploration.
+Local execution is recommended for full functionality and reproducibility, while Google Colab is provided as a convenient alternative for analysis and experimentation.
 
 ### Quick Start (Local – Recommended)
 1. Clone the GitHub repository.
@@ -41,6 +41,7 @@ while Google Colab is provided as a convenient alternative for quick exploration
    ```bash
    streamlit run visualization/app.py
    ```
+The Streamlit dashboard can also be accessed via a button within the web-based visualization interface.
 
 ### Quick start (Colab)
 1. Open the relevant Colab notebook.

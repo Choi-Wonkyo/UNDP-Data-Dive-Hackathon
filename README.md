@@ -29,7 +29,19 @@ undp-odaproj/
 
 ## 🚀 Setup Instructions
 
-This project is designed to run in Google Colab—no local full setup is required.
+This project can be run either locally or in Google Colab.
+Local execution is recommended for full functionality and reproducibility,
+while Google Colab is provided as a convenient alternative for quick exploration.
+
+### Quick Start (Local – Recommended)
+1. Clone the GitHub repository.
+2. Create and activate a virtual environment (optional but recommended).
+3. Install dependencies from `requirements.txt`.
+4. Run the Streamlit dashboard:
+   ```bash
+   streamlit run visualization/app.py
+   ```
+
 ### Quick start (Colab)
 1. Open the relevant Colab notebook.
 2. Download the main folders from the GitHub repository and upload them to your Colab working directory.

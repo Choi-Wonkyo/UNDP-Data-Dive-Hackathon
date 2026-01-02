@@ -39,7 +39,7 @@ Local execution is recommended for full functionality and reproducibility, while
 3. Install dependencies from `requirements.txt`.
 4. Run the Streamlit dashboard:
    ```bash
-   streamlit run visualization/app.py
+   streamlit run Visualization/model_simulation/UNDP_Final.py
    ```
 The Streamlit dashboard can also be accessed via a button within the web-based visualization interface.
 

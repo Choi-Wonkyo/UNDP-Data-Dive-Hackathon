@@ -5,7 +5,7 @@ Live Simulation Web Link: https://undp-odaproj.vercel.app/
 -------------------------------
 <br>
 
-## Project Overview
+## 📋 Project Overview
 This project develops a simulation-based forecasting tool to support UNDP's decision-making in Official Development Assistance (ODA). 
 Using a Multi-Layer Perceptron (MLP) model, the system quantitatively estimates how sector-specific ODA investments lead to measurable development outcomes over time. 
 It enables scenario-based comparisons, facilitates the assessment of sustainability and effectiveness, and provides evidence-based recommendations for optimal aid allocation.
@@ -13,6 +13,8 @@ It enables scenario-based comparisons, facilitates the assessment of sustainabil
 <br>
 <br>
 
+## 📁 Repository Structure
+```text
 undp-odaproj/
 ├── data_collection/    # Scripts for collecting ODA flow data and WB indicators
 ├── data_analysis/      # Trend analysis, clustering, and lagged correlation
@@ -24,7 +26,7 @@ undp-odaproj/
 <br>
 <br>
 
-## Setup Instructions
+## 🚀 Setup Instructions
 
 This project is designed to run in Google Colab—no local full setup is required.
 ### Quick start (Colab)
@@ -45,7 +47,7 @@ This project is designed to run in Google Colab—no local full setup is require
 <br>
 <br>
 
-## Code documentation
+## 🛠️ Code documentation
 The project is organized into four main modules:
 
 - **data_collection**: Scripts for collecting and preprocessing raw ODA flow data and development indicators. Includes both original and cleaned CSV files.
@@ -66,7 +68,7 @@ The project is organized into four main modules:
 <br>
 <br>
 
-## API Documentation
+## 🔌 API Documentation
 
 This project does not use any external APIs.  
 All processes run locally within Python scripts and the Streamlit dashboard.  
@@ -77,7 +79,7 @@ based on user-selected parameters.
 <br>
 <br>
 
-## Analysis Methodology
+## 🧪 Analysis Methodology
 This project aims to quantitatively analyze the relationships between country- and sector-specific ODA flows and key development indicators, and to build foundational dataset for deep learning-based predictive modeling. The following analytical procedures were conducted:
 
 1. **Time Series Flow Analysis**  
@@ -98,7 +100,7 @@ This project aims to quantitatively analyze the relationships between country- a
 <br>
 <br>
 
-## Datasets Choice Justification
+## 📊 Datasets Choice Justification
 
 - **CRS ODA Data (`crs_data.csv`)**
   - Source: UNDP - Seoul Policy Centre
@@ -122,7 +124,7 @@ This project aims to quantitatively analyze the relationships between country- a
 <br>
 <br>
 
-## Key Findings
+## 📈 Key Findings
 - **CRS Data Analysis**
   - Time Series Analysis of ODA by Country: Sudden increases in annual totals reflect exogenous shocks (e.g., disasters, conflicts) and serve as important event signals for policy and modeling.
   - Sector-wise ODA Flow Analysis: Changes in sectoral shares over time provide key context for understanding lagged relationships with development indicators.
@@ -144,7 +146,7 @@ This project aims to quantitatively analyze the relationships between country- a
 <br>
 <br>
 
-## Technical Decisions
+## ⚙️ Technical Decisions
 - **Model Selection**
   - Tree-based models (XGBoost, LightGBM) excel at interpreting feature importance.
   - However, to capture time-lagged causality and continuous prediction in time series, **MLP (Multi-Layer Perceptron)** was chosen.
@@ -164,7 +166,7 @@ This project aims to quantitatively analyze the relationships between country- a
 
 <br>
 
-## Future Possibilities
+## 🚀 Future Possibilities
 **Limitations**:
 - Significant missing data in country-specific features limits analysis and prediction accuracy.
 - The model's performance is suboptimal, resulting in constraints on prediction accuracy.

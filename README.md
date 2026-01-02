@@ -6,9 +6,13 @@ Live Simulation Web Link: https://undp-odaproj.vercel.app/
 <br>
 
 ## 📋 Project Overview
-This project develops a simulation-based forecasting tool to support UNDP's decision-making in Official Development Assistance (ODA). 
-Using a Multi-Layer Perceptron (MLP) model, the system quantitatively estimates how sector-specific ODA investments lead to measurable development outcomes over time. 
-It enables scenario-based comparisons, facilitates the assessment of sustainability and effectiveness, and provides evidence-based recommendations for optimal aid allocation.
+This project develops a simulation-based forecasting tool to support **UNDP's decision-making** in Official Development Assistance (ODA). 
+Using a **Multi-Layer Perceptron (MLP)** model, the system quantitatively estimates how sector-specific ODA investments lead to measurable development outcomes over time.
+
+Key features include:
+* **Quantitative Impact**: Estimating how **sector-specific investments** lead to measurable development outcomes.
+* **Scenario-based Comparison**: Enabling users to compare different funding strategies side-by-side.
+* **Evidence-based Recommendations**: Providing a scientific foundation for **optimal aid allocation** and assessing sustainability.
 
 <br>
 <br>

@@ -1,4 +1,4 @@
-실시간 정책 시나리오 시뮬레이션 웹 링크: https://cycloneundpodaproject.vercel.app/ 
+실시간 정책 시나리오 시뮬레이션 웹 링크: https://undp-odaproj.vercel.app/
 
 # 🌪️ CYClone - Analyzing the Past, Designing the Future: A Multi-target ODA Forecasting System
 

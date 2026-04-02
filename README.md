@@ -1,6 +1,12 @@
-Live Simulation Web Link: https://undp-odaproj.vercel.app/
+🌪️ **Team CYClone**  
+📅 Project Duration: Jul 2025 – Jan 2026  
 
-# 🌪️ CYClone - Analyzing the Past, Designing the Future: A Multi-target ODA Forecasting System
+# Analyzing the Past, Designing the Future: A Multi-target ODA Forecasting System
+
+# Multi-target ODA Forecasting System  
+### Analyzing the Past, Designing the Future  
+
+🔗 Live Simulation: https://undp-odaproj.vercel.app/
 
 -------------------------------
 

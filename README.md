@@ -6,7 +6,7 @@
 📊 A simulation-based decision support system for optimizing ODA allocation using deep learning  
 🔗 **Live Simulation**: https://undp-odaproj.vercel.app/
 
-<sub>🌪️ Team CYClone · 📅Jul 2025 – Jan 2026</sub>
+<sub>🌪️ Team CYClone · 📅 Jul 2025 – Jan 2026</sub>
 
 ---
 <br>

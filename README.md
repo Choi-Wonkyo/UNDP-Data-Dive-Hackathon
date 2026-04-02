@@ -2,9 +2,12 @@
 📅 Project Duration: Jul 2025 – Jan 2026  
 
 🏆 **Winner — 2025 Data Dive for Development Hackathon (UNDP)**
-🚀 Selected as one of the top 2 teams
+
+🚀 Selected as one of the top 2 teams and advanced to a UNDP-supported development program
 
 # Analyzing the Past, Designing the Future: A Multi-target ODA Forecasting System
+
+📊 A simulation-based decision support system for optimizing ODA allocation using deep learning
 
 🔗 Live Simulation: https://undp-odaproj.vercel.app/
 

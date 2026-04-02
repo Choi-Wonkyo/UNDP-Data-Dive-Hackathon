@@ -1,9 +1,3 @@
-🌪️ **Team CYClone**  
-📅 Project Duration: Jul 2025 – Jan 2026  
-
-🏆 **Winner — 2025 Data Dive for Development Hackathon (UNDP)**
-🚀 Selected as one of the top 2 teams and advanced to a UNDP-supported development program
-
 # Analyzing the Past, Designing the Future: A Multi-target ODA Forecasting System
 
 📊 A simulation-based decision support system for optimizing ODA allocation using deep learning
@@ -12,6 +6,11 @@
 
 -------------------------------
 <br>
+
+🏆 **Winner — 2025 Data Dive for Development Hackathon (UNDP)**  
+🚀 Selected as one of the top 2 teams, advancing to a UNDP-supported development program  
+
+🌪️ **Team CYClone** · 📅 Jul 2025 – Jan 2026
 
 ## 📋 Project Overview
 This project develops a simulation-based forecasting tool to support **UNDP's decision-making** in Official Development Assistance (ODA). 

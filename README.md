@@ -13,7 +13,6 @@
 
 🌪️ **Team CYClone** · 📅 Jul 2025 – Jan 2026
 
----
 <br>
 
 ## 📋 Project Overview

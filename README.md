@@ -1,7 +1,7 @@
 # Analyzing the Past, Designing the Future: A Multi-target ODA Forecasting System
 
 ## 🏆 Winner — 2025 Data Dive for Development Hackathon (UNDP) 
-🚀 *Top 2 teams · Selected for UNDP-supported development program*
+🚀 *One of two winning teams · Selected for UNDP-supported development program*
 
 📊 A simulation-based decision support system for optimizing ODA allocation using deep learning  
 🔗 **Live Simulation**: https://undp-odaproj.vercel.app/
